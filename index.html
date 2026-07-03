@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1.ª Práctica — PSE Sumativa de Matemáticas 2026 — Primaria (60 ítems)</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3f6fb;color:#202124;line-height:1.6}
+.wrap{width:min(100%,900px);margin:auto;padding:18px}
+.card{background:white;border:1px solid #d9dee8;border-radius:8px;box-shadow:0 2px 10px rgba(22,34,51,.08)}
+.inicio{padding:34px;text-align:center;margin-top:28px}
+h1{margin:0 0 8px;color:#15246b;font-size:1.55rem}
+.author{display:inline-block;margin:9px 0 18px;padding-top:10px;border-top:1px solid #d5dbea;color:#374151;font-size:.86rem;line-height:1.35}
+.author strong{display:block;color:#172b85;font-size:.9rem;font-weight:700}
+.sub{color:#596579;margin:10px 0 24px}
+.btn{border:0;border-radius:6px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:1rem}
+.primary{background:#1565c0;color:white}.primary:hover{background:#0d47a1}
+.muted{background:#e8ecf3;color:#253044}
+.danger{background:#b42318;color:white}
+.top-bar{display:none;background:#172b85;color:white;border-radius:8px 8px 0 0;padding:12px 18px}
+.top-bar h1{color:white;font-size:1.05rem;margin:0}
+.bar{display:none;align-items:center;justify-content:space-between;gap:10px;background:#243c9b;color:white;border-radius:0 0 8px 8px;padding:8px 18px;margin-bottom:14px;font-size:.92rem}
+.timer{font-weight:800;letter-spacing:.04em}.timer.low{color:#ffd2d2}
+.progress{display:none;height:8px;background:#dce3ef;border-radius:999px;overflow:hidden;margin-bottom:8px}
+.progress span{display:block;height:100%;width:0;background:#1565c0;transition:width .2s}
+.progress-text{display:none;text-align:right;color:#596579;font-size:.88rem;margin-bottom:12px}
+.item{padding:20px}
+.item-head{font-weight:800;color:#15246b;margin-bottom:12px}
+.stem p{margin:0 0 10px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.1;font-family:"Times New Roman",serif;font-size:1.05em}
+.frac .num{display:block;padding:0 5px;border-bottom:1.5px solid currentColor}
+.frac .den{display:block;padding:2px 5px 0}
+.table-wrap{overflow-x:auto;margin:12px 0}
+.tbl{border-collapse:collapse;margin:0 auto;font-size:.97rem}
+.tbl th,.tbl td{border:1px solid #9aa4b2;padding:7px 14px;text-align:center}
+.tbl thead th{background:#e8ecff;color:#1f2b61;font-weight:700}
+.tbl td.fr{font-family:"Times New Roman",serif;font-size:1.1em;line-height:2}
+.fig{display:block;margin:12px auto;max-width:100%;overflow:visible}
+.fig-row{display:flex;gap:8px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin:12px 0}
+.mosaic-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #555;margin:12px auto;width:fit-content}
+.mosaic-cell{border:1px solid #555;padding:6px;text-align:center}
+.mosaic-label{font-weight:700;font-size:.85rem;margin-bottom:4px}
+.signal-grid{display:flex;gap:0;justify-content:center;margin:12px 0;border:1px solid #555}
+.signal-cell{border:1px solid #555;padding:8px;text-align:center;min-width:80px}
+.infobox{display:inline-block;border:1px solid #888;padding:7px 10px;font-size:.88rem;background:#f9f9f9;margin-top:6px}
+.blist{margin:8px 0 8px 22px;padding-left:6px}
+.blist li{margin-bottom:4px}
+.datalist{text-align:center;font-size:1rem;margin:12px 0;letter-spacing:.03em}
+.ecuacion{text-align:center;font-size:1.1em;font-family:"Times New Roman",serif;margin:12px 0;border:none}
+.options{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.opt{display:flex;gap:10px;align-items:flex-start;width:100%;padding:11px 13px;background:#fbfcff;border:1.5px solid #c8d0dc;border-radius:6px;text-align:left;cursor:pointer;font-size:1rem}
+.opt-content{flex:1;min-width:0}
+.opt:hover:not(:disabled){background:#eef4ff;border-color:#5f7ecf}
+.opt.sel{background:#e8f1ff;border-color:#1565c0}
+.letter{font-weight:800;min-width:24px}
+.mark{margin-top:12px}
+.mark button{background:#fff8e1;border:1px solid #e0a800;border-radius:5px;padding:5px 10px;color:#7b5900;cursor:pointer}
+.mark button.on{background:#ffecb3}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+select{padding:8px;border:1px solid #9aa4b2;border-radius:5px}
+.results{display:none;padding:26px}
+.score{text-align:center;color:#15246b;font-size:2.35rem;font-weight:800;margin:12px}
+.stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.stat{min-width:112px;text-align:center;border-radius:8px;padding:12px}
+.ok{background:#e7f6ec;color:#176b36}.bad{background:#feeceb;color:#b42318}.skip{background:#fff6dc;color:#8a6100}
+table.res{border-collapse:collapse;width:100%;font-size:.88rem}
+table.res th{background:#e8ecff;color:#1f2b61}
+table.res th,table.res td{border:1px solid #d9dee8;padding:6px 8px;text-align:center}
+.correct{color:#176b36;font-weight:800}.wrong{color:#b42318;font-weight:800}.omitted{color:#8a6100;font-weight:800}
+@media(max-width:720px){
+  .wrap{padding:10px}.inicio,.item,.results{padding:14px 12px}
+  .bar{align-items:flex-start;flex-direction:column;gap:6px}
+  .nav .btn,.nav select{width:100%;min-height:44px;font-size:1rem}
+  .opt{min-height:44px;padding:10px 11px;font-size:.97rem}
+  .score{font-size:1.9rem}h1{font-size:1.3rem}
+  select{min-height:44px}.btn{min-height:44px}
+  .mosaic-grid{grid-template-columns:1fr 1fr}.signal-grid{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section id="inicio" class="card inicio">
+  <h1>1.ª Práctica: Prueba Nacional Estandarizada<br>Sumativa 2026 de Matemáticas — Primaria</h1>
+  <div class="author">
+    <strong>Elaborado por: Alberto Jiménez Ruiz</strong>
+    <span>Asesor Regional de Matemática · DRE-Cartago 2026 | DAP</span>
+  </div>
+  <p class="sub">Versión interactiva con 60 ítems. Tiempo: 180 minutos.</p>
+  <button class="btn primary" onclick="iniciar()">Iniciar examen</button>
+</section>
+
+<header id="top" class="top-bar"><h1>1.ª Práctica PSE Sumativa 2026 — Matemáticas Primaria</h1></header>
+<div id="bar" class="bar">
+  <span>Modo Examen</span>
+  <span id="timer" class="timer">03:00:00</span>
+  <span id="itemLabel">Ítem 1 de 60</span>
+</div>
+<div id="progress" class="progress"><span id="progressBar"></span></div>
+<div id="progressText" class="progress-text">0 de 60 respondidos</div>
+<main id="area"></main>
+<section id="results" class="card results"></section>
+
+</div>
+<script>
+/* ─────────────────────────────────────────────
+   FUNCIONES DE TABLAS REUTILIZABLES
+───────────────────────────────────────────── */
+const T = {
+  wrap: (html) => `<div class="table-wrap">${html}</div>`,
+  table: (head, rows) =>
+    `<table class="tbl"><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`,
+  row: (cells) => `<tr>${cells.map(c=>`<td>${c}</td>`).join('')}</tr>`,
+  frac: (n,d) => `<span class="frac"><span class="num">${n}</span><span class="den">${d}</span></span>`
+};
+
+/* ─────────────────────────────────────────────
+   SVG FIGURAS INLINE
+───────────────────────────────────────────── */
+const FIG = {};
+
+/* Ítem 19 — Trapecio MEGC */
+FIG.i19 = `<svg class="fig" viewBox="-45 -25 385 175" width="340" height="155" style="max-width:100%">
+  <polygon points="0,130 0,0 110,0 286,130" fill="none" stroke="#111" stroke-width="1.8"/>
+  <path d="M9,130 L9,121 L0,121" fill="none" stroke="#111" stroke-width="1.2"/>
+  <text x="-38" y="68" font-size="11" text-anchor="middle">60 m</text>
+  <text x="55" y="-12" font-size="11" text-anchor="middle">50 m</text>
+  <text x="143" y="148" font-size="11" text-anchor="middle">130 m</text>
+  <text x="215" y="60" font-size="11" text-anchor="middle" transform="rotate(25,215,60)">100 m</text>
+  <text x="-4" y="-10" font-size="12" font-weight="bold" text-anchor="middle">E</text>
+  <text x="114" y="-10" font-size="12" font-weight="bold" text-anchor="start">G</text>
+  <text x="290" y="148" font-size="12" font-weight="bold" text-anchor="start">C</text>
+  <text x="-12" y="148" font-size="12" font-weight="bold" text-anchor="middle">M</text>
+</svg>`;
+
+/* Ítem 20 — 4 Mosaicos */
+FIG.i20 = `<div class="mosaic-grid" style="max-width:320px">
+  <div class="mosaic-cell">
+    <div class="mosaic-label">Diseño I</div>
+    <svg width="90" height="90" viewBox="0 0 90 90">
+      <rect x="0" y="0" width="90" height="90" fill="white" stroke="#222" stroke-width="1.5"/>
+      <rect x="22.5" y="22.5" width="45" height="45" fill="#888" stroke="#222" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="22.5" y2="22.5" stroke="#222" stroke-width="1.5"/>
+      <line x1="90" y1="0" x2="67.5" y2="22.5" stroke="#222" stroke-width="1.5"/>
+      <line x1="90" y1="90" x2="67.5" y2="67.5" stroke="#222" stroke-width="1.5"/>
+      <line x1="0" y1="90" x2="22.5" y2="67.5" stroke="#222" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div class="mosaic-cell">
+    <div class="mosaic-label">Diseño II</div>
+    <svg width="90" height="90" viewBox="0 0 90 90">
+      <rect x="0" y="0" width="90" height="90" fill="white" stroke="#222" stroke-width="1.5"/>
+      <rect x="0" y="45" width="30" height="45" fill="#888"/>
+      <rect x="60" y="45" width="30" height="45" fill="#888"/>
+      <rect x="30" y="0" width="30" height="45" fill="#888"/>
+      <line x1="30" y1="0" x2="30" y2="90" stroke="#222" stroke-width="1.2"/>
+      <line x1="60" y1="0" x2="60" y2="90" stroke="#222" stroke-width="1.2"/>
+      <line x1="0" y1="45" x2="90" y2="45" stroke="#222" stroke-width="1.2"/>
+    </svg>
+  </div>
+  <div class="mosaic-cell">
+    <div class="mosaic-label">Diseño III</div>
+    <svg width="90" height="90" viewBox="-5 -5 100 100">
+      <polygon points="90,45 67.5,84 22.5,84 0,45 22.5,6 67.5,6" fill="white" stroke="#222" stroke-width="1.5"/>
+      <polygon points="45,45 90,45 67.5,84" fill="#888"/>
+      <polygon points="45,45 22.5,84 0,45" fill="#888"/>
+      <polygon points="45,45 22.5,6 67.5,6" fill="#888"/>
+      <line x1="45" y1="45" x2="90" y2="45" stroke="#222" stroke-width="1.2"/>
+      <line x1="45" y1="45" x2="67.5" y2="84" stroke="#222" stroke-width="1.2"/>
+      <line x1="45" y1="45" x2="22.5" y2="84" stroke="#222" stroke-width="1.2"/>
+      <line x1="45" y1="45" x2="0" y2="45" stroke="#222" stroke-width="1.2"/>
+      <line x1="45" y1="45" x2="22.5" y2="6" stroke="#222" stroke-width="1.2"/>
+      <line x1="45" y1="45" x2="67.5" y2="6" stroke="#222" stroke-width="1.2"/>
+    </svg>
+  </div>
+  <div class="mosaic-cell">
+    <div class="mosaic-label">Diseño IV</div>
+    <svg width="90" height="90" viewBox="0 0 90 90">
+      <polygon points="0,90 90,90 0,0" fill="white" stroke="#222" stroke-width="1.5"/>
+      <polygon points="0,45 45,45 45,90 0,90" fill="#888"/>
+      <line x1="0" y1="45" x2="45" y2="45" stroke="#222" stroke-width="1.2"/>
+      <line x1="45" y1="45" x2="45" y2="90" stroke="#222" stroke-width="1.2"/>
+    </svg>
+  </div>
+</div>`;
+
+/* Ítem 21 — Pabellón deportivo */
+FIG.i21 = `<svg class="fig" viewBox="-5 -5 165 115" width="270" height="185" style="max-width:100%">
+  <rect x="0" y="0" width="150" height="100" fill="none" stroke="#111" stroke-width="1.8"/>
+  <line x1="75" y1="0" x2="75" y2="100" stroke="#111" stroke-width="1.8"/>
+  <line x1="75" y1="50" x2="150" y2="50" stroke="#111" stroke-width="1.8"/>
+  <line x1="0" y1="0" x2="75" y2="100" stroke="#111" stroke-width="1.8"/>
+  <text x="39" y="28" font-size="14" font-weight="bold" text-anchor="middle">1</text>
+  <text x="112" y="28" font-size="14" font-weight="bold" text-anchor="middle">2</text>
+  <text x="18" y="78" font-size="14" font-weight="bold" text-anchor="middle">3</text>
+  <text x="112" y="78" font-size="14" font-weight="bold" text-anchor="middle">4</text>
+</svg>`;
+
+/* Ítem 22 — Triángulo isósceles */
+FIG.i22 = `<svg class="fig" viewBox="-15 -20 205 155" width="300" height="220" style="max-width:100%">
+  <polygon points="0,112 168,112 84,0" fill="none" stroke="#111" stroke-width="1.8"/>
+  <text x="84" y="131" font-size="12" text-anchor="middle">6 cm</text>
+  <text x="30" y="65" font-size="12" text-anchor="middle" transform="rotate(-54,30,65)">5 cm</text>
+  <text x="138" y="65" font-size="12" text-anchor="middle" transform="rotate(54,138,65)">5 cm</text>
+  <line x1="38" y1="58" x2="46" y2="53" stroke="#111" stroke-width="1.5"/>
+  <line x1="130" y1="53" x2="122" y2="58" stroke="#111" stroke-width="1.5"/>
+</svg>`;
+
+/* Ítem 23 — Rombo */
+FIG.i23 = `<svg class="fig" viewBox="-10 10 205 130" width="300" height="190" style="max-width:100%">
+  <polygon points="15,121 120,121 172,28 67,28" fill="none" stroke="#111" stroke-width="1.8"/>
+  <line x1="67" y1="130" x2="67" y2="112" stroke="#111" stroke-width="1.2"/>
+  <line x1="149" y1="78" x2="141" y2="73" stroke="#111" stroke-width="1.2"/>
+  <line x1="120" y1="19" x2="120" y2="37" stroke="#111" stroke-width="1.2"/>
+  <line x1="41" y1="73" x2="49" y2="78" stroke="#111" stroke-width="1.2"/>
+  <path d="M 46,121 A 31,31 0 0,0 30.5,93" fill="none" stroke="#111" stroke-width="1.2"/>
+  <text x="34" y="113" font-size="11" text-anchor="middle">60°</text>
+  <path d="M 120,93 A 31,31 0 0,0 89,121" fill="none" stroke="#111" stroke-width="1.2"/>
+  <text x="104" y="113" font-size="11" text-anchor="middle">120°</text>
+</svg>`;
+
+/* Ítem 24 — Prisma triangular */
+FIG.i24 = `<svg class="fig" viewBox="-5 -5 175 115" width="270" height="175" style="max-width:100%">
+  <polygon points="0,84 90,84 45,0" fill="none" stroke="#111" stroke-width="1.8"/>
+  <line x1="90" y1="84" x2="135" y2="57" stroke="#111" stroke-width="1.8"/>
+  <line x1="45" y1="0" x2="90" y2="-27" stroke="#111" stroke-width="1.8"/>
+  <line x1="90" y1="-27" x2="135" y2="57" stroke="#111" stroke-width="1.8"/>
+  <line x1="45" y1="57" x2="135" y2="57" stroke="#111" stroke-width="1.8"/>
+  <line x1="0" y1="84" x2="45" y2="57" stroke="#111" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="45" y1="57" x2="90" y2="-27" stroke="#111" stroke-width="1.5" stroke-dasharray="5,3"/>
+</svg>`;
+
+/* Ítem 25 — Cilindro con segmento AB */
+FIG.i25 = `<svg class="fig" viewBox="-5 0 160 160" width="230" height="230" style="max-width:100%">
+  <ellipse cx="75" cy="130" rx="70" ry="18" fill="white" stroke="#111" stroke-width="1.8"/>
+  <path d="M 5,25 A 70,18 0 0,0 145,25" fill="none" stroke="#111" stroke-width="1.8"/>
+  <path d="M 145,25 A 70,18 0 0,1 5,25" fill="none" stroke="#111" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="5" y1="25" x2="5" y2="130" stroke="#111" stroke-width="1.8"/>
+  <line x1="145" y1="25" x2="145" y2="130" stroke="#111" stroke-width="1.8"/>
+  <circle cx="75" cy="25" r="3" fill="#111"/>
+  <circle cx="145" cy="25" r="3" fill="#111"/>
+  <line x1="75" y1="25" x2="145" y2="25" stroke="#111" stroke-width="2"/>
+  <text x="75" y="16" font-size="12" font-weight="bold" text-anchor="middle">A</text>
+  <text x="152" y="16" font-size="12" font-weight="bold" text-anchor="start">B</text>
+</svg>`;
+
+/* Ítem 28 — Lámina (rectángulo + triángulo) */
+FIG.i28 = `<svg class="fig" viewBox="-20 -10 140 130" width="240" height="210" style="max-width:100%">
+  <rect x="0" y="45" width="90" height="60" fill="none" stroke="#111" stroke-width="1.8"/>
+  <polygon points="0,45 45,0 90,45" fill="none" stroke="#111" stroke-width="1.8"/>
+  <line x1="45" y1="45" x2="45" y2="0" stroke="#111" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <rect x="45" y="45" width="8" height="8" fill="none" stroke="#111" stroke-width="1"/>
+  <text x="45" y="115" font-size="12" text-anchor="middle">6 cm</text>
+  <text x="-12" y="76" font-size="12" text-anchor="middle">4 cm</text>
+  <text x="60" y="22" font-size="12" text-anchor="start">3 cm</text>
+</svg>`;
+
+/* Ítem 29 — Cuadrado con círculo inscrito */
+FIG.i29 = `<svg class="fig" viewBox="-5 -5 105 115" width="220" height="220" style="max-width:100%">
+  <rect x="0" y="0" width="95" height="95" fill="none" stroke="#111" stroke-width="1.8"/>
+  <circle cx="47.5" cy="47.5" r="47.5" fill="none" stroke="#111" stroke-width="1.8"/>
+  <text x="47.5" y="110" font-size="12" text-anchor="middle">10 cm</text>
+</svg>`;
+
+/* Ítem 30 — Figura T en cuadrícula */
+(function(){
+  let g = '';
+  for(let x=0;x<=8;x++) g+=`<line x1="${x*20}" y1="-5" x2="${x*20}" y2="105" stroke="#bbb" stroke-width="0.7" stroke-dasharray="3,3"/>`;
+  for(let y=0;y<=5;y++) g+=`<line x1="-5" y1="${y*20}" x2="165" y2="${y*20}" stroke="#bbb" stroke-width="0.7" stroke-dasharray="3,3"/>`;
+  FIG.i30 = `<svg class="fig" viewBox="-25 -18 210 140" width="320" height="210" style="max-width:100%">
+  ${g}
+  <polygon points="0,0 160,0 160,40 100,40 100,100 60,100 60,40 0,40" fill="none" stroke="#111" stroke-width="2"/>
+  <circle cx="0" cy="0" r="4" fill="#111"/>
+  <text x="-14" y="-6" font-size="11" font-weight="bold">M</text>
+  <circle cx="160" cy="0" r="4" fill="#111"/>
+  <text x="164" y="-6" font-size="11" font-weight="bold">N</text>
+  <circle cx="0" cy="40" r="4" fill="#111"/>
+  <text x="-14" y="44" font-size="11" font-weight="bold">P</text>
+  <circle cx="160" cy="40" r="4" fill="#111"/>
+  <text x="164" y="44" font-size="11" font-weight="bold">D</text>
+  <circle cx="60" cy="40" r="4" fill="#111"/>
+  <text x="46" y="35" font-size="11" font-weight="bold">E</text>
+  <circle cx="100" cy="40" r="4" fill="#111"/>
+  <text x="104" y="35" font-size="11" font-weight="bold">F</text>
+  <circle cx="60" cy="100" r="4" fill="#111"/>
+  <text x="42" y="115" font-size="11" font-weight="bold">G</text>
+  <circle cx="100" cy="100" r="4" fill="#111"/>
+  <text x="104" y="115" font-size="11" font-weight="bold">H</text>
+</svg>`;
+})();
+
+/* Ítem 31 — Señales viales (4 flechas) */
+FIG.i31 = `<div class="signal-grid">
+  <div class="signal-cell">
+    <div style="font-weight:700;font-size:.82rem;margin-bottom:4px">Señal 1</div>
+    <svg width="70" height="90" viewBox="-40 -50 80 100">
+      <g transform="rotate(45)">
+        <rect x="-10" y="-50" width="20" height="45" fill="#888"/>
+        <polygon points="-28,11 28,11 0,44" fill="#888"/>
+      </g>
+    </svg>
+  </div>
+  <div class="signal-cell">
+    <div style="font-weight:700;font-size:.82rem;margin-bottom:4px">Señal 2</div>
+    <svg width="70" height="90" viewBox="-50 -50 100 100">
+      <rect x="-40" y="12" width="50" height="22" fill="#888"/>
+      <rect x="-10" y="-14" width="20" height="46" fill="#888"/>
+      <polygon points="-28,-14 28,-14 0,-44" fill="#888"/>
+    </svg>
+  </div>
+  <div class="signal-cell">
+    <div style="font-weight:700;font-size:.82rem;margin-bottom:4px">Señal 3</div>
+    <svg width="70" height="90" viewBox="-50 -50 100 100">
+      <rect x="-40" y="-34" width="50" height="22" fill="#888"/>
+      <rect x="-10" y="-34" width="20" height="50" fill="#888"/>
+      <rect x="-10" y="16" width="50" height="22" fill="#888"/>
+      <polygon points="40,16 40,-10 62,3" fill="#888"/>
+    </svg>
+  </div>
+  <div class="signal-cell">
+    <div style="font-weight:700;font-size:.82rem;margin-bottom:4px">Señal 4</div>
+    <svg width="70" height="90" viewBox="-50 -52 100 105">
+      <rect x="-38" y="-45" width="22" height="45" fill="#888"/>
+      <path d="M -38,0 A 38,38 0 0,1 38,0 L 16,0 A 16,16 0 0,0 -16,0 Z" fill="#888"/>
+      <rect x="16" y="-29" width="22" height="29" fill="#888"/>
+      <polygon points="-3,-29 50,-29 23.5,-51" fill="#888"/>
+    </svg>
+  </div>
+</div>`;
+
+/* Ítem 32 — Sistema coordenadas: alfombra */
+(function(){
+  let g='', tx='', ty='';
+  for(let x=0;x<=10;x++){g+=`<line x1="${x*18}" y1="-5" x2="${x*18}" y2="167" stroke="#ccc" stroke-width="0.7" stroke-dasharray="3,3"/>`;tx+=`<text x="${x*18}" y="177" font-size="9" text-anchor="middle">${x}</text>`;}
+  for(let y=0;y<=9;y++){g+=`<line x1="-5" y1="${(9-y)*18}" x2="188" y2="${(9-y)*18}" stroke="#ccc" stroke-width="0.7" stroke-dasharray="3,3"/>`;ty+=`<text x="-8" y="${(9-y)*18+4}" font-size="9" text-anchor="end">${y}</text>`;}
+  FIG.i32 = `<svg class="fig" viewBox="-30 -20 230 210" width="310" height="280" style="max-width:100%">
+  ${g}
+  <line x1="0" y1="162" x2="192" y2="162" stroke="#111" stroke-width="1.5"/>
+  <polygon points="192,162 186,158 186,166" fill="#111"/>
+  <text x="196" y="166" font-size="10">este</text>
+  <line x1="0" y1="162" x2="0" y2="-14" stroke="#111" stroke-width="1.5"/>
+  <polygon points="0,-14 -4,-8 4,-8" fill="#111"/>
+  <text x="-4" y="-18" font-size="10" text-anchor="middle">norte</text>
+  ${tx}${ty}
+  <rect x="54" y="36" width="36" height="36" fill="#aaa" fill-opacity="0.5" stroke="#111" stroke-width="1.8"/>
+  <circle cx="54" cy="36" r="3" fill="#111"/>
+  <text x="46" y="30" font-size="10" font-weight="bold">P</text>
+  <circle cx="90" cy="36" r="3" fill="#111"/>
+  <text x="93" y="30" font-size="10" font-weight="bold">Q</text>
+  <circle cx="90" cy="72" r="3" fill="#111"/>
+  <text x="93" y="76" font-size="10" font-weight="bold">R</text>
+  <circle cx="54" cy="72" r="3" fill="#111"/>
+  <text x="46" y="76" font-size="10" font-weight="bold">S</text>
+  <circle cx="144" cy="108" r="3" fill="#111"/>
+  <text x="148" y="112" font-size="10" font-weight="bold">X</text>
+</svg>`;
+})();
+
+/* Ítem 33 — Sistema coordenadas: lugares */
+(function(){
+  let g='',tx='',ty='';
+  for(let x=0;x<=10;x++){g+=`<line x1="${x*18}" y1="-5" x2="${x*18}" y2="167" stroke="#ccc" stroke-width="0.7" stroke-dasharray="3,3"/>`;tx+=`<text x="${x*18}" y="177" font-size="9" text-anchor="middle">${x}</text>`;}
+  for(let y=0;y<=9;y++){g+=`<line x1="-5" y1="${(9-y)*18}" x2="188" y2="${(9-y)*18}" stroke="#ccc" stroke-width="0.7" stroke-dasharray="3,3"/>`;ty+=`<text x="-8" y="${(9-y)*18+4}" font-size="9" text-anchor="end">${y}</text>`;}
+  FIG.i33 = `<svg class="fig" viewBox="-30 -20 230 210" width="310" height="280" style="max-width:100%">
+  ${g}
+  <line x1="0" y1="162" x2="192" y2="162" stroke="#111" stroke-width="1.5"/>
+  <polygon points="192,162 186,158 186,166" fill="#111"/>
+  <text x="196" y="166" font-size="10">este</text>
+  <line x1="0" y1="162" x2="0" y2="-14" stroke="#111" stroke-width="1.5"/>
+  <polygon points="0,-14 -4,-8 4,-8" fill="#111"/>
+  <text x="-4" y="-18" font-size="10" text-anchor="middle">norte</text>
+  ${tx}${ty}
+  <circle cx="126" cy="54" r="3" fill="#111"/>
+  <text x="130" y="50" font-size="10" font-weight="bold">B</text>
+  <circle cx="90" cy="54" r="3" fill="#111"/>
+  <text x="94" y="50" font-size="10" font-weight="bold">F</text>
+  <circle cx="54" cy="54" r="3" fill="#111"/>
+  <text x="46" y="50" font-size="10" font-weight="bold">L</text>
+  <circle cx="90" cy="108" r="3" fill="#111"/>
+  <text x="94" y="114" font-size="10" font-weight="bold">P</text>
+  <circle cx="54" cy="108" r="3" fill="#111"/>
+  <text x="56" y="122" font-size="10" font-weight="bold">T</text>
+</svg>`;
+})();
+
+/* Ítem 42 — Azulejos en cruz (4 posiciones) */
+(function(){
+  function cruz(hx0,hx1,vy0,vy1){
+    const U=12, s=7;
+    let fill=`<rect x="${hx0*U}" y="${(s-1)*U}" width="${(hx1-hx0)*U}" height="${U}" fill="#888"/>
+    <rect x="${(s/2-0.5)*U}" y="${vy0*U}" width="${U}" height="${(vy1-vy0)*U}" fill="#888"/>`;
+    let gr='';
+    for(let x=hx0;x<hx1;x++) gr+=`<line x1="${x*U}" y1="${(s-1)*U}" x2="${x*U}" y2="${s*U}" stroke="#111" stroke-width="0.5"/>`;
+    gr+=`<line x1="${hx1*U}" y1="${(s-1)*U}" x2="${hx1*U}" y2="${s*U}" stroke="#111" stroke-width="0.5"/>`;
+    for(let y=vy0;y<vy1;y++) gr+=`<line x1="${(s/2-0.5)*U}" y1="${y*U}" x2="${(s/2+0.5)*U}" y2="${y*U}" stroke="#111" stroke-width="0.5"/>`;
+    gr+=`<line x1="${(s/2-0.5)*U}" y1="${vy1*U}" x2="${(s/2+0.5)*U}" y2="${vy1*U}" stroke="#111" stroke-width="0.5"/>`;
+    gr+=`<rect x="${hx0*U}" y="${(s-1)*U}" width="${(hx1-hx0)*U}" height="${U}" fill="none" stroke="#111" stroke-width="0.7"/>`;
+    gr+=`<rect x="${(s/2-0.5)*U}" y="${vy0*U}" width="${U}" height="${(vy1-vy0)*U}" fill="none" stroke="#111" stroke-width="0.7"/>`;
+    return fill+gr;
+  }
+  const W=84, BB=`viewBox="0 0 84 84" width="84" height="84"`;
+  FIG.i42=`<div style="display:flex;gap:0;justify-content:center;margin:12px 0;border:1px solid #555">
+  <div style="border:1px solid #555;padding:4px;text-align:center"><div style="font-weight:700;font-size:.8rem">Posición 1</div><svg ${BB}>${cruz(3,4,3,4)}</svg></div>
+  <div style="border:1px solid #555;padding:4px;text-align:center"><div style="font-weight:700;font-size:.8rem">Posición 2</div><svg ${BB}>${cruz(2,5,2,5)}</svg></div>
+  <div style="border:1px solid #555;padding:4px;text-align:center"><div style="font-weight:700;font-size:.8rem">Posición 3</div><svg ${BB}>${cruz(1,6,1,6)}</svg></div>
+  <div style="border:1px solid #555;padding:4px;text-align:center"><div style="font-weight:700;font-size:.8rem">Posición 4</div><svg ${BB}>${cruz(0,7,0,7)}</svg></div>
+</div>`;
+})();
+
+/* Ítem 47 — Plano cartesiano (crecimiento planta) */
+(function(){
+  const U=22;
+  let g='',tx='',ty='';
+  for(let x=0;x<=5;x++){g+=`<line x1="${x*U}" y1="0" x2="${x*U}" y2="${7*U}" stroke="#ccc" stroke-width="0.7" stroke-dasharray="3,3"/>`;if(x>0)tx+=`<text x="${x*U}" y="${7*U+14}" font-size="10" text-anchor="middle">${x}</text>`;}
+  for(let y=0;y<=7;y++){g+=`<line x1="0" y1="${(7-y)*U}" x2="${5*U}" y2="${(7-y)*U}" stroke="#ccc" stroke-width="0.7" stroke-dasharray="3,3"/>`;if(y>0&&y%2===0)ty+=`<text x="-6" y="${(7-y)*U+4}" font-size="10" text-anchor="end">${y}</text>`;}
+  FIG.i47=`<svg class="fig" viewBox="-30 -20 175 200" width="260" height="290" style="max-width:100%">
+  ${g}
+  <line x1="0" y1="${7*U}" x2="${5*U+12}" y2="${7*U}" stroke="#111" stroke-width="1.5"/>
+  <polygon points="${5*U+12},${7*U} ${5*U+6},${7*U-4} ${5*U+6},${7*U+4}" fill="#111"/>
+  <text x="${5*U+18}" y="${7*U+4}" font-size="10">Días</text>
+  <line x1="0" y1="${7*U}" x2="0" y2="-12" stroke="#111" stroke-width="1.5"/>
+  <polygon points="0,-12 -4,-6 4,-6" fill="#111"/>
+  <text x="-26" y="-16" font-size="9">Altura</text>
+  <text x="-22" y="-6" font-size="9">(cm)</text>
+  <text x="0" y="${7*U+14}" font-size="10" text-anchor="middle">0</text>
+  ${tx}${ty}
+  <circle cx="${1*U}" cy="${(7-2)*U}" r="4" fill="#111"/>
+  <text x="${1*U+5}" y="${(7-2)*U-5}" font-size="10" font-weight="bold">P(1, 2)</text>
+  <circle cx="${2*U}" cy="${(7-4)*U}" r="4" fill="#111"/>
+  <text x="${2*U+5}" y="${(7-4)*U-5}" font-size="10" font-weight="bold">Q(2, 4)</text>
+  <circle cx="${3*U}" cy="${(7-6)*U}" r="4" fill="#111"/>
+  <text x="${3*U+5}" y="${(7-6)*U-5}" font-size="10" font-weight="bold">R(3, 6)</text>
+</svg>`;
+})();
+
+/* ─────────────────────────────────────────────
+   FUNCIONES DE TABLAS DE DATOS
+───────────────────────────────────────────── */
+const f = T.frac;
+
+function tbl3(){return T.wrap(T.table(['Día','Lluvia (en centímetros)'],
+  ['Lunes','Martes','Miércoles','Jueves'].map((d,i)=>T.row([d,['3,47','3,74','3,59','3,51'][i]])).join('')));}
+function tbl4(){return T.wrap(T.table(['Estudiante','Tiempo (en segundos)'],
+  [['Andrés','29,8'],['Beatriz','29,08'],['Carlos','29,83'],['Diana','29,803']].map(r=>T.row(r)).join('')));}
+function tbl7(){return T.wrap(T.table(['Semana','Cantidad de plantas'],
+  [['Primera','30'],['Segunda','21'],['Tercera','38'],['Cuarta','45']].map(r=>T.row(r)).join('')));}
+function tbl8(){return T.wrap(T.table(['Clave','Número'],
+  [['Clave 1','245'],['Clave 2','250'],['Clave 3','312'],['Clave 4','315']].map(r=>T.row(r)).join('')));}
+function tbl9(){return T.wrap(T.table(['Juego','Cantidad de fichas'],
+  [['Juego 1','51'],['Juego 2','34'],['Juego 3','23'],['Juego 4','45']].map(r=>T.row(r)).join('')));}
+function tbl13(){return T.wrap(T.table(['Producto','Precio'],
+  [['Pechuga de pollo','₡5 600 el kg'],['Papas','₡750 el kg'],['Pan integral','₡1 050 cada uno']].map(r=>T.row(r)).join('')));}
+function tbl14(){return T.wrap(`<table class="tbl"><thead><tr><th>Estudiante</th><th>Medida (en metros)</th></tr></thead><tbody>
+  ${[['Ana',f('8','3')],['Beatriz',f('9','2')],['Carlos',f('6','6')],['Diana',f('1','4')]].map(([n,fr])=>`<tr><td>${n}</td><td class="fr">${fr}</td></tr>`).join('')}</tbody></table>`);}
+function tbl16(){return T.wrap(`<table class="tbl"><thead><tr><th>Nombre</th><th>Estatura en metros</th></tr></thead><tbody>
+  ${[['Rodrigo',f('104','50')],['Felipe',f('21','10')],['Manuel',f('53','25')],['Oscar',f('51','25')]].map(([n,fr])=>`<tr><td>${n}</td><td class="fr">${fr}</td></tr>`).join('')}</tbody></table>`);}
+function tbl34(){return T.wrap(T.table(['Estudiante','Tiempo de participación'],
+  [['Andrea','3 años'],['Beto','40 meses'],['Carlos','200 semanas'],['Daniela','1 460 días']].map(r=>T.row(r)).join('')));}
+function tbl38(){return T.wrap(T.table(['Moneda','Cantidad'],
+  [['₡1 000','2 monedas'],['₡500','4 monedas'],['₡100','3 monedas']].map(r=>T.row(r)).join('')));}
+function tbl39(){return T.wrap(T.table(['Artículo','Precio'],
+  [['Libreta','₡450 cada una'],['Plumón','₡700 cada uno'],['Caja de colores','₡1 300 cada una']].map(r=>T.row(r)).join('')));}
+function tbl43(){return T.wrap(T.table(['Día','1','2','3','4'],
+  `<tr><th>Artesanías vendidas</th><td>6</td><td>11</td><td>16</td><td>21</td></tr>`));}
+function tbl44(){return T.wrap(T.table(['Semana','1','2','3','4'],
+  `<tr><th>Tomates cosechados</th><td>2</td><td>6</td><td>12</td><td>20</td></tr>`));}
+function tbl46(){return T.wrap(T.table(['Lado (cm)','4','7','10','13'],
+  `<tr><th>Perímetro (cm)</th><td>12</td><td>21</td><td>30</td><td>39</td></tr>`));}
+function tbl48(){return T.wrap(T.table(['Días','2','4','6','■'],
+  `<tr><th>Plantas</th><td>6</td><td>12</td><td>18</td><td>24</td></tr>`));}
+function tbl54(){return T.wrap(T.table(['Libros leídos','Cantidad de estudiantes'],
+  [['1','5'],['2','8'],['3','12'],['4','6'],['5','4']].map(r=>T.row(r)).join('')));}
+
+/* ─────────────────────────────────────────────
+   ARRAY DE 60 ÍTEMS
+───────────────────────────────────────────── */
+const ITEMS = [
+
+/* ── 1 ── */
+{n:1,b:'Bloque 1 · Números',
+ q:`<p>Considere la siguiente información:</p><p>La cantidad de asientos del estadio de fútbol de una ciudad de Costa Rica es de <strong>352&#8239;046</strong>.</p><p>De acuerdo con la información anterior, ¿cuál es la representación literal del número que corresponde a la cantidad de asientos del estadio?</p>`,
+ A:'Trescientos cincuenta y dos cuarenta y seis',
+ B:'Trescientos cincuenta y dos mil cuarenta y seis',
+ C:'Trescientos veinticinco mil cuarenta y seis',
+ D:'Trescientos cincuenta y dos mil cuatrocientos seis',
+ k:'B',e:'352 046 equivale a 352 miles más 46 unidades: «trescientos cincuenta y dos mil cuarenta y seis».'},
+
+/* ── 2 ── */
+{n:2,b:'Bloque 1 · Números',
+ q:`<p>Considere la siguiente información:</p><p>En los Juegos Deportivos Estudiantiles de Costa Rica, la persona ganadora de una prueba de ciclismo registró un tiempo de <em>veinticuatro unidades con tres mil setenta y dos diezmilésimas</em> de minuto.</p><p>De acuerdo con la información anterior, ¿cuál es la representación numérica del tiempo registrado?</p>`,
+ A:'24,3702',B:'24,3072',C:'24,0372',D:'24,7032',
+ k:'B',e:'3 072 diezmilésimas = 0,3072 → el tiempo es 24,3072.'},
+
+/* ── 3 ── */
+{n:3,b:'Bloque 1 · Números',
+ q:`<p>La siguiente tabla muestra la cantidad de lluvia, en centímetros, que cayó durante cuatro días en una ciudad de Costa Rica:</p>${tbl3()}<p>De acuerdo con la información anterior, ¿en cuál día cayó la mayor cantidad de lluvia?</p>`,
+ A:'Lunes',B:'Martes',C:'Miércoles',D:'Jueves',
+ k:'B',e:'Comparando: 3,74 > 3,59 > 3,51 > 3,47. La mayor cantidad corresponde al martes.'},
+
+/* ── 4 ── */
+{n:4,b:'Bloque 1 · Números',
+ q:`<p>Para una prueba de natación de 50 metros estilo libre, un entrenador escribe los tiempos, en segundos, obtenidos por cuatro estudiantes. La siguiente tabla muestra los datos escritos por el entrenador:</p>${tbl4()}<p>De acuerdo con la información anterior, si el entrenador ordenó los tiempos de mayor a menor, entonces el orden fue</p>`,
+ A:'29,08 − 29,8 − 29,803 − 29,83',
+ B:'29,803 − 29,83 − 29,8 − 29,08',
+ C:'29,83 − 29,803 − 29,8 − 29,08',
+ D:'29,8 − 29,08 − 29,83 − 29,803',
+ k:'C',e:'De mayor a menor: 29,83 > 29,803 > 29,8 > 29,08. Se compara dígito por dígito: en las décimas 29,83 y 29,803 tienen 8, mientras 29,8 también tiene 8 pero 29,08 tiene 0.'},
+
+/* ── 5 ── */
+{n:5,b:'Bloque 1 · Números',
+ q:`<p>Una estación meteorológica de Costa Rica registró la precipitación del día en centímetros. La pantalla del equipo puede mostrar cuatro valores distintos según la precisión del sensor:</p><div class="table-wrap"><table class="tbl"><tbody><tr><td>0,53</td><td>0,503</td><td>0,053</td><td>0,0053</td></tr></tbody></table></div><p>De acuerdo con la información anterior, ¿cuál opción corresponde al número decimal cuya notación desarrollada es <span class="frac"><span class="num">5</span><span class="den">100</span></span> + <span class="frac"><span class="num">3</span><span class="den">1 000</span></span>?</p>`,
+ A:'0,53',B:'0,503',C:'0,053',D:'0,0053',
+ k:'C',e:'5/100 + 3/1 000 = 0,05 + 0,003 = 0,053. Las centésimas dan el 0,05 y las milésimas dan el 0,003.'},
+
+/* ── 6 ── */
+{n:6,b:'Bloque 1 · Números',
+ q:`<p>Considere la siguiente información:</p><p>En un municipio de Costa Rica, la cantidad de hogares inscritos en un programa de becas escolares fue de <strong>3&#8239;526</strong>.</p><p>De acuerdo con la información anterior, la notación desarrollada del número de hogares inscritos, utilizando potencias de base diez, corresponde a</p>`,
+ A:'3 + 5 × 10<sup>1</sup> + 2 × 10<sup>2</sup> + 6 × 10<sup>3</sup>',
+ B:'3 × 10<sup>3</sup> + 5 × 10<sup>2</sup> + 2 × 10<sup>1</sup> + 6',
+ C:'3 × 10<sup>4</sup> + 5 × 10<sup>3</sup> + 2 × 10<sup>2</sup> + 6 × 10<sup>1</sup>',
+ D:'6 × 10<sup>3</sup> + 2 × 10<sup>2</sup> + 5 × 10<sup>1</sup> + 3',
+ k:'B',e:'3526 = 3×10³ + 5×10² + 2×10¹ + 6. Cada dígito se multiplica por la potencia de 10 de su posición.'},
+
+/* ── 7 ── */
+{n:7,b:'Bloque 1 · Números',
+ q:`<p>La siguiente tabla muestra la cantidad de plantas que una persona sembró en su jardín durante cuatro semanas:</p>${tbl7()}<p>De acuerdo con la información anterior, ¿en cuál semana la cantidad de plantas sembradas corresponde a un múltiplo de 7?</p>`,
+ A:'Primera',B:'Segunda',C:'Tercera',D:'Cuarta',
+ k:'B',e:'21 = 7 × 3. Los demás (30, 38, 45) no son divisibles exactamente entre 7.'},
+
+/* ── 8 ── */
+{n:8,b:'Bloque 1 · Números',
+ q:`<p>Cristian desea proteger su laptop con una clave de acceso formada por tres dígitos. Para elegirla, estableció las siguientes condiciones:</p><ul class="blist"><li>El número formado debe ser divisible por 5.</li><li>El número formado debe ser múltiplo de 3.</li></ul><p>La siguiente tabla muestra cuatro posibles claves que Cristian consideró:</p>${tbl8()}<p>¿Cuál de esas claves cumple con ambas condiciones?</p>`,
+ A:'Clave 1',B:'Clave 2',C:'Clave 3',D:'Clave 4',
+ k:'D',e:'315: termina en 5 (divisible por 5) y 3+1+5=9 (múltiplo de 3). Las otras claves no cumplen ambas condiciones.'},
+
+/* ── 9 ── */
+{n:9,b:'Bloque 1 · Números',
+ q:`<p>La siguiente tabla muestra la cantidad de fichas que contiene cada uno de cuatro juegos de mesa de una biblioteca escolar:</p>${tbl9()}<p>De acuerdo con la información anterior, ¿en cuál juego la cantidad de fichas corresponde a un número primo?</p>`,
+ A:'Juego 1',B:'Juego 2',C:'Juego 3',D:'Juego 4',
+ k:'C',e:'23 es primo (solo divisible entre 1 y 23). Los otros: 51 = 3×17, 34 = 2×17, 45 = 9×5 son compuestos.'},
+
+/* ── 10 ── */
+{n:10,b:'Bloque 1 · Números',
+ q:`<p>En una cooperativa agrícola de Costa Rica se empacaron 936 naranjas en cajas de 18 unidades cada una. ¿Cuántas cajas completas se pueden hacer?</p>`,
+ A:'48',B:'52',C:'56',D:'62',
+ k:'B',e:'936 ÷ 18 = 52 cajas completas.'},
+
+/* ── 11 ── */
+{n:11,b:'Bloque 1 · Números',
+ q:`<p>En una cancha de fútbol se colocaron 8 filas de asientos con 24 sillas cada una, más 5 filas adicionales con 36 sillas cada una. ¿Cuántas sillas hay en total en la cancha?</p>`,
+ A:'312',B:'372',C:'408',D:'468',
+ k:'B',e:'8 × 24 + 5 × 36 = 192 + 180 = 372 sillas.'},
+
+/* ── 12 ── */
+{n:12,b:'Bloque 1 · Números',
+ q:`<p>En una clase de sexto grado, 18 de los 24 estudiantes aprobaron el examen de matemáticas. La maestra quiere expresar esa proporción como una fracción en su mínima expresión.</p><p>¿Cuál es la fracción en su mínima expresión que representa la cantidad de estudiantes que aprobaron?</p>`,
+ A:f('6','8'), B:f('9','12'), C:f('3','4'), D:f('12','16'),
+ k:'C',e:'MCD(18,24) = 6 → 18÷6 = 3 y 24÷6 = 4, por lo que 18/24 = 3/4 en mínima expresión.'},
+
+/* ── 13 ── */
+{n:13,b:'Bloque 1 · Números',
+ q:`<p>Mariana compró en el supermercado ${f('1','2')} kg de pechuga de pollo, 4 kg de papas y 3 panes integrales. La siguiente tabla muestra el precio de cada producto:</p>${tbl13()}<p>De acuerdo con la información anterior, ¿cuánto deberá pagar Mariana en colones por la compra realizada?</p>`,
+ A:'₡6 150',B:'₡7 900',C:'₡8 950',D:'₡11 750',
+ k:'C',e:'½×5600 + 4×750 + 3×1050 = 2800 + 3000 + 3150 = ₡8 950.'},
+
+/* ── 14 ── */
+{n:14,b:'Bloque 1 · Números',
+ q:`<p>En una clase de artesanía, cuatro estudiantes midieron distintas cantidades de tela. La siguiente tabla muestra las medidas registradas:</p>${tbl14()}<p>De acuerdo con la información anterior, ¿cuál estudiante utilizó una fracción propia como medida?</p>`,
+ A:'Ana',B:'Beatriz',C:'Carlos',D:'Diana',
+ k:'D',e:'Fracción propia: numerador < denominador. Solo 1/4 cumple esa condición (Diana).'},
+
+/* ── 15 ── */
+{n:15,b:'Bloque 1 · Números',
+ q:`<p>Camilo preparó ${f('23','6')} litros de refresco para vender en una feria comunal. ¿Cuál es la notación mixta de esa cantidad?</p>`,
+ A:`2 ${f('5','6')}`, B:`3 ${f('1','6')}`, C:`3 ${f('5','6')}`, D:`4 ${f('1','6')}`,
+ k:'C',e:'23 ÷ 6 = 3 (resto 5), entonces 23/6 = 3 y 5/6.'},
+
+/* ── 16 ── */
+{n:16,b:'Bloque 1 · Números',
+ q:`<p>El entrenador de un equipo de baloncesto necesita seleccionar un jugador cuya estatura sea ${f('52','25')} metros. La siguiente tabla muestra el nombre y la estatura en metros de los cuatro candidatos:</p>${tbl16()}<p>De acuerdo con la información anterior, ¿cuál es el nombre del jugador seleccionado?</p>`,
+ A:'Rodrigo',B:'Felipe',C:'Manuel',D:'Oscar',
+ k:'A',e:'104/50 = 52/25 al dividir numerador y denominador entre 2. Solo Rodrigo tiene esa estatura.'},
+
+/* ── 17 ── */
+{n:17,b:'Bloque 1 · Números',
+ q:`<p>Una estación meteorológica registró una precipitación de <strong>23,852</strong> milímetros durante una tormenta. El técnico anotó en el informe el valor redondeado a la décima más cercana. ¿Cuál es el valor que anotó el técnico?</p>`,
+ A:'23',B:'23,8',C:'23,85',D:'23,9',
+ k:'D',e:'La centésima es 5 (≥ 5), por lo que la décima sube de 8 a 9. Resultado: 23,9.'},
+
+/* ── 18 ── */
+{n:18,b:'Bloque 1 · Números',
+ q:`<p>Durante una práctica de laboratorio, Luis midió <strong>0,6</strong> litros de vinagre para un experimento de ciencias. La maestra le pidió que representara esa cantidad como una fracción.</p><p>De acuerdo con la información anterior, ¿cuál opción corresponde a la fracción que representa el volumen de vinagre que midió Luis?</p>`,
+ A:`${f('1','5')} L`, B:`${f('2','5')} L`, C:`${f('3','5')} L`, D:`${f('5','3')} L`,
+ k:'C',e:'0,6 = 6/10 = 3/5 (dividiendo numerador y denominador entre 2).'},
+
+/* ── 19 ── */
+{n:19,b:'Bloque 2 · Geometría',
+ q:`<p>La siguiente figura muestra un parque en forma de trapecio, donde se ubican cuatro lugares de la comunidad: la escuela (E), el gimnasio (G), la cancha (C) y el mercado (M).</p>${FIG.i19}<p>Alicia, Bruno, Camilo y Diana recorrieron el borde del parque de la siguiente manera:</p><ul class="blist"><li>Alicia recorrió de la escuela al gimnasio y luego del gimnasio a la cancha.</li><li>Bruno recorrió del gimnasio a la cancha y luego de la cancha al mercado.</li><li>Camilo recorrió de la cancha al mercado y luego del mercado a la escuela.</li><li>Diana recorrió del mercado a la escuela y luego de la escuela al gimnasio.</li></ul><p>De acuerdo con la información anterior, ¿quién recorrió la mayor distancia?</p>`,
+ A:'Alicia',B:'Bruno',C:'Camilo',D:'Diana',
+ k:'B',e:'Bruno: GC + CM = 100 + 130 = 230 m (la mayor). Alicia: 50+100=150 m; Camilo: 130+60=190 m; Diana: 60+50=110 m.'},
+
+/* ── 20 ── */
+{n:20,b:'Bloque 2 · Geometría',
+ q:`<p>Una artesana elaboró cuatro diseños de mosaico para decorar la entrada de la biblioteca escolar. Cada diseño está formado por figuras geométricas:</p>${FIG.i20}<p>De acuerdo con la información anterior, ¿cuál diseño está formado únicamente por polígonos regulares?</p>`,
+ A:'Diseño I',B:'Diseño II',C:'Diseño III',D:'Diseño IV',
+ k:'C',e:'El Diseño III (hexágono dividido en 6 triángulos equiláteros) está formado únicamente por polígonos regulares.'},
+
+/* ── 21 ── */
+{n:21,b:'Bloque 2 · Geometría',
+ q:`<p>La siguiente figura muestra el plano de la base rectangular de un pabellón deportivo. La base ha sido dividida en cuatro secciones numeradas del 1 al 4.</p>${FIG.i21}<p>De acuerdo con la información anterior, ¿cómo se clasifica la figura correspondiente a la sección número 4?</p>`,
+ A:'Triángulo rectángulo',B:'Trapecio',C:'Rectángulo',D:'Cuadrado',
+ k:'C',e:'La sección 4 es un rectángulo de 3 × 2 unidades (lados desiguales, ángulos rectos).'},
+
+/* ── 22 ── */
+{n:22,b:'Bloque 2 · Geometría',
+ q:`<p>La siguiente figura muestra la forma de un cartel triangular que una estudiante recortó para su proyecto de ciencias:</p>${FIG.i22}<p>De acuerdo con la información anterior, ¿cómo se clasifica ese cartel triangular según las medidas de sus lados?</p>`,
+ A:'Equilátero',B:'Isósceles',C:'Escaleno',D:'Obtusángulo',
+ k:'B',e:'Dos lados miden 5 cm y uno mide 6 cm → dos lados iguales → triángulo isósceles.'},
+
+/* ── 23 ── */
+{n:23,b:'Bloque 2 · Geometría',
+ q:`<p>La siguiente figura muestra un piso de mosaico con forma de cuadrilátero. Todos sus lados miden 3 cm:</p>${FIG.i23}<p>¿Cómo se clasifica ese piso de mosaico?</p>`,
+ A:'Cuadrado',B:'Rectángulo',C:'Romboide',D:'Rombo',
+ k:'D',e:'Cuatro lados iguales y ángulos que no son todos rectos (60° y 120°) → rombo.'},
+
+/* ── 24 ── */
+{n:24,b:'Bloque 2 · Geometría',
+ q:`<p>La siguiente figura muestra un prisma triangular:</p>${FIG.i24}<p>¿Cuántas caras de ese prisma tienen forma de rectángulo?</p>`,
+ A:'2',B:'5',C:'3',D:'6',
+ k:'C',e:'Un prisma triangular tiene 2 bases triangulares y 3 caras laterales rectangulares.'},
+
+/* ── 25 ── */
+{n:25,b:'Bloque 2 · Geometría',
+ q:`<p>La siguiente figura muestra una lata de pintura con forma de cilindro. El segmento <strong>AB</strong> está señalado en la figura:</p>${FIG.i25}<p>¿Cómo se llama el segmento AB en relación con la base del cilindro?</p>`,
+ A:'Eje',B:'Radio',C:'Altura',D:'Diámetro',
+ k:'B',e:'El segmento AB va del centro de la base hasta el borde → se llama radio.'},
+
+/* ── 26 ── */
+{n:26,b:'Bloque 2 · Geometría',
+ q:`<p>La cancha de fútbol 5 de una escuela tiene forma cuadrada con un perímetro de 20 m. Si se quiere cubrir toda la superficie de esa cancha con césped artificial, ¿cuántos metros cuadrados de césped se necesitan como mínimo?</p>`,
+ A:'20 m²',B:'10 m²',C:'25 m²',D:'5 m²',
+ k:'C',e:'Lado = 20 ÷ 4 = 5 m; Área = 5 × 5 = 25 m².'},
+
+/* ── 27 ── */
+{n:27,b:'Bloque 2 · Geometría',
+ q:`<p>La base de un bebedero tiene forma circular con radio de 35 cm. Para decorarlo, se coloca un ribete alrededor de todo el borde de la base. ¿Cuál es la longitud aproximada de ese ribete? (Use π ≈ 3,14)</p>`,
+ A:'219,8 cm',B:'70,0 cm',C:'109,9 cm',D:'3 846,5 cm',
+ k:'A',e:'C = 2 × 3,14 × 35 = 219,8 cm.'},
+
+/* ── 28 ── */
+{n:28,b:'Bloque 2 · Geometría',
+ q:`<p>La siguiente figura muestra la forma de una lámina de cartón utilizada en un proyecto escolar. La lámina está formada por un rectángulo y un triángulo:</p>${FIG.i28}<p>¿Cuál es el área total de esa lámina?</p>`,
+ A:'42 cm²',B:'33 cm²',C:'24 cm²',D:'9 cm²',
+ k:'B',e:'Área = 6×4 + (6×3)/2 = 24 + 9 = 33 cm².'},
+
+/* ── 29 ── */
+{n:29,b:'Bloque 2 · Geometría',
+ q:`<p>La siguiente figura muestra un mosaico formado por un cuadrado de 10 cm de lado. En su interior se coloca un círculo del tamaño exacto del cuadrado. La superficie del círculo se pintará de color azul. ¿Cuántos centímetros cuadrados del mosaico se pintarán de color azul? (Use π ≈ 3,14)</p>${FIG.i29}`,
+ A:'314,0 cm²',B:'21,5 cm²',C:'78,5 cm²',D:'100,0 cm²',
+ k:'C',e:'Radio = 5 cm; Área = 3,14 × 5² = 3,14 × 25 = 78,5 cm².'},
+
+/* ── 30 ── */
+{n:30,b:'Bloque 2 · Geometría',
+ q:`<p>La siguiente figura simétrica está dibujada en papel cuadriculado. Además, se muestran ocho puntos de esa figura, los cuales se identifican con letras:</p>${FIG.i30}<div class="infobox">La medida del lado de cada cuadrado de la cuadrícula es 1 cm.</div><p style="margin-top:10px">De acuerdo con la información anterior, dos puntos que son homólogos entre sí, con respecto al eje de simetría de esa figura, se identifican con las letras</p>`,
+ A:'E y G',B:'M y N',C:'F y H',D:'P y E',
+ k:'B',e:'El eje de simetría es vertical en x = 4. M(0,5) y N(8,5) están a igual distancia (4 cm) del eje → son homólogos.'},
+
+/* ── 31 ── */
+{n:31,b:'Bloque 2 · Geometría',
+ q:`<p>Un municipio encarga la fabricación de cuatro señales viales. Los diseños de las señales son los siguientes:</p>${FIG.i31}<p>De acuerdo con la información anterior, ¿cuál de las señales encargadas es simétrica?</p>`,
+ A:'Señal 1',B:'Señal 2',C:'Señal 3',D:'Señal 4',
+ k:'D',e:'La Señal 4 (flecha en U/retorno) tiene eje de simetría vertical y sus dos mitades son imagen especular una de la otra.'},
+
+/* ── 32 ── */
+{n:32,b:'Bloque 2 · Geometría',
+ q:`<p>El siguiente sistema de coordenadas muestra la ubicación actual de una alfombra cuadrada en el salón comunal. Se muestran sus cuatro esquinas (P, Q, R y S) y una marca en el piso (X):</p>${FIG.i32}<div class="infobox">La medida del lado de cada cuadrado de la cuadrícula es 50 cm.</div><p style="margin-top:10px">La alfombra se traslada 150 cm al este y 100 cm al sur. De acuerdo con la información anterior, ¿cuál esquina de la alfombra coincide con la marca del piso?</p>`,
+ A:'P',B:'Q',C:'R',D:'S',
+ k:'C',e:'150 cm = 3 unidades al este; 100 cm = 2 unidades al sur. R(5,5) → R\'(8,3) = X. La esquina R coincide con X.'},
+
+/* ── 33 ── */
+{n:33,b:'Bloque 2 · Geometría',
+ q:`<p>El siguiente sistema de coordenadas muestra la ubicación del banco (B), la farmacia (F), la librería (L), el parque (P) y la ubicación actual de Tomás (T):</p>${FIG.i33}<div class="infobox">La medida del lado de cada cuadrado de la cuadrícula es 100 m.</div><p style="margin-top:10px">De acuerdo con la información anterior, si desde la ubicación actual de Tomás (T) camina 300 m al norte y 200 m al este, entonces él llega</p>`,
+ A:'al banco',B:'a la librería',C:'a la farmacia',D:'al parque',
+ k:'C',e:'T(3,3) + 3 norte + 2 este = (5,6) = F (farmacia).'},
+
+/* ── 34 ── */
+{n:34,b:'Bloque 3 · Medidas',
+ q:`<p>La siguiente tabla muestra el tiempo que cuatro estudiantes llevan participando en el club de atletismo de una escuela de Costa Rica:</p>${tbl34()}<p>De acuerdo con la información anterior, ¿cuál de esos estudiantes lleva más tiempo participando en el club de atletismo?</p>`,
+ A:'Andrea',B:'Beto',C:'Carlos',D:'Daniela',
+ k:'D',e:'1 460 días = 4 años. Andrea: 3 años; Beto: 40 meses ≈ 3,33 años; Carlos: 200 semanas ≈ 3,84 años. Daniela lleva más tiempo.'},
+
+/* ── 35 ── */
+{n:35,b:'Bloque 3 · Medidas',
+ q:`<p>Una empresa constructora instaló una cisterna para abastecer de agua a una urbanización de Costa Rica. La cisterna tiene una capacidad de 45 m³.</p><p>De acuerdo con la información anterior, ¿cuántos dm³ equivalen a esa capacidad?</p>`,
+ A:'45 000 dm³',B:'450 dm³',C:'450 000 dm³',D:'4 500 dm³',
+ k:'A',e:'1 m³ = 1 000 dm³, por lo que 45 m³ = 45 × 1 000 = 45 000 dm³.'},
+
+/* ── 36 ── */
+{n:36,b:'Bloque 3 · Medidas',
+ q:`<p>En una planta procesadora de jugo de naranja de Costa Rica, la producción de un día fue de 6 480 dL. Todo ese jugo se envasó en botellas de 1 litro.</p><p>De acuerdo con la información anterior, ¿cuántas botellas de 1 litro se llenaron ese día?</p>`,
+ A:'64 800 botellas',B:'64,8 botellas',C:'6 480 botellas',D:'648 botellas',
+ k:'D',e:'1 L = 10 dL → 6 480 dL ÷ 10 = 648 L = 648 botellas.'},
+
+/* ── 37 ── */
+{n:37,b:'Bloque 3 · Medidas',
+ q:`<p>En una feria de ciencias de una escuela de Costa Rica, cada equipo de trabajo usa 250 mL de agua cada 15 minutos durante un experimento. El experimento dura 1 hora en total.</p><p>De acuerdo con la información anterior, ¿cuántos litros de agua usa cada equipo durante todo el experimento?</p>`,
+ A:'1 L',B:'0,25 L',C:'2 L',D:'0,5 L',
+ k:'A',e:'En 60 minutos hay 60÷15 = 4 usos; 4 × 250 mL = 1 000 mL = 1 L.'},
+
+/* ── 38 ── */
+{n:38,b:'Bloque 3 · Medidas',
+ q:`<p>Tomás tiene ahorrado ₡24 300 entre un billete y monedas. La siguiente tabla muestra las monedas que tiene:</p>${tbl38()}<p>De acuerdo con la información anterior, ¿cuál es la denominación del billete que tiene Tomás?</p>`,
+ A:'₡2 000',B:'₡5 000',C:'₡10 000',D:'₡20 000',
+ k:'D',e:'Monedas: 2×1000 + 4×500 + 3×100 = 2000+2000+300 = ₡4 300. Billete = 24 300 − 4 300 = ₡20 000.'},
+
+/* ── 39 ── */
+{n:39,b:'Bloque 3 · Medidas',
+ q:`<p>Una familia fue a una tienda a comprar materiales para un proyecto escolar. Compraron 3 libretas, 2 plumones y 1 caja de colores. La siguiente tabla muestra el precio de cada artículo:</p>${tbl39()}<p>De acuerdo con la información anterior, ¿cuál fue el monto total pagado por todos los materiales?</p>`,
+ A:'₡2 450',B:'₡4 050',C:'₡4 500',D:'₡5 350',
+ k:'B',e:'3×450 + 2×700 + 1×1300 = 1350 + 1400 + 1300 = ₡4 050.'},
+
+/* ── 40 ── */
+{n:40,b:'Bloque 3 · Medidas',
+ q:`<p>Mariana fue a la farmacia y compró medicamentos por un total de ₡13 450. Pagó con un billete de ₡20 000 y el cajero le entregó el vuelto en billetes y monedas.</p><p>De acuerdo con la información anterior, ¿cuál de las siguientes opciones corresponde a un posible vuelto que Mariana recibió?</p>`,
+ A:'3 billetes de ₡2 000 y 5 monedas de ₡100',
+ B:'1 billete de ₡5 000, 1 billete de ₡1 000 y 10 monedas de ₡50',
+ C:'2 billetes de ₡2 000, 2 billetes de ₡1 000 y 11 monedas de ₡50',
+ D:'1 billete de ₡5 000, 1 billete de ₡1 000 y 6 monedas de ₡100',
+ k:'C',e:'Vuelto = 20 000 − 13 450 = ₡6 550. Opción C: 2×2000 + 2×1000 + 11×50 = 4000+2000+550 = ₡6 550. ✓'},
+
+/* ── 41 ── */
+{n:41,b:'Bloque 3 · Medidas',
+ q:`<p>Una familia costarricense viajó a los Estados Unidos. Antes de partir, cambiaron ₡150 000 a dólares en el banco. Ese día el tipo de cambio era de ₡500 por cada dólar.</p><p>De acuerdo con la información anterior, ¿cuántos dólares recibió la familia?</p>`,
+ A:'300 dólares',B:'1 500 dólares',C:'3 000 dólares',D:'30 dólares',
+ k:'A',e:'150 000 ÷ 500 = 300 dólares.'},
+
+/* ── 42 ── */
+{n:42,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>En una clase de artes de una escuela de Costa Rica, los estudiantes diseñaron arreglos de azulejos cuadrados. La siguiente tabla muestra los primeros cuatro arreglos del patrón:</p>${FIG.i42}<p>De acuerdo con la información anterior, si el patrón continúa, ¿cuántos azulejos tiene el arreglo en la posición 12?</p>`,
+ A:'45',B:'41',C:'49',D:'53',
+ k:'A',e:'Patrón: posición n tiene 4n − 3 azulejos. Posición 12: 4×12 − 3 = 45.'},
+
+/* ── 43 ── */
+{n:43,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>En un mercado artesanal de Costa Rica, una vendedora lleva el registro de la cantidad de artesanías que vende cada día. La siguiente tabla muestra los datos de los primeros cuatro días:</p>${tbl43()}<p>De acuerdo con la información anterior, si el patrón se mantiene, ¿cuántas artesanías vendió la vendedora en el día 9?</p>`,
+ A:'36',B:'41',C:'46',D:'51',
+ k:'C',e:'Patrón: diferencia de +5. Fórmula: 5n+1. Día 9: 5×9+1 = 46.'},
+
+/* ── 44 ── */
+{n:44,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Un estudiante siembra tomates en el huerto de su escuela y lleva el registro de cuántos tomates cosecha cada semana. La siguiente tabla muestra los datos de las primeras cuatro semanas:</p>${tbl44()}<p>De acuerdo con la información anterior, si el patrón se mantiene, ¿cuántos tomates cosechará el estudiante en la semana 6?</p>`,
+ A:'42',B:'30',C:'36',D:'56',
+ k:'A',e:'Patrón: semana n cosecha n×(n+1) tomates. Semana 6: 6×7 = 42.'},
+
+/* ── 45 ── */
+{n:45,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Considere la siguiente información:</p><p>En una cooperativa agrícola de Costa Rica, un camión de reparto tiene una capacidad máxima de carga de 3 000 kg. Cada semana realiza distinta cantidad de entregas y la velocidad varía entre 0 km/h y 90 km/h según la ruta recorrida.</p><p>De acuerdo con la información anterior, ¿cuál de las siguientes es una cantidad constante?</p>`,
+ A:'La cantidad de entregas realizadas cada semana',
+ B:'La velocidad del camión en cada ruta',
+ C:'El peso de los productos transportados en cada entrega',
+ D:'La capacidad máxima de carga del camión',
+ k:'D',e:'La capacidad máxima de carga (3 000 kg) no varía → es constante. Las demás cantidades cambian semana a semana o ruta a ruta.'},
+
+/* ── 46 ── */
+{n:46,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Considere la siguiente información:</p><p>La siguiente tabla muestra la relación entre el lado y el perímetro de varios triángulos equiláteros:</p>${tbl46()}<p>De acuerdo con la información anterior, ¿cuánto mide el perímetro de un triángulo equilátero cuyo lado mide 17 cm?</p>`,
+ A:'51 cm',B:'45 cm',C:'48 cm',D:'54 cm',
+ k:'A',e:'P = 3 × lado. Para lado = 17 cm: P = 3 × 17 = 51 cm.'},
+
+/* ── 47 ── */
+{n:47,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Se mide la altura en cm de una planta de frijol según la cantidad de días transcurridos desde la germinación. El siguiente plano cartesiano muestra las tres primeras mediciones registradas:</p>${FIG.i47}<p>De acuerdo con la información anterior, si el patrón de crecimiento se mantiene, ¿cuál par ordenado corresponde al día 7?</p>`,
+ A:'(7, 10)',B:'(7, 12)',C:'(7, 16)',D:'(7, 14)',
+ k:'D',e:'Patrón: altura = 2 × días. Día 7: altura = 2 × 7 = 14 cm → par ordenado (7, 14).'},
+
+/* ── 48 ── */
+{n:48,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Considere la siguiente información:</p><p>En un experimento de Ciencias, los estudiantes registran la cantidad de plantas germinadas según los días transcurridos. La siguiente tabla muestra los datos con un valor desconocido:</p>${tbl48()}<p>De acuerdo con la información anterior, si el patrón se mantiene, ¿cuál es el valor de ■?</p>`,
+ A:'8',B:'7',C:'10',D:'9',
+ k:'A',e:'Patrón: plantas = 3 × días. 24 = 3 × ■ → ■ = 8 días.'},
+
+/* ── 49 ── */
+{n:49,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Considere la siguiente información:</p><p>Una estudiante ahorra la misma cantidad de su mesada cada semana. Después de 4 semanas, ha ahorrado ₡3 600 en total. Esto se puede representar con la siguiente ecuación:</p><p class="ecuacion"><strong>4 × n = 3 600</strong></p><p>De acuerdo con la información anterior, ¿cuál es el valor de <em>n</em>?</p>`,
+ A:'₡800',B:'₡1 200',C:'₡1 440',D:'₡900',
+ k:'D',e:'n = 3 600 ÷ 4 = 900. La estudiante ahorra ₡900 por semana.'},
+
+/* ── 50 ── */
+{n:50,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Considere la siguiente información:</p><p>Un agricultor cosecha café en cajas de 15 kg cada una. En total cosecha más de 120 kg. Esto se puede representar con la siguiente inecuación:</p><p class="ecuacion"><strong>15 × c &gt; 120</strong></p><p>De acuerdo con la información anterior, ¿cuál de los siguientes valores de <em>c</em> satisface la inecuación?</p>`,
+ A:'9',B:'7',C:'8',D:'6',
+ k:'A',e:'c = 9: 15 × 9 = 135 > 120 ✓. c = 8: 15 × 8 = 120, que no es mayor estrictamente. c = 7 y c = 6 también fallan.'},
+
+/* ── 51 ── */
+{n:51,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Considere la siguiente información:</p><p>En una feria de artesanías, se venden bolsas de granola artesanal en tres puestos identificados con las letras M, N y O. Marisol quiere comprar 5 bolsas.</p><ul class="blist"><li>En M cada bolsa cuesta ₡1 200, pero se aplica un descuento del 30 % en el precio de cada bolsa.</li><li>En N cada bolsa cuesta ₡900.</li><li>En O cada bolsa cuesta ₡1 000, pero se aplica un descuento del 10 % en el precio de cada bolsa.</li></ul><p>De acuerdo con la información anterior, ¿en cuál puesto Marisol pagaría menos dinero por las 5 bolsas?</p>`,
+ A:'M',B:'N',C:'O',D:'Los tres puestos tienen el mismo precio total',
+ k:'A',e:'M: 1200 × 0,70 × 5 = ₡4 200. N: 900 × 5 = ₡4 500. O: 1000 × 0,90 × 5 = ₡4 500. El puesto M es más barato.'},
+
+/* ── 52 ── */
+{n:52,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Considere la siguiente información:</p><p>En un taller, una artesana recibe un pago de ₡4 500 por cada 3 horas de trabajo. Al finalizar la jornada, recibió un pago total de ₡22 500 por todo ese trabajo.</p><p>De acuerdo con la información anterior, ¿cuántas horas trabajó en total?</p>`,
+ A:'12 horas',B:'9 horas',C:'18 horas',D:'15 horas',
+ k:'D',e:'Tasa: ₡4500/3h = ₡1500/h. Total horas = 22 500 ÷ 1 500 = 15 horas.'},
+
+/* ── 53 ── */
+{n:53,b:'Bloque 4 · Relaciones y Álgebra',
+ q:`<p>Considere la siguiente información:</p><p>El precio de una bicicleta era de ₡80 000. A partir del próximo mes, ese precio aumentará un 15 %.</p><p>De acuerdo con la información anterior, ¿cuál será el nuevo precio de la bicicleta?</p>`,
+ A:'₡92 000',B:'₡12 000',C:'₡84 000',D:'₡96 000',
+ k:'A',e:'15% de 80 000 = 12 000. Nuevo precio = 80 000 + 12 000 = ₡92 000.'},
+
+/* ── 54 ── */
+{n:54,b:'Bloque 5 · Estadística y Probabilidades',
+ q:`<p>Considere la siguiente información:</p><p>La siguiente tabla muestra la cantidad de libros leídos por los estudiantes de un grupo durante el mes de marzo:</p>${tbl54()}<p>De acuerdo con la información anterior, ¿cuántos estudiantes leyeron más de 3 libros?</p>`,
+ A:'6',B:'22',C:'18',D:'10',
+ k:'D',e:'Más de 3 libros: los que leyeron 4 (6 estudiantes) + los que leyeron 5 (4 estudiantes) = 10 estudiantes.'},
+
+/* ── 55 ── */
+{n:55,b:'Bloque 5 · Estadística y Probabilidades',
+ q:`<p>Considere la siguiente información:</p><p>La siguiente lista muestra la cantidad de hermanos de 10 estudiantes:</p><p class="datalist">2, 1, 3, 2, 1, 2, 4, 2, 1, 3</p><p>De acuerdo con la información anterior, ¿cuál es la moda de esos datos?</p>`,
+ A:'2',B:'1',C:'3',D:'2,1',
+ k:'A',e:'La moda es el valor que más se repite. El 2 aparece 4 veces → moda = 2.'},
+
+/* ── 56 ── */
+{n:56,b:'Bloque 5 · Estadística y Probabilidades',
+ q:`<p>Considere la siguiente información:</p><p>Los siguientes datos muestran las temperaturas máximas (en °C) registradas en una ciudad durante 6 días:</p><p class="datalist">28, 32, 25, 35, 30, 27</p><p>De acuerdo con la información anterior, ¿cuál es el recorrido de esos datos?</p>`,
+ A:'7',B:'5',C:'8',D:'10',
+ k:'D',e:'Recorrido = máximo − mínimo = 35 − 25 = 10.'},
+
+/* ── 57 ── */
+{n:57,b:'Bloque 5 · Estadística y Probabilidades',
+ q:`<p>Considere la siguiente información:</p><p>En una bolsa hay 30 botones que se diferencian solo por su color. Diez son azules, seis son rojos, ocho son amarillos y el resto son verdes.</p><p>De acuerdo con la información anterior, si se saca al azar un botón de esa bolsa, entonces el evento obtener un botón verde es igualmente probable que el evento obtener un botón</p>`,
+ A:'rojo.',B:'azul.',C:'amarillo.',D:'No existe ningún color con la misma probabilidad.',
+ k:'A',e:'Verdes = 30 − 10 − 6 − 8 = 6. Rojos = 6. Ambos tienen probabilidad 6/30 → igualmente probables.'},
+
+/* ── 58 ── */
+{n:58,b:'Bloque 5 · Estadística y Probabilidades',
+ q:`<p>Considere la siguiente información:</p><p>Una caja contiene 10 fichas numeradas del 1 al 10. Si se saca al azar una ficha de esa caja, ¿cuál de los siguientes eventos es imposible?</p>`,
+ A:'Obtener un número mayor que 5',B:'Obtener el número 15',C:'Obtener un número par',D:'Obtener un número menor que 10',
+ k:'B',e:'El 15 no está en el conjunto {1, 2, …, 10}, por lo tanto ese evento es imposible.'},
+
+/* ── 59 ── */
+{n:59,b:'Bloque 5 · Estadística y Probabilidades',
+ q:`<p>Considere la siguiente información:</p><p>En una caja hay 20 fichas de colores: 8 son rojas, 7 son azules y 5 son amarillas. Si se saca al azar una ficha de esa caja, ¿cuál es la probabilidad de obtener una ficha roja?</p>`,
+ A:'0,35',B:'0,25',C:'0,60',D:'0,40',
+ k:'D',e:'P(roja) = 8/20 = 0,40.'},
+
+/* ── 60 ── */
+{n:60,b:'Bloque 5 · Estadística y Probabilidades',
+ q:`<p>Considere la siguiente información:</p><p>En un juego hay dos bolsas con canicas. Para ganar se debe sacar una canica roja al azar.</p><ul class="blist"><li>La bolsa A tiene 6 canicas rojas y 4 azules.</li><li>La bolsa B tiene 3 canicas rojas y 7 azules.</li></ul><p>De acuerdo con la información anterior, ¿de cuál bolsa conviene sacar la canica para tener mayor probabilidad de ganar?</p>`,
+ A:'De la bolsa A, porque tiene mayor probabilidad de obtener una canica roja.',
+ B:'De la bolsa B, porque tiene mayor probabilidad de obtener una canica roja.',
+ C:'Ambas bolsas tienen la misma probabilidad de obtener una canica roja.',
+ D:'No es posible determinar de cuál bolsa conviene sacar la canica.',
+ k:'A',e:'P(roja|A) = 6/10 = 0,60. P(roja|B) = 3/10 = 0,30. Conviene la bolsa A.'}
+
+]; /* fin ITEMS */
+
+/* ─────────────────────────────────────────────
+   ESTADO Y LÓGICA DE LA APP
+───────────────────────────────────────────── */
+let idx=0, res={}, flags=new Set(), finished=false, timerId=null, remaining=10800;
+
+function iniciar(){
+  ['inicio'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('top').style.display='block';
+  document.getElementById('bar').style.display='flex';
+  document.getElementById('progress').style.display='block';
+  document.getElementById('progressText').style.display='block';
+  timerId=setInterval(tick,1000);
+  show(0);
+}
+function tick(){
+  remaining--;
+  if(remaining<0){finish();return;}
+  const h=String(Math.floor(remaining/3600)).padStart(2,'0');
+  const m=String(Math.floor(remaining%3600/60)).padStart(2,'0');
+  const s=String(remaining%60).padStart(2,'0');
+  const t=document.getElementById('timer');
+  t.textContent=`${h}:${m}:${s}`;
+  if(remaining<=300)t.classList.add('low');
+}
+function show(i){
+  if(finished)return;
+  idx=i;
+  const it=ITEMS[i], total=ITEMS.length, answered=Object.keys(res).length;
+  document.getElementById('itemLabel').textContent=`Ítem ${i+1} de ${total}`;
+  document.getElementById('progressBar').style.width=(answered/total*100)+'%';
+  document.getElementById('progressText').textContent=`${answered} de ${total} respondidos`;
+  const opts=['A','B','C','D'].map(l=>
+    `<button class="opt ${res[i]===l?'sel':''}" onclick="choose('${l}')" id="opt-${l}">
+       <span class="letter">${l})</span><span class="opt-content">${it[l]}</span>
+     </button>`).join('');
+  const sel=ITEMS.map((x,j)=>`<option value="${j}" ${j===i?'selected':''}>Ítem ${j+1}${flags.has(j)?' ★':''}</option>`).join('');
+  document.getElementById('area').innerHTML=
+    `<article class="card item">
+       <div class="item-head">Ítem ${i+1} | ${it.b}</div>
+       <div class="stem">${it.q}</div>
+       <div class="options">${opts}</div>
+       <div class="mark"><button class="${flags.has(i)?'on':''}" onclick="toggleFlag()">${flags.has(i)?'★ Marcado':'☆ Marcar para revisar'}</button></div>
+       <div class="nav">
+         <button class="btn muted" onclick="show(${i-1})" ${i===0?'disabled':''}>Anterior</button>
+         <select onchange="show(Number(this.value))">${sel}</select>
+         <button class="btn primary" onclick="show(${i+1})" ${i===total-1?'disabled':''}>Siguiente</button>
+         <button class="btn danger" onclick="askFinish()">Finalizar</button>
+       </div>
+     </article>`;
+}
+function choose(l){
+  res[idx]=l;
+  document.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('opt-'+l).classList.add('sel');
+  document.getElementById('progressBar').style.width=(Object.keys(res).length/ITEMS.length*100)+'%';
+  document.getElementById('progressText').textContent=`${Object.keys(res).length} de ${ITEMS.length} respondidos`;
+}
+function toggleFlag(){flags.has(idx)?flags.delete(idx):flags.add(idx);show(idx);}
+function askFinish(){
+  const miss=ITEMS.length-Object.keys(res).length;
+  if(miss>0&&!confirm(`Tiene ${miss} ítem(s) sin responder. ¿Desea finalizar de todos modos?`))return;
+  finish();
+}
+function finish(){
+  if(finished)return;
+  finished=true;
+  if(timerId)clearInterval(timerId);
+  ['area'].forEach(id=>document.getElementById(id).innerHTML='');
+  ['top','bar','progress','progressText'].forEach(id=>document.getElementById(id).style.display='none');
+  let ok=0,bad=0,skip=0;
+  ITEMS.forEach((it,i)=>{if(!res[i])skip++;else if(res[i]===it.k)ok++;else bad++;});
+  const pct=Math.round(ok/ITEMS.length*100);
+  const rows=ITEMS.map((it,i)=>{
+    const r=res[i]||'—',state=r==='—'?'Omitido':(r===it.k?'Correcto':'Incorrecto');
+    const cls=r==='—'?'omitted':(r===it.k?'correct':'wrong');
+    return `<tr><td>${i+1}</td><td>${r}</td><td>${it.k}</td><td class="${cls}">${state}</td><td style="text-align:left;font-size:.85rem">${it.e}</td></tr>`;
+  }).join('');
+  document.getElementById('results').style.display='block';
+  document.getElementById('results').innerHTML=
+    `<h1>Resultados</h1>
+     <div class="score">${pct}%</div>
+     <div class="stats">
+       <div class="stat ok"><strong>${ok}</strong><br>Correctas</div>
+       <div class="stat bad"><strong>${bad}</strong><br>Incorrectas</div>
+       <div class="stat skip"><strong>${skip}</strong><br>Omitidas</div>
+     </div>
+     <div class="table-wrap"><table class="res">
+       <thead><tr><th>Ítem</th><th>Respuesta</th><th>Clave</th><th>Resultado</th><th>Retroalimentación</th></tr></thead>
+       <tbody>${rows}</tbody>
+     </table></div>
+     <button class="btn primary" style="display:block;margin:18px auto 0" onclick="location.reload()">Reiniciar</button>`;
+}
+</script>
+</body>
+</html>

@@ -1365,10 +1365,44 @@ ${cards(card('P = 0','Evento imposible'),card('P = 1','Evento seguro'),card('Obt
 <p style="text-align:center"><strong>P(roja) = ${T.frac('8','20')} = 0,40</strong></p>
 ${T.wrap(T.table(['Color','Fichas','Probabilidad','Decimal'],[T.row(['Roja','8',T.frac('8','20'),'0,40 ✓']),T.row(['Azul','7',T.frac('7','20'),'0,35']),T.row(['Amarilla','5',T.frac('5','20'),'0,25']),T.row(['Total','20','1','1,00'])]  ))}
 <p><strong>P(roja) = 0,40 → Opción D ✓</strong></p>`,
- t:`<p><strong>Probabilidad de un evento</strong></p>
-<p style="text-align:center"><strong>P(evento) = Casos favorables ÷ Total de casos posibles</strong></p>
-${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5',`P(amarilla) = ${T.frac('5','20')} = 0,25`]),T.row(['Probable','P = 0,5',`P = ${T.frac('10','20')}`]),T.row(['Muy probable','0,5 &lt; P &lt; 1',`P(roja bolsa A) = ${T.frac('6','10')} = 0,60`]),T.row(['Seguro','P = 1','Siempre ocurre'])]  ))}
-${cards(card(T.frac('8','20'),'= 0,40'),card(T.frac('7','20'),`P(azul) = 0,35`),card('P(roja) = 0,40','Opción D ✓',true))}`},
+ t:`<div style="border:2px solid #1565c0;border-radius:6px;margin-bottom:16px;overflow:hidden">
+  <div style="background:#1565c0;color:white;padding:7px 14px;font-weight:700;font-size:.92rem">Definición · La Probabilidad Clásica o Laplaciana</div>
+  <div style="padding:12px 16px;background:#f0f4ff">
+    <p style="margin:0 0 10px">La probabilidad de que ocurra un evento A se representa como <strong>P(A)</strong> y se calcula con:</p>
+    <div style="text-align:center;margin:10px 0;font-size:1.05em">P(A) = ${T.frac('Cantidad de casos favorables al evento A','Cantidad de casos totales')}</div>
+  </div>
+</div>
+<p><strong>Evento:</strong> resultado específico o conjunto de resultados que pueden ocurrir en un experimento aleatorio.</p>
+<p><strong>Casos favorables:</strong> aquellos que cumplen con la condición que se está buscando.</p>
+<p style="margin-top:12px"><strong>Tipos de eventos:</strong></p>
+<ul style="margin:6px 0 10px 20px">
+  <li style="margin-bottom:10px"><strong>Evento imposible:</strong> no puede ocurrir. P(A) = ${T.frac('0','Casos totales')} = 0</li>
+  <li style="margin-bottom:10px"><strong>Evento seguro:</strong> ocurre siempre. P(B) = ${T.frac('Casos totales','Casos totales')} = 1</li>
+  <li><strong>Evento probable:</strong> su probabilidad está entre 0 y 1 (sin incluirlos).</li>
+</ul>
+<svg viewBox="0 0 320 95" width="100%" style="max-width:400px;display:block;margin:10px auto">
+  <text x="20" y="15" fill="#b42318" font-weight="bold" font-size="12" text-anchor="middle">Imposible</text>
+  <text x="300" y="15" fill="#176b36" font-weight="bold" font-size="12" text-anchor="middle">Posible</text>
+  <line x1="20" y1="35" x2="300" y2="35" stroke="#555" stroke-width="1.5"/>
+  <line x1="48" y1="31" x2="48" y2="39" stroke="#555" stroke-width="1"/>
+  <line x1="76" y1="31" x2="76" y2="39" stroke="#555" stroke-width="1"/>
+  <line x1="104" y1="31" x2="104" y2="39" stroke="#555" stroke-width="1"/>
+  <line x1="132" y1="31" x2="132" y2="39" stroke="#555" stroke-width="1"/>
+  <line x1="160" y1="31" x2="160" y2="39" stroke="#555" stroke-width="1"/>
+  <line x1="188" y1="31" x2="188" y2="39" stroke="#555" stroke-width="1"/>
+  <line x1="216" y1="31" x2="216" y2="39" stroke="#555" stroke-width="1"/>
+  <line x1="244" y1="31" x2="244" y2="39" stroke="#555" stroke-width="1"/>
+  <line x1="272" y1="31" x2="272" y2="39" stroke="#555" stroke-width="1"/>
+  <circle cx="20" cy="35" r="5" fill="#b42318"/>
+  <circle cx="300" cy="35" r="5" fill="#176b36"/>
+  <text x="20" y="52" fill="#333" font-size="11" text-anchor="middle">0</text>
+  <text x="300" y="52" fill="#333" font-size="11" text-anchor="middle">1</text>
+  <path d="M 30,58 Q 30,70 160,70 Q 290,70 290,58" fill="none" stroke="#1565c0" stroke-width="2"/>
+  <text x="160" y="90" fill="#1565c0" font-weight="bold" font-size="13" text-anchor="middle">Probable</text>
+</svg>
+<p style="margin-top:14px"><strong>Ejemplo adicional:</strong> En una caja hay 20 canicas: 9 rojas, 6 azules y 5 verdes. Si se saca una al azar, ¿cuál es la probabilidad de obtener una canica azul?</p>
+${T.wrap(T.table(['Color','Canicas','Probabilidad','Decimal'],[T.row(['Roja','9',T.frac('9','20'),'0,45']),T.row(['<strong>Azul</strong>','<strong>6</strong>',T.frac('6','20'),'<strong>0,30 ✓</strong>']),T.row(['Verde','5',T.frac('5','20'),'0,25']),T.row(['Total','20',T.frac('20','20'),'1,00'])]))}
+<p><strong>P(azul) = ${T.frac('6','20')} = 0,30</strong> → es un evento probable (0 &lt; 0,30 &lt; 1).</p>`},
 
 /* ── 60 ── */
 {n:60,b:'Bloque 5 · Estadística y Probabilidades',

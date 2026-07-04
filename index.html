@@ -497,7 +497,14 @@ const ITEMS = [
  B:'Trescientos cincuenta y dos mil cuarenta y seis',
  C:'Trescientos veinticinco mil cuarenta y seis',
  D:'Trescientos cincuenta y dos mil cuatrocientos seis',
- k:'B',e:'352 046 equivale a 352 miles más 46 unidades: «trescientos cincuenta y dos mil cuarenta y seis».'},
+ k:'B',e:`<p><strong>Posiciones de las cifras (de derecha a izquierda):</strong></p>
+${T.wrap(T.table(['Posición','Abrev.','Valor'],[['Unidades','U','1'],['Decenas','D','10'],['Centenas','C','100'],['Unidades de millar','UM','1&#8239;000'],['Decenas de millar','DM','10&#8239;000'],['Centenas de millar','CM','100&#8239;000'],['Unidades de millón','U.Mill.','1&#8239;000&#8239;000'],['Decenas de millón','D.Mill.','10&#8239;000&#8239;000'],['Centenas de millón','C.Mill.','100&#8239;000&#8239;000']].map(r=>T.row(r)).join('')))}
+<p><strong>Ejemplos: número → representación literal</strong></p>
+${T.wrap(T.table(['Número','Representación literal'],[['7','Siete'],['35','Treinta y cinco'],['408','Cuatrocientos ocho'],['12&#8239;500','Doce mil quinientos'],['352&#8239;046','Trescientos cincuenta y dos mil cuarenta y seis']].map(r=>T.row(r)).join('')))}
+<p><strong>Aplicado al número 352&#8239;046 (desglose por posición):</strong></p>
+${T.wrap(T.table(['Cifra','Posición','Valor'],T.row(['<strong>3</strong>','Centenas de millar','300&#8239;000'])+T.row(['<strong>5</strong>','Decenas de millar','50&#8239;000'])+T.row(['<strong>2</strong>','Unidades de millar','2&#8239;000'])+T.row(['<strong>0</strong>','Centenas','0'])+T.row(['<strong>4</strong>','Decenas','40'])+T.row(['<strong>6</strong>','Unidades','6'])))}
+<p>300&#8239;000 + 50&#8239;000 + 2&#8239;000 + 40 + 6 = <strong>352&#8239;046</strong><br>
+Representación literal: <strong>«Trescientos cincuenta y dos mil cuarenta y seis»</strong> → opción B ✓</p>`},
 
 /* ── 2 ── */
 {n:2,b:'Bloque 1 · Números',

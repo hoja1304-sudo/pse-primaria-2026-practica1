@@ -77,6 +77,8 @@ table.res th,table.res td{border:1px solid #d9dee8;padding:6px 8px;text-align:ce
 .ans-omit{background:#fff6dc;border-left:4px solid #e0a800;color:#8a6100}
 .sol-box{background:#f0f4ff;border-left:4px solid #1565c0;border-radius:0 8px 8px 0;padding:16px 18px;margin-top:18px}
 .sol-title{font-weight:800;color:#1565c0;margin-bottom:8px;font-size:.95rem;letter-spacing:.01em}
+.teoria-box{background:#f5f0ff;border-left:4px solid #6b35c9;border-radius:0 8px 8px 0;padding:16px 18px;margin-top:14px}
+.teoria-title{font-weight:800;color:#6b35c9;margin-bottom:10px;font-size:.95rem;letter-spacing:.01em}
 .ver-btn{border:0;border-radius:5px;padding:4px 10px;background:#e8ecf3;color:#253044;cursor:pointer;font-size:.82rem;font-weight:600;white-space:nowrap}
 .ver-btn:hover{background:#c8d4e8}
 @media(max-width:720px){
@@ -526,7 +528,30 @@ Representación literal: <strong>«Trescientos cincuenta y dos mil cuarenta y se
 {n:2,b:'Bloque 1 · Números',
  q:`<p>Considere la siguiente información:</p><p>En los Juegos Deportivos Estudiantiles de Costa Rica, la persona ganadora de una prueba de ciclismo registró un tiempo de <em>veinticuatro unidades con tres mil setenta y dos diezmilésimas</em> de minuto.</p><p>De acuerdo con la información anterior, ¿cuál es la representación numérica del tiempo registrado?</p>`,
  A:'24,3702',B:'24,3072',C:'24,0372',D:'24,7032',
- k:'B',e:'3 072 diezmilésimas = 0,3072 → el tiempo es 24,3072.'},
+ k:'B',
+ e:`<p>La expresión <em>«veinticuatro unidades con tres mil setenta y dos diezmilésimas»</em> tiene dos partes:</p>
+${T.wrap(T.table(['Parte','Texto literal','Valor numérico'],[T.row(['Entera','veinticuatro unidades','24']),T.row(['Decimal','tres mil setenta y dos <strong>diezmilésimas</strong>','3&#8239;072 / 10&#8239;000 = 0,3072'])]))}
+<p>Se unen con la coma decimal: 24 + 0,3072 = <strong>24,3072</strong> → opción B ✓</p>`,
+ t:`<p><strong>Posiciones decimales (después de la coma):</strong></p>
+${T.wrap(T.table(['Posición','Valor','Fracción equivalente'],[T.row(['Décimas','0,1','1/10']),T.row(['Centésimas','0,01','1/100']),T.row(['Milésimas','0,001','1/1&#8239;000']),T.row(['Diezmilésimas','0,0001','1/10&#8239;000'])]))}
+<p><strong>Ejemplos:</strong></p>
+<div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:10px 0 4px">
+  <div style="border:2px solid #c8d0dc;border-radius:8px;padding:14px 20px;text-align:center;flex:1;min-width:130px;background:#f9fbff">
+    <div style="font-size:1.7rem;font-weight:800;color:#15246b;letter-spacing:.03em">0,5</div>
+    <hr style="border:none;border-top:1px solid #d0d8e8;margin:8px 0">
+    <div style="font-size:.87rem;color:#374151;font-style:italic;line-height:1.4">Cero unidades con cinco décimas</div>
+  </div>
+  <div style="border:2px solid #c8d0dc;border-radius:8px;padding:14px 20px;text-align:center;flex:1;min-width:130px;background:#f9fbff">
+    <div style="font-size:1.7rem;font-weight:800;color:#15246b;letter-spacing:.03em">3,25</div>
+    <hr style="border:none;border-top:1px solid #d0d8e8;margin:8px 0">
+    <div style="font-size:.87rem;color:#374151;font-style:italic;line-height:1.4">Tres unidades con veinticinco centésimas</div>
+  </div>
+  <div style="border:2px solid #6b35c9;border-radius:8px;padding:14px 20px;text-align:center;flex:1;min-width:130px;background:#f5f0ff">
+    <div style="font-size:1.7rem;font-weight:800;color:#15246b;letter-spacing:.03em">24,3072</div>
+    <hr style="border:none;border-top:1px solid #c9b8e8;margin:8px 0">
+    <div style="font-size:.87rem;color:#374151;font-style:italic;line-height:1.4">Veinticuatro unidades con tres mil setenta y dos diezmilésimas</div>
+  </div>
+</div>`},
 
 /* ── 3 ── */
 {n:3,b:'Bloque 1 · Números',
@@ -1010,6 +1035,7 @@ function verRespuesta(i){
        <div class="sol-title">💡 Solución paso a paso</div>
        <div>${it.e}</div>
      </div>
+     ${it.t?`<div class="teoria-box"><div class="teoria-title">📚 Repaso de teoría</div><div>${it.t}</div></div>`:''}
      <div style="margin-top:20px;text-align:center">
        <button class="btn muted" onclick="backToResults()">← Regresar a Resultados</button>
      </div>`;

@@ -198,14 +198,14 @@ FIG.i21 = `<svg class="fig" viewBox="-5 -5 165 115" width="270" height="185" sty
   <text x="112" y="78" font-size="14" font-weight="bold" text-anchor="middle">4</text>
 </svg>`;
 
-/* Ítem 22 — Triángulo isósceles */
-FIG.i22 = `<svg class="fig" viewBox="-15 -20 205 155" width="300" height="220" style="max-width:100%">
-  <polygon points="0,112 168,112 84,0" fill="none" stroke="#111" stroke-width="1.8"/>
-  <text x="84" y="131" font-size="12" text-anchor="middle">6 cm</text>
-  <text x="30" y="65" font-size="12" text-anchor="middle" transform="rotate(-54,30,65)">5 cm</text>
-  <text x="138" y="65" font-size="12" text-anchor="middle" transform="rotate(54,138,65)">5 cm</text>
-  <line x1="38" y1="58" x2="46" y2="53" stroke="#111" stroke-width="1.5"/>
-  <line x1="130" y1="53" x2="122" y2="58" stroke="#111" stroke-width="1.5"/>
+/* Ítem 22 — Letrero restaurante (triángulo isósceles, base 6 cm, lados 50 cm) */
+FIG.i22 = `<svg class="fig" viewBox="-20 -12 100 215" width="120" height="258" style="max-width:100%">
+  <polygon points="30,0 0,180 60,180" fill="none" stroke="#111" stroke-width="1.8"/>
+  <text x="30" y="200" font-size="12" text-anchor="middle">6 cm</text>
+  <text x="-3" y="95" font-size="12" text-anchor="end">50 cm</text>
+  <text x="63" y="95" font-size="12" text-anchor="start">50 cm</text>
+  <line x1="12" y1="90" x2="18" y2="90" stroke="#111" stroke-width="1.5"/>
+  <line x1="42" y1="90" x2="48" y2="90" stroke="#111" stroke-width="1.5"/>
 </svg>`;
 
 /* Ítem 23 — Rombo */
@@ -246,15 +246,15 @@ FIG.i25 = `<svg class="fig" viewBox="-5 0 160 160" width="230" height="230" styl
   <text x="152" y="16" font-size="12" font-weight="bold" text-anchor="start">B</text>
 </svg>`;
 
-/* Ítem 28 — Lámina (rectángulo + triángulo) */
-FIG.i28 = `<svg class="fig" viewBox="-20 -10 140 130" width="240" height="210" style="max-width:100%">
-  <rect x="0" y="45" width="90" height="60" fill="none" stroke="#111" stroke-width="1.8"/>
-  <polygon points="0,45 45,0 90,45" fill="none" stroke="#111" stroke-width="1.8"/>
-  <line x1="45" y1="45" x2="45" y2="0" stroke="#111" stroke-width="1.2" stroke-dasharray="4,3"/>
-  <rect x="45" y="45" width="8" height="8" fill="none" stroke="#111" stroke-width="1"/>
-  <text x="45" y="115" font-size="12" text-anchor="middle">6 cm</text>
-  <text x="-12" y="76" font-size="12" text-anchor="middle">4 cm</text>
-  <text x="60" y="22" font-size="12" text-anchor="start">3 cm</text>
+/* Ítem 28 — Ventana (rectángulo + triángulo, 60×40 + h=30) */
+FIG.i28 = `<svg class="fig" viewBox="-25 -12 185 195" width="265" height="280" style="max-width:100%">
+  <rect x="0" y="68" width="135" height="90" fill="none" stroke="#111" stroke-width="1.8"/>
+  <polygon points="0,68 68,0 135,68" fill="none" stroke="#111" stroke-width="1.8"/>
+  <line x1="68" y1="68" x2="68" y2="0" stroke="#111" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M 68,68 L 71,68 L 71,65 L 68,65" fill="none" stroke="#111" stroke-width="1"/>
+  <text x="68" y="175" font-size="12" text-anchor="middle">60 cm</text>
+  <text x="-2" y="114" font-size="12" text-anchor="end">40 cm</text>
+  <text x="73" y="36" font-size="12" text-anchor="start">30 cm</text>
 </svg>`;
 
 /* Ítem 29 — Cuadrado con círculo inscrito */
@@ -615,9 +615,9 @@ const ITEMS = [
 
 /* ── 22 ── */
 {n:22,b:'Bloque 2 · Geometría',
- q:`<p>La siguiente figura muestra la forma de un cartel triangular que una estudiante recortó para su proyecto de ciencias:</p>${FIG.i22}<p>De acuerdo con la información anterior, ¿cómo se clasifica ese cartel triangular según las medidas de sus lados?</p>`,
+ q:`<p>La siguiente figura muestra la forma del letrero colgante de un restaurante. El letrero tiene forma triangular:</p>${FIG.i22}<p>De acuerdo con la información anterior, ¿cómo se clasifica ese letrero según las medidas de sus lados?</p>`,
  A:'Equilátero',B:'Isósceles',C:'Escaleno',D:'Obtusángulo',
- k:'B',e:'Dos lados miden 5 cm y uno mide 6 cm → dos lados iguales → triángulo isósceles.'},
+ k:'B',e:'Dos lados miden 50 cm y uno mide 6 cm → dos lados iguales → triángulo isósceles.'},
 
 /* ── 23 ── */
 {n:23,b:'Bloque 2 · Geometría',
@@ -651,9 +651,9 @@ const ITEMS = [
 
 /* ── 28 ── */
 {n:28,b:'Bloque 2 · Geometría',
- q:`<p>La siguiente figura muestra la forma de una lámina de cartón utilizada en un proyecto escolar. La lámina está formada por un rectángulo y un triángulo:</p>${FIG.i28}<p>¿Cuál es el área total de esa lámina?</p>`,
- A:'42 cm²',B:'33 cm²',C:'24 cm²',D:'9 cm²',
- k:'B',e:'Área = 6×4 + (6×3)/2 = 24 + 9 = 33 cm².'},
+ q:`<p>La siguiente figura muestra la forma de una ventana de una casa. La ventana está formada por un rectángulo y un triángulo:</p>${FIG.i28}<p>¿Cuál es el área total de esa ventana?</p>`,
+ A:'4 200 cm²',B:'3 300 cm²',C:'2 400 cm²',D:'900 cm²',
+ k:'B',e:'Área = 60×40 + (60×30)/2 = 2 400 + 900 = 3 300 cm².'},
 
 /* ── 29 ── */
 {n:29,b:'Bloque 2 · Geometría',
@@ -789,9 +789,9 @@ const ITEMS = [
 
 /* ── 50 ── */
 {n:50,b:'Bloque 4 · Relaciones y Álgebra',
- q:`<p>Considere la siguiente información:</p><p>Un agricultor cosecha café en cajas de 15 kg cada una. En total cosecha más de 120 kg. Esto se puede representar con la siguiente inecuación:</p><p class="ecuacion"><strong>15 × c &gt; 120</strong></p><p>De acuerdo con la información anterior, ¿cuál de los siguientes valores de <em>c</em> satisface la inecuación?</p>`,
- A:'9',B:'7',C:'8',D:'6',
- k:'A',e:'c = 9: 15 × 9 = 135 > 120 ✓. c = 8: 15 × 8 = 120, que no es mayor estrictamente. c = 7 y c = 6 también fallan.'},
+ q:`<p>Considere la siguiente información:</p><p>Una empresa distribuidora de café coloca bolsas de 8 kg cada una en una estantería. La estantería soporta un peso menor que 120 kg. En la siguiente inecuación, <em>b</em> representa la cantidad de bolsas que se pueden colocar:</p><p class="ecuacion"><strong>8 × b &lt; 120</strong></p><p>De acuerdo con la información anterior, ¿cuál es la mayor cantidad de bolsas que se pueden colocar en la estantería?</p>`,
+ A:'14',B:'15',C:'112',D:'128',
+ k:'A',e:'b = 14: 8 × 14 = 112 &lt; 120 ✓. b = 15: 8 × 15 = 120, que NO es menor que 120 (no cumple). La mayor cantidad posible es 14 bolsas.'},
 
 /* ── 51 ── */
 {n:51,b:'Bloque 4 · Relaciones y Álgebra',

@@ -198,14 +198,14 @@ FIG.i21 = `<svg class="fig" viewBox="-5 -5 165 115" width="270" height="185" sty
   <text x="112" y="78" font-size="14" font-weight="bold" text-anchor="middle">4</text>
 </svg>`;
 
-/* Ítem 22 — Letrero restaurante (triángulo isósceles, base 6 cm, lados 50 cm) */
-FIG.i22 = `<svg class="fig" viewBox="-20 -12 100 215" width="120" height="258" style="max-width:100%">
-  <polygon points="30,0 0,180 60,180" fill="none" stroke="#111" stroke-width="1.8"/>
-  <text x="30" y="200" font-size="12" text-anchor="middle">6 cm</text>
-  <text x="-3" y="95" font-size="12" text-anchor="end">50 cm</text>
-  <text x="63" y="95" font-size="12" text-anchor="start">50 cm</text>
-  <line x1="12" y1="90" x2="18" y2="90" stroke="#111" stroke-width="1.5"/>
-  <line x1="42" y1="90" x2="48" y2="90" stroke="#111" stroke-width="1.5"/>
+/* Ítem 22 — Letrero restaurante (triángulo isósceles, base 60 cm, lados 50 cm, altura 40 cm) */
+FIG.i22 = `<svg class="fig" viewBox="-15 -20 205 155" width="300" height="220" style="max-width:100%">
+  <polygon points="0,112 168,112 84,0" fill="none" stroke="#111" stroke-width="1.8"/>
+  <text x="84" y="131" font-size="12" text-anchor="middle">60 cm</text>
+  <text x="30" y="65" font-size="12" text-anchor="middle" transform="rotate(-54,30,65)">50 cm</text>
+  <text x="138" y="65" font-size="12" text-anchor="middle" transform="rotate(54,138,65)">50 cm</text>
+  <line x1="38" y1="58" x2="46" y2="53" stroke="#111" stroke-width="1.5"/>
+  <line x1="130" y1="53" x2="122" y2="58" stroke="#111" stroke-width="1.5"/>
 </svg>`;
 
 /* Ítem 23 — Rombo */
@@ -617,7 +617,7 @@ const ITEMS = [
 {n:22,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura muestra la forma del letrero colgante de un restaurante. El letrero tiene forma triangular:</p>${FIG.i22}<p>De acuerdo con la información anterior, ¿cómo se clasifica ese letrero según las medidas de sus lados?</p>`,
  A:'Equilátero',B:'Isósceles',C:'Escaleno',D:'Obtusángulo',
- k:'B',e:'Dos lados miden 50 cm y uno mide 6 cm → dos lados iguales → triángulo isósceles.'},
+ k:'B',e:'Dos lados miden 50 cm y uno mide 60 cm → dos lados iguales → triángulo isósceles.'},
 
 /* ── 23 ── */
 {n:23,b:'Bloque 2 · Geometría',

@@ -1023,9 +1023,42 @@ ${cards(card('40 meses','÷ 12 ≈ 3,33 años'),card('200 semanas','÷ 52 ≈ 3,
  e:`<p><strong>Conversión de metros cúbicos a decímetros cúbicos:</strong></p>
 ${T.wrap(T.table(['Dato','Valor'],[T.row(['Equivalencia','1 m³ = 1&#8239;000 dm³']),T.row(['Cantidad','45 m³']),T.row(['Operación','45 × 1&#8239;000']),T.row(['Resultado','<strong>45&#8239;000 dm³ ✓</strong>'])]))}
 <p><strong>45 m³ = 45&#8239;000 dm³ → Opción A ✓</strong></p>`,
- t:`<p><strong>Conversión de unidades de volumen</strong></p>
-${T.wrap(T.table(['Unidad mayor','Unidad menor','Factor','Operación'],[T.row(['1 m³','1&#8239;000 dm³','× 1&#8239;000','m³ → dm³']),T.row(['1 dm³','1&#8239;000 cm³','× 1&#8239;000','dm³ → cm³']),T.row(['1 m³','1&#8239;000&#8239;000 cm³','× 1&#8239;000&#8239;000','m³ → cm³'])]))}
-${cards(card('1 m³','= 1&#8239;000 dm³'),card('45 m³','× 1&#8239;000 = 45&#8239;000 dm³'),card('45&#8239;000 dm³','Respuesta ✓',true))}`},
+ t:`<div style="border:2px solid #1565c0;border-radius:6px;overflow:hidden;margin-bottom:14px">
+  <div style="background:#1565c0;color:white;padding:7px 14px;font-weight:700;font-size:.92rem">Regla de oro para las conversiones de unidades</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;padding:12px 14px;background:#f0f4ff">
+    <div style="flex:1;min-width:160px;text-align:center;padding:10px 12px;background:white;border-radius:6px;border:1px solid #b0d0b0">
+      <div style="font-size:.88rem;color:#374151;margin-bottom:4px">Unidad <strong>mayor</strong> → unidad <strong>menor</strong></div>
+      <div style="font-size:1.5rem;font-weight:800;color:#176b36">× Multiplica</div>
+      <div style="font-size:.82rem;color:#596579;margin-top:4px">El número <em>crece</em>: necesitas más porciones pequeñas para cubrir el mismo espacio.</div>
+    </div>
+    <div style="flex:1;min-width:160px;text-align:center;padding:10px 12px;background:white;border-radius:6px;border:1px solid #f0b0b0">
+      <div style="font-size:.88rem;color:#374151;margin-bottom:4px">Unidad <strong>menor</strong> → unidad <strong>mayor</strong></div>
+      <div style="font-size:1.5rem;font-weight:800;color:#b42318">÷ Divide</div>
+      <div style="font-size:.82rem;color:#596579;margin-top:4px">El número <em>decrece</em>: agrupa las porciones pequeñas en unidades grandes.</div>
+    </div>
+  </div>
+</div>
+<p><strong>Escalera de unidades de volumen:</strong></p>
+<div style="display:flex;align-items:center;justify-content:center;gap:6px;margin:10px 0 16px;flex-wrap:wrap">
+  <div style="background:#e8f1ff;border:2px solid #1565c0;border-radius:8px;padding:10px 18px;font-weight:800;color:#15246b;font-size:1.05rem;text-align:center">m³<br><span style="font-size:.75rem;font-weight:400;color:#596579">metro cúbico</span></div>
+  <div style="text-align:center;font-size:.82rem;line-height:1.8">
+    <div style="color:#176b36;font-weight:700">× 1&#8239;000 ↓</div>
+    <div style="color:#b42318;font-weight:700">↑ ÷ 1&#8239;000</div>
+  </div>
+  <div style="background:#e8f1ff;border:2px solid #1565c0;border-radius:8px;padding:10px 18px;font-weight:800;color:#15246b;font-size:1.05rem;text-align:center">dm³<br><span style="font-size:.75rem;font-weight:400;color:#596579">decímetro cúbico</span></div>
+  <div style="text-align:center;font-size:.82rem;line-height:1.8">
+    <div style="color:#176b36;font-weight:700">× 1&#8239;000 ↓</div>
+    <div style="color:#b42318;font-weight:700">↑ ÷ 1&#8239;000</div>
+  </div>
+  <div style="background:#e8f1ff;border:2px solid #1565c0;border-radius:8px;padding:10px 18px;font-weight:800;color:#15246b;font-size:1.05rem;text-align:center">cm³<br><span style="font-size:.75rem;font-weight:400;color:#596579">centímetro cúbico</span></div>
+</div>
+<p><strong>Ejemplo 1 — Unidad mayor a unidad menor (× 1&#8239;000):</strong></p>
+<p style="font-size:.9rem;color:#374151;margin:2px 0 6px">¿Cuántos dm³ equivalen a 45 m³?</p>
+${T.wrap(T.table(['Paso','Detalle','Resultado'],[T.row(['1 — Dirección','m³ (mayor) → dm³ (menor)','Hay que multiplicar']),T.row(['2 — Factor','1 m³ = 1&#8239;000 dm³','× 1&#8239;000']),T.row(['3 — Calcular','45 × 1&#8239;000','<strong>45&#8239;000 dm³ ✓</strong>'])]))}
+<p style="margin-top:12px"><strong>Ejemplo 2 — Unidad menor a unidad mayor (÷ 1&#8239;000):</strong></p>
+<p style="font-size:.9rem;color:#374151;margin:2px 0 6px">¿Cuántos m³ equivalen a 8&#8239;000 dm³?</p>
+${T.wrap(T.table(['Paso','Detalle','Resultado'],[T.row(['1 — Dirección','dm³ (menor) → m³ (mayor)','Hay que dividir']),T.row(['2 — Factor','1&#8239;000 dm³ = 1 m³','÷ 1&#8239;000']),T.row(['3 — Calcular','8&#8239;000 ÷ 1&#8239;000','<strong>8 m³ ✓</strong>'])]))}
+${cards(card('Mayor → menor','× Multiplica'),card('Menor → mayor','÷ Divide'),card('45 m³','× 1&#8239;000 = 45&#8239;000 dm³ ✓',true))}`},
 
 /* ── 36 ── */
 {n:36,b:'Bloque 3 · Medidas',

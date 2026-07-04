@@ -539,7 +539,7 @@ Representación literal: <strong>«Trescientos cincuenta y dos mil cuarenta y se
 ${T.wrap(T.table(['Parte','Texto literal','Valor numérico'],[T.row(['Entera','veinticuatro unidades','24']),T.row(['Decimal','tres mil setenta y dos <strong>diezmilésimas</strong>','3&#8239;072 / 10&#8239;000 = 0,3072'])]))}
 <p>Se unen con la coma decimal: 24 + 0,3072 = <strong>24,3072</strong> → opción B ✓</p>`,
  t:`<p><strong>Posiciones decimales (después de la coma):</strong></p>
-${T.wrap(T.table(['Posición','Valor','Fracción equivalente'],[T.row(['Décimas','0,1','1/10']),T.row(['Centésimas','0,01','1/100']),T.row(['Milésimas','0,001','1/1&#8239;000']),T.row(['Diezmilésimas','0,0001','1/10&#8239;000'])]))}
+${T.wrap(T.table(['Posición','Valor','Fracción equivalente'],[T.row(['Décimas','0,1',T.frac('1','10')]),T.row(['Centésimas','0,01',T.frac('1','100')]),T.row(['Milésimas','0,001',T.frac('1','1&#8239;000')]),T.row(['Diezmilésimas','0,0001',T.frac('1','10&#8239;000')])]))}
 <p><strong>Ejemplos:</strong></p>
 <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:10px 0 4px">
   <div style="border:2px solid #c8d0dc;border-radius:8px;padding:14px 20px;text-align:center;flex:1;min-width:130px;background:#f9fbff">
@@ -1337,10 +1337,10 @@ ${cards(card('Máximo','35 °C'),card('Mínimo','25 °C'),card('Recorrido','35 �
 <p style="text-align:center">Verdes = 30 − 10 (azules) − 6 (rojos) − 8 (amarillos) = <strong>6 verdes</strong></p>
 <p><strong>Paso 2 — Calcular probabilidades:</strong></p>
 ${T.wrap(T.table(['Color','Cantidad','Probabilidad'],[T.row(['Azul','10',T.frac('10','30')+' = 0,33']),T.row(['Rojo','6',T.frac('6','30')+' = 0,20']),T.row(['Amarillo','8',T.frac('8','30')+' = 0,27']),T.row(['Verde','6',T.frac('6','30')+' = 0,20'])]  ))}
-<p><strong>Rojo y verde tienen la misma probabilidad (6/30) → Opción A ✓</strong></p>`,
+<p><strong>Rojo y verde tienen la misma probabilidad (${T.frac('6','30')}) → Opción A ✓</strong></p>`,
  t:`<p><strong>Probabilidad de un evento</strong></p>
 <p style="text-align:center"><strong>P(evento) = Casos favorables ÷ Total de casos posibles</strong></p>
-${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener un 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5','P(verde) = 6/30 = 0,20']),T.row(['Muy probable','0,5 &lt; P &lt; 1','P(roja en bolsa A) = 6/10 = 0,60']),T.row(['Seguro','P = 1','Sacar cualquier número del 1 al 10'])]  ))}
+${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener un 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5',`P(verde) = ${T.frac('6','30')} = 0,20`]),T.row(['Muy probable','0,5 &lt; P &lt; 1',`P(roja bolsa A) = ${T.frac('6','10')} = 0,60`]),T.row(['Seguro','P = 1','Sacar cualquier número del 1 al 10'])]  ))}
 ${cards(card(T.frac('6','30'),'P(verde) = 0,20'),card(T.frac('6','30'),'P(rojo) = 0,20'),card('Iguales','Rojo = Verde ✓',true))}`},
 
 /* ── 58 ── */
@@ -1353,7 +1353,7 @@ ${T.wrap(T.table(['Opción','Evento','¿Es posible?','Razón'],[T.row(['A','Núm
 <p><strong>El 15 no existe en la caja → evento imposible → Opción B ✓</strong></p>`,
  t:`<p><strong>Probabilidad de un evento</strong></p>
 <p style="text-align:center"><strong>P(evento) = Casos favorables ÷ Total de casos posibles</strong></p>
-${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5','P(verde) = 6/30 = 0,20']),T.row(['Muy probable','0,5 &lt; P &lt; 1','P(roja en bolsa A) = 6/10 = 0,60']),T.row(['Seguro','P = 1','Sacar cualquier ficha del 1 al 10'])]  ))}
+${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5',`P(verde) = ${T.frac('6','30')} = 0,20`]),T.row(['Muy probable','0,5 &lt; P &lt; 1',`P(roja bolsa A) = ${T.frac('6','10')} = 0,60`]),T.row(['Seguro','P = 1','Sacar cualquier ficha del 1 al 10'])]  ))}
 ${cards(card('P = 0','Evento imposible'),card('P = 1','Evento seguro'),card('Obtener 15','No está → imposible ✓',true))}`},
 
 /* ── 59 ── */
@@ -1367,8 +1367,8 @@ ${T.wrap(T.table(['Color','Fichas','Probabilidad','Decimal'],[T.row(['Roja','8',
 <p><strong>P(roja) = 0,40 → Opción D ✓</strong></p>`,
  t:`<p><strong>Probabilidad de un evento</strong></p>
 <p style="text-align:center"><strong>P(evento) = Casos favorables ÷ Total de casos posibles</strong></p>
-${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5','P(amarilla) = 5/20 = 0,25']),T.row(['Probable','P = 0,5','P = 10/20']),T.row(['Muy probable','0,5 &lt; P &lt; 1','P(roja en bolsa A) = 6/10 = 0,60']),T.row(['Seguro','P = 1','Siempre ocurre'])]  ))}
-${cards(card(T.frac('8','20'),'= 0,40'),card('P(azul)','= 7/20 = 0,35'),card('P(roja) = 0,40','Opción D ✓',true))}`},
+${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5',`P(amarilla) = ${T.frac('5','20')} = 0,25`]),T.row(['Probable','P = 0,5',`P = ${T.frac('10','20')}`]),T.row(['Muy probable','0,5 &lt; P &lt; 1',`P(roja bolsa A) = ${T.frac('6','10')} = 0,60`]),T.row(['Seguro','P = 1','Siempre ocurre'])]  ))}
+${cards(card(T.frac('8','20'),'= 0,40'),card(T.frac('7','20'),`P(azul) = 0,35`),card('P(roja) = 0,40','Opción D ✓',true))}`},
 
 /* ── 60 ── */
 {n:60,b:'Bloque 5 · Estadística y Probabilidades',
@@ -1383,7 +1383,7 @@ ${T.wrap(T.table(['Bolsa','Rojas','Total canicas','P(roja)','Decimal'],[T.row(['
 <p><strong>Paso 2 — Comparar:</strong> 0,60 &gt; 0,30 → <strong>Conviene sacar de la bolsa A → Opción A ✓</strong></p>`,
  t:`<p><strong>Probabilidad de un evento</strong></p>
 <p style="text-align:center"><strong>P(evento) = Casos favorables ÷ Total de casos posibles</strong></p>
-${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5','P(roja bolsa B) = 3/10 = 0,30']),T.row(['Muy probable','0,5 &lt; P &lt; 1','P(roja bolsa A) = 6/10 = 0,60']),T.row(['Seguro','P = 1','Siempre ocurre'])]  ))}
+${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5',`P(roja bolsa B) = ${T.frac('3','10')} = 0,30`]),T.row(['Muy probable','0,5 &lt; P &lt; 1',`P(roja bolsa A) = ${T.frac('6','10')} = 0,60`]),T.row(['Seguro','P = 1','Siempre ocurre'])]  ))}
 ${cards(card('P(A) = 0,60','Bolsa A — más probable'),card('P(B) = 0,30','Bolsa B — menos probable'),card('Bolsa A','Mayor probabilidad de ganar ✓',true))}`}
 
 ]; /* fin ITEMS */

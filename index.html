@@ -131,6 +131,12 @@ const T = {
 };
 
 /* ─────────────────────────────────────────────
+   HELPERS DE TARJETAS
+───────────────────────────────────────────── */
+const card=(n,l,hi=false)=>`<div style="border:2px solid ${hi?'#6b35c9':'#c8d0dc'};border-radius:8px;padding:11px 15px;text-align:center;flex:1;min-width:110px;background:${hi?'#f5f0ff':'#f9fbff'}"><div style="font-size:1.35rem;font-weight:800;color:#15246b">${n}</div><hr style="border:none;border-top:1px solid #d0d8e8;margin:6px 0"><div style="font-size:.84rem;color:#374151;font-style:italic;line-height:1.35">${l}</div></div>`;
+const cards=(...a)=>`<div style="display:flex;gap:11px;flex-wrap:wrap;justify-content:center;margin:8px 0">${a.join('')}</div>`;
+
+/* ─────────────────────────────────────────────
    SVG FIGURAS INLINE
 ───────────────────────────────────────────── */
 const FIG = {};
@@ -557,7 +563,15 @@ ${T.wrap(T.table(['Posición','Valor','Fracción equivalente'],[T.row(['Décimas
 {n:3,b:'Bloque 1 · Números',
  q:`<p>La siguiente tabla muestra la cantidad de lluvia, en centímetros, que cayó durante cuatro días en una ciudad de Costa Rica:</p>${tbl3()}<p>De acuerdo con la información anterior, ¿en cuál día cayó la mayor cantidad de lluvia?</p>`,
  A:'Lunes',B:'Martes',C:'Miércoles',D:'Jueves',
- k:'B',e:'Comparando: 3,74 > 3,59 > 3,51 > 3,47. La mayor cantidad corresponde al martes.'},
+ k:'B',
+ e:`<p><strong>Paso 1 — Ordenar los decimales de mayor a menor:</strong></p>
+${T.wrap(T.table(['Día','Lluvia (cm)','Comparación'],[T.row(['Martes','3,74','Mayor ✓']),T.row(['Miércoles','3,59','']),T.row(['Lunes','3,51','']),T.row(['Jueves','3,47','Menor'])]))}
+<p><strong>Paso 2 — Comparar décimas:</strong> todos tienen 3 unidades; la décima del martes es 7, la más alta.</p>
+<p>3,74 &gt; 3,59 &gt; 3,51 &gt; 3,47 → <strong>El martes cayó más lluvia. Opción B ✓</strong></p>`,
+ t:`<p><strong>Comparación de números decimales</strong></p>
+<p>Para comparar decimales, se analizan las cifras de <em>izquierda a derecha</em>: primero la parte entera, luego décimas, centésimas, milésimas, etc.</p>
+${T.wrap(T.table(['Paso','Acción'],[T.row(['1','Compara la parte entera (antes de la coma)']),T.row(['2','Si son iguales, compara las décimas']),T.row(['3','Si son iguales, compara las centésimas']),T.row(['4','Continúa hasta encontrar diferencia'])]))}
+${cards(card('3,51 vs 3,74','Décimas: 5 &lt; 7 → 3,51 &lt; 3,74'),card('0,25 vs 0,30','Décimas: 2 &lt; 3 → 0,25 &lt; 0,30'),card('3,803 vs 3,83','Centés.: 0 &lt; 3 → 3,803 &lt; 3,83',true))}`},
 
 /* ── 4 ── */
 {n:4,b:'Bloque 1 · Números',
@@ -566,13 +580,29 @@ ${T.wrap(T.table(['Posición','Valor','Fracción equivalente'],[T.row(['Décimas
  B:'29,803 − 29,83 − 29,8 − 29,08',
  C:'29,83 − 29,803 − 29,8 − 29,08',
  D:'29,8 − 29,08 − 29,83 − 29,803',
- k:'C',e:'De mayor a menor: 29,83 > 29,803 > 29,8 > 29,08. Se compara dígito por dígito: en las décimas 29,83 y 29,803 tienen 8, mientras 29,8 también tiene 8 pero 29,08 tiene 0.'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Escribir los cuatro tiempos alineando la coma:</strong></p>
+${T.wrap(T.table(['Estudiante','Tiempo','Décimas','Centés.','Milés.'],[T.row(['Carlos','29,830','8','3','0']),T.row(['Diana','29,803','8','0','3']),T.row(['Andrés','29,800','8','0','0']),T.row(['Beatriz','29,080','0','8','0'])]))}
+<p><strong>Paso 2 — Comparar posición a posición:</strong> parte entera igual (29). En décimas: Beatriz tiene 0, los demás tienen 8 → Beatriz es el menor.</p>
+<p><strong>Paso 3 — Entre los de décima 8:</strong> centésimas → Carlos tiene 3 (mayor), Diana y Andrés tienen 0. Milésimas → Diana tiene 3 &gt; Andrés 0.</p>
+<p>Orden de mayor a menor: <strong>29,83 − 29,803 − 29,8 − 29,08 → Opción C ✓</strong></p>`,
+ t:`<p><strong>Comparación de números decimales</strong></p>
+<p>Para comparar decimales, se analizan las cifras de <em>izquierda a derecha</em>: primero la parte entera, luego décimas, centésimas, milésimas, etc.</p>
+${T.wrap(T.table(['Paso','Acción'],[T.row(['1','Compara la parte entera (antes de la coma)']),T.row(['2','Si son iguales, compara las décimas']),T.row(['3','Si son iguales, compara las centésimas']),T.row(['4','Continúa hasta encontrar diferencia'])]))}
+${cards(card('3,51 vs 3,74','Décimas: 5 &lt; 7 → 3,51 &lt; 3,74'),card('0,25 vs 0,30','Décimas: 2 &lt; 3 → 0,25 &lt; 0,30'),card('3,803 vs 3,83','Centés.: 0 &lt; 3 → 3,803 &lt; 3,83',true))}`},
 
 /* ── 5 ── */
 {n:5,b:'Bloque 1 · Números',
  q:`<p>Una estación meteorológica de Costa Rica registró la precipitación del día en centímetros. La pantalla del equipo puede mostrar cuatro valores distintos según la precisión del sensor:</p><div class="table-wrap"><table class="tbl"><tbody><tr><td>0,53</td><td>0,503</td><td>0,053</td><td>0,0053</td></tr></tbody></table></div><p>De acuerdo con la información anterior, ¿cuál opción corresponde al número decimal cuya notación desarrollada es <span class="frac"><span class="num">5</span><span class="den">100</span></span> + <span class="frac"><span class="num">3</span><span class="den">1 000</span></span>?</p>`,
  A:'0,53',B:'0,503',C:'0,053',D:'0,0053',
- k:'C',e:'5/100 + 3/1 000 = 0,05 + 0,003 = 0,053. Las centésimas dan el 0,05 y las milésimas dan el 0,003.'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Convertir cada fracción a decimal:</strong></p>
+${T.wrap(T.table(['Fracción','Posición','Decimal'],[T.row([T.frac('5','100'),'Centésimas','0,05']),T.row([T.frac('3','1 000'),'Milésimas','0,003'])]))}
+<p><strong>Paso 2 — Sumar:</strong> 0,05 + 0,003 = <strong>0,053</strong></p>
+<p><strong>Paso 3 — Verificar las opciones:</strong> el dígito 5 está en centésimas (segunda posición) y el 3 en milésimas (tercera) → <strong>0,053 → Opción C ✓</strong></p>`,
+ t:`<p><strong>Fracciones con denominadores potencia de 10 y su equivalente decimal</strong></p>
+${T.wrap(T.table(['Fracción','Denominador','Posición decimal','Valor'],[T.row([T.frac('a','10'),'10','Décimas','0,a']),T.row([T.frac('a','100'),'100','Centésimas','0,0a']),T.row([T.frac('a','1 000'),'1 000','Milésimas','0,00a']),T.row([T.frac('a','10 000'),'10 000','Diezmilésimas','0,000a'])]))}
+${cards(card(T.frac('7','10'),'= 0,7 (décimas)'),card(T.frac('4','100'),'= 0,04 (centésimas)'),card(T.frac('5','100')+' + '+T.frac('3','1 000'),'= 0,05 + 0,003 = 0,053',true))}`},
 
 /* ── 6 ── */
 {n:6,b:'Bloque 1 · Números',
@@ -581,205 +611,466 @@ ${T.wrap(T.table(['Posición','Valor','Fracción equivalente'],[T.row(['Décimas
  B:'3 × 10<sup>3</sup> + 5 × 10<sup>2</sup> + 2 × 10<sup>1</sup> + 6',
  C:'3 × 10<sup>4</sup> + 5 × 10<sup>3</sup> + 2 × 10<sup>2</sup> + 6 × 10<sup>1</sup>',
  D:'6 × 10<sup>3</sup> + 2 × 10<sup>2</sup> + 5 × 10<sup>1</sup> + 3',
- k:'B',e:'3526 = 3×10³ + 5×10² + 2×10¹ + 6. Cada dígito se multiplica por la potencia de 10 de su posición.'},
+ k:'B',
+ e:`<p><strong>Paso 1 — Identificar el valor posicional de cada cifra en 3&#8239;526:</strong></p>
+${T.wrap(T.table(['Cifra','Posición','Potencia','Valor'],[T.row(['3','Millares','10<sup>3</sup>','3 × 1&#8239;000 = 3&#8239;000']),T.row(['5','Centenas','10<sup>2</sup>','5 × 100 = 500']),T.row(['2','Decenas','10<sup>1</sup>','2 × 10 = 20']),T.row(['6','Unidades','10<sup>0</sup> = 1','6 × 1 = 6'])]))}
+<p><strong>Paso 2 — Escribir la notación desarrollada:</strong></p>
+<p style="text-align:center">3 × 10<sup>3</sup> + 5 × 10<sup>2</sup> + 2 × 10<sup>1</sup> + 6 = 3&#8239;526 → <strong>Opción B ✓</strong></p>`,
+ t:`<p><strong>Notación desarrollada con potencias de base 10</strong></p>
+<p>Cada dígito de un número natural se multiplica por la potencia de 10 que corresponde a su posición:</p>
+${T.wrap(T.table(['Posición','Potencia','Valor'],[T.row(['Unidades','10<sup>0</sup>','1']),T.row(['Decenas','10<sup>1</sup>','10']),T.row(['Centenas','10<sup>2</sup>','100']),T.row(['Millares','10<sup>3</sup>','1&#8239;000']),T.row(['Decenas de millar','10<sup>4</sup>','10&#8239;000'])]))}
+${cards(card('40','= 4 × 10<sup>1</sup>'),card('300','= 3 × 10<sup>2</sup>'),card('3&#8239;526','= 3×10<sup>3</sup>+5×10<sup>2</sup>+2×10<sup>1</sup>+6',true))}`},
 
 /* ── 7 ── */
 {n:7,b:'Bloque 1 · Números',
  q:`<p>La siguiente tabla muestra la cantidad de plantas que una persona sembró en su jardín durante cuatro semanas:</p>${tbl7()}<p>De acuerdo con la información anterior, ¿en cuál semana la cantidad de plantas sembradas corresponde a un múltiplo de 7?</p>`,
  A:'Primera',B:'Segunda',C:'Tercera',D:'Cuarta',
- k:'B',e:'21 = 7 × 3. Los demás (30, 38, 45) no son divisibles exactamente entre 7.'},
+ k:'B',
+ e:`<p><strong>Paso 1 — Revisar cuál cantidad es divisible entre 7 (sin residuo):</strong></p>
+${T.wrap(T.table(['Semana','Cantidad','÷ 7','¿Múltiplo?'],[T.row(['Primera','30','30 ÷ 7 = 4 (r.2)','No']),T.row(['Segunda','21','21 ÷ 7 = <strong>3</strong>','Sí ✓']),T.row(['Tercera','38','38 ÷ 7 = 5 (r.3)','No']),T.row(['Cuarta','45','45 ÷ 7 = 6 (r.3)','No'])]))}
+<p><strong>Paso 2 — Verificar:</strong> 7 × 3 = 21 ✓ → <strong>Segunda semana → Opción B ✓</strong></p>`,
+ t:`<p><strong>Múltiplos y reglas de divisibilidad</strong></p>
+<p>Un número es <em>múltiplo de n</em> si al dividirlo entre n el residuo es 0. Los múltiplos de n son: n×1, n×2, n×3 …</p>
+${T.wrap(T.table(['Divisor','Regla rápida','Ejemplo'],[T.row(['2','Termina en 0, 2, 4, 6 u 8','34 → sí']),T.row(['3','Suma de cifras múltiplo de 3','21 → 2+1=3 ✓']),T.row(['5','Termina en 0 o 5','315 → sí']),T.row(['7','No hay regla sencilla; se divide','21÷7=3 ✓'])]))}
+${cards(card('21','Múltiplo de 7 (7×3)'),card('35','Múltiplo de 7 (7×5)'),card('42','Múltiplo de 7 (7×6)',true))}`},
 
 /* ── 8 ── */
 {n:8,b:'Bloque 1 · Números',
  q:`<p>Cristian desea proteger su laptop con una clave de acceso formada por tres dígitos. Para elegirla, estableció las siguientes condiciones:</p><ul class="blist"><li>El número formado debe ser divisible por 5.</li><li>El número formado debe ser múltiplo de 3.</li></ul><p>La siguiente tabla muestra cuatro posibles claves que Cristian consideró:</p>${tbl8()}<p>¿Cuál de esas claves cumple con ambas condiciones?</p>`,
  A:'Clave 1',B:'Clave 2',C:'Clave 3',D:'Clave 4',
- k:'D',e:'315: termina en 5 (divisible por 5) y 3+1+5=9 (múltiplo de 3). Las otras claves no cumplen ambas condiciones.'},
+ k:'D',
+ e:`<p><strong>Condiciones:</strong> divisible por 5 <em>y</em> múltiplo de 3.</p>
+${T.wrap(T.table(['Clave','Número','¿Termina en 0 o 5?','Suma de cifras','¿Múltiplo de 3?','¿Cumple ambas?'],[T.row(['Clave 1','245','Sí (5)','2+4+5 = 11','No','No']),T.row(['Clave 2','250','Sí (0)','2+5+0 = 7','No','No']),T.row(['Clave 3','312','No','—','—','No']),T.row(['Clave 4','315','Sí (5)','3+1+5 = <strong>9</strong>','<strong>Sí ✓</strong>','<strong>Sí ✓</strong>'])]))}
+<p><strong>315</strong> termina en 5 (divisible entre 5) y la suma de sus cifras es 9 (múltiplo de 3) → <strong>Clave 4 → Opción D ✓</strong></p>`,
+ t:`<p><strong>Múltiplos y reglas de divisibilidad</strong></p>
+<p>Un número es <em>múltiplo de n</em> si al dividirlo entre n el residuo es 0. Los múltiplos de n son: n×1, n×2, n×3 …</p>
+${T.wrap(T.table(['Divisor','Regla rápida','Ejemplo'],[T.row(['2','Termina en 0, 2, 4, 6 u 8','34 → sí']),T.row(['3','Suma de cifras múltiplo de 3','21 → 2+1=3 ✓']),T.row(['5','Termina en 0 o 5','315 → sí']),T.row(['7','No hay regla sencilla; se divide','21÷7=3 ✓'])]))}
+${cards(card('315','Div. por 3 y por 5'),card('120','Div. por 2, 3 y 5'),card('630','Div. por 2, 3, 5 y 7',true))}`},
 
 /* ── 9 ── */
 {n:9,b:'Bloque 1 · Números',
  q:`<p>La siguiente tabla muestra la cantidad de fichas que contiene cada uno de cuatro juegos de mesa de una biblioteca escolar:</p>${tbl9()}<p>De acuerdo con la información anterior, ¿en cuál juego la cantidad de fichas corresponde a un número primo?</p>`,
  A:'Juego 1',B:'Juego 2',C:'Juego 3',D:'Juego 4',
- k:'C',e:'23 es primo (solo divisible entre 1 y 23). Los otros: 51 = 3×17, 34 = 2×17, 45 = 9×5 son compuestos.'},
+ k:'C',
+ e:`<p><strong>Un número primo solo tiene dos divisores: 1 y él mismo.</strong></p>
+${T.wrap(T.table(['Juego','Fichas','Factores','¿Es primo?'],[T.row(['Juego 1','51','51 = 3 × 17','No']),T.row(['Juego 2','34','34 = 2 × 17','No']),T.row(['Juego 3','23','Solo 1 y 23','<strong>Sí ✓</strong>']),T.row(['Juego 4','45','45 = 9 × 5','No'])]))}
+<p>El 23 no tiene divisores distintos de 1 y 23 → es primo → <strong>Juego 3 → Opción C ✓</strong></p>`,
+ t:`<p><strong>Números primos y compuestos</strong></p>
+<ul style="margin:8px 0 8px 22px"><li><strong>Primo:</strong> solo divisible entre 1 y él mismo (ej.: 2, 3, 5, 7, 11, 13…)</li><li><strong>Compuesto:</strong> tiene al menos otro divisor (ej.: 4 = 2×2, 6 = 2×3…)</li><li>El <strong>1 no es primo</strong> ni compuesto.</li></ul>
+${T.wrap(T.table(['Número','Tipo','Factores'],[T.row(['23','Primo','1, 23']),T.row(['51','Compuesto','1, 3, 17, 51']),T.row(['2','Primo (único par)','1, 2'])]))}
+${cards(card('2, 3, 5','Primos menores de 10'),card('11, 13, 17','Primos entre 10 y 20'),card('23','Primo — solo 1×23',true))}`},
 
 /* ── 10 ── */
 {n:10,b:'Bloque 1 · Números',
  q:`<p>En una cooperativa agrícola de Costa Rica se empacaron 936 naranjas en cajas de 18 unidades cada una. ¿Cuántas cajas completas se pueden hacer?</p>`,
  A:'48',B:'52',C:'56',D:'62',
- k:'B',e:'936 ÷ 18 = 52 cajas completas.'},
+ k:'B',
+ e:`<p><strong>Paso 1 — Plantear la división:</strong> 936 naranjas ÷ 18 por caja = ?</p>
+<p><strong>Paso 2 — Dividir:</strong></p>
+${T.wrap(T.table(['Operación','Resultado'],[T.row(['936 ÷ 18','52']),T.row(['Verificación: 52 × 18','936 ✓'])]))}
+<p><strong>936 ÷ 18 = 52 cajas completas → Opción B ✓</strong></p>`,
+ t:`<p><strong>División exacta y su verificación</strong></p>
+<p>Dividendo ÷ Divisor = Cociente (con o sin residuo)</p>
+<p>Verificación: Cociente × Divisor + Residuo = Dividendo</p>
+${T.wrap(T.table(['Dividendo','Divisor','Cociente','Residuo'],[T.row(['936','18','52','0']),T.row(['100','7','14','2']),T.row(['648','12','54','0'])]))}
+${cards(card('936 ÷ 18','= 52 (exacta)'),card('100 ÷ 7','= 14 resto 2'),card('648 ÷ 12','= 54 (exacta)',true))}`},
 
 /* ── 11 ── */
 {n:11,b:'Bloque 1 · Números',
  q:`<p>En una cancha de fútbol se colocaron 8 filas de asientos con 24 sillas cada una, más 5 filas adicionales con 36 sillas cada una. ¿Cuántas sillas hay en total en la cancha?</p>`,
  A:'312',B:'372',C:'408',D:'468',
- k:'B',e:'8 × 24 + 5 × 36 = 192 + 180 = 372 sillas.'},
+ k:'B',
+ e:`<p><strong>Paso 1 — Calcular las sillas de cada sección:</strong></p>
+${T.wrap(T.table(['Sección','Filas','Sillas por fila','Total parcial'],[T.row(['Primera sección','8','24','8 × 24 = 192']),T.row(['Segunda sección','5','36','5 × 36 = 180'])]))}
+<p><strong>Paso 2 — Sumar totales parciales:</strong> 192 + 180 = <strong>372 sillas → Opción B ✓</strong></p>`,
+ t:`<p><strong>Orden de operaciones y operaciones combinadas</strong></p>
+<p>Cuando una expresión tiene multiplicaciones y sumas, se calculan primero las multiplicaciones y luego las sumas:</p>
+<p style="text-align:center"><strong>a × b + c × d</strong> → primero (a×b) y (c×d), luego suman</p>
+${T.wrap(T.table(['Expresión','Paso 1 (×)','Paso 2 (+)','Resultado'],[T.row(['8×24 + 5×36','192 + 180','—','372']),T.row(['3×15 + 4×20','45 + 80','—','125']),T.row(['6×12 + 2×9','72 + 18','—','90'])]))}
+${cards(card('8×24','= 192'),card('5×36','= 180'),card('192 + 180','= 372 sillas',true))}`},
 
 /* ── 12 ── */
 {n:12,b:'Bloque 1 · Números',
  q:`<p>En una clase de sexto grado, 18 de los 24 estudiantes aprobaron el examen de matemáticas. La maestra quiere expresar esa proporción como una fracción en su mínima expresión.</p><p>¿Cuál es la fracción en su mínima expresión que representa la cantidad de estudiantes que aprobaron?</p>`,
  A:f('6','8'), B:f('9','12'), C:f('3','4'), D:f('12','16'),
- k:'C',e:'MCD(18,24) = 6 → 18÷6 = 3 y 24÷6 = 4, por lo que 18/24 = 3/4 en mínima expresión.'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Escribir la fracción:</strong> 18 aprobaron de 24 → ${T.frac('18','24')}</p>
+<p><strong>Paso 2 — Hallar el MCD(18, 24):</strong></p>
+${T.wrap(T.table(['Divisores de 18','Divisores de 24','Comunes'],[T.row(['1, 2, 3, 6, 9, 18','1, 2, 3, 4, 6, 8, 12, 24','1, 2, 3, <strong>6</strong>'])]))}
+<p><strong>Paso 3 — Simplificar dividiendo por 6:</strong> ${T.frac('18','24')} ÷ ${T.frac('6','6')} = ${T.frac('3','4')} → <strong>Opción C ✓</strong></p>`,
+ t:`<p><strong>Fracciones equivalentes y mínima expresión</strong></p>
+<p>Dos fracciones son <em>equivalentes</em> si representan la misma parte del entero. Para simplificar, se divide numerador y denominador por el MCD.</p>
+${T.wrap(T.table(['Fracción','MCD','Mínima expresión'],[T.row([T.frac('18','24'),'6',T.frac('3','4')]),T.row([T.frac('12','16'),'4',T.frac('3','4')]),T.row([T.frac('6','8'),'2',T.frac('3','4')])]))}
+${cards(card(T.frac('18','24'),'÷ 6 = '+T.frac('3','4')),card(T.frac('12','16'),'÷ 4 = '+T.frac('3','4')),card(T.frac('3','4'),'Mínima expresión ✓',true))}`},
 
 /* ── 13 ── */
 {n:13,b:'Bloque 1 · Números',
  q:`<p>Mariana compró en el supermercado ${f('1','2')} kg de pechuga de pollo, 4 kg de papas y 3 panes integrales. La siguiente tabla muestra el precio de cada producto:</p>${tbl13()}<p>De acuerdo con la información anterior, ¿cuánto deberá pagar Mariana en colones por la compra realizada?</p>`,
  A:'₡6 150',B:'₡7 900',C:'₡8 950',D:'₡11 750',
- k:'C',e:'½×5600 + 4×750 + 3×1050 = 2800 + 3000 + 3150 = ₡8 950.'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Calcular el costo de cada producto:</strong></p>
+${T.wrap(T.table(['Producto','Cantidad','Precio unit.','Subtotal'],[T.row(['Pechuga de pollo',T.frac('1','2')+' kg','₡5&#8239;600/kg','½ × 5&#8239;600 = ₡2&#8239;800']),T.row(['Papas','4 kg','₡750/kg','4 × 750 = ₡3&#8239;000']),T.row(['Pan integral','3 panes','₡1&#8239;050 c/u','3 × 1&#8239;050 = ₡3&#8239;150'])]))}
+<p><strong>Paso 2 — Sumar:</strong> ₡2&#8239;800 + ₡3&#8239;000 + ₡3&#8239;150 = <strong>₡8&#8239;950 → Opción C ✓</strong></p>`,
+ t:`<p><strong>Operaciones con dinero costarricense (₡)</strong></p>
+<p>Para calcular el costo total: <strong>Cantidad × Precio unitario</strong> para cada artículo, luego <strong>suma todos los subtotales</strong>.</p>
+${T.wrap(T.table(['Operación','Ejemplo'],[T.row(['Entero × precio','4 kg × ₡750 = ₡3&#8239;000']),T.row(['Fracción × precio','½ × ₡5&#8239;600 = ₡2&#8239;800']),T.row(['Suma de subtotales','₡2&#8239;800 + ₡3&#8239;000 + ₡3&#8239;150 = ₡8&#8239;950'])]))}
+${cards(card('₡2&#8239;800','½ kg de pollo'),card('₡3&#8239;000','4 kg de papas'),card('₡8&#8239;950','Total compra ✓',true))}`},
 
 /* ── 14 ── */
 {n:14,b:'Bloque 1 · Números',
  q:`<p>En una clase de artesanía, cuatro estudiantes midieron distintas cantidades de tela. La siguiente tabla muestra las medidas registradas:</p>${tbl14()}<p>De acuerdo con la información anterior, ¿cuál estudiante utilizó una fracción propia como medida?</p>`,
  A:'Ana',B:'Beatriz',C:'Carlos',D:'Diana',
- k:'D',e:'Fracción propia: numerador < denominador. Solo 1/4 cumple esa condición (Diana).'},
+ k:'D',
+ e:`<p><strong>Definición:</strong> fracción propia → numerador &lt; denominador</p>
+${T.wrap(T.table(['Estudiante','Fracción','Num.','Den.','¿Propia?'],[T.row(['Ana',T.frac('8','3'),'8','3','No (8 &gt; 3)']),T.row(['Beatriz',T.frac('9','2'),'9','2','No (9 &gt; 2)']),T.row(['Carlos',T.frac('6','6'),'6','6','No (igual → fracción unitaria)']),T.row(['Diana',T.frac('1','4'),'1','4','<strong>Sí ✓</strong>'])]))}
+<p>Solo Diana tiene una fracción propia → <strong>Opción D ✓</strong></p>`,
+ t:`<p><strong>Tipos de fracciones</strong></p>
+${T.wrap(T.table(['Tipo','Condición','Ejemplo'],[T.row(['Propia','Num. &lt; Den.',T.frac('3','4')+' = 0,75']),T.row(['Impropia','Num. ≥ Den.',T.frac('5','3')+' = 1,67']),T.row(['Unitaria','Num. = Den.',T.frac('5','5')+' = 1']),T.row(['Mixta','Entero + fracción propia','2 '+T.frac('1','3')])]))}
+${cards(card(T.frac('1','4'),'Propia (1 &lt; 4)'),card(T.frac('9','4'),'Impropia (9 &gt; 4)'),card('3 '+T.frac('1','4'),'Mixta = 3,25',true))}`},
 
 /* ── 15 ── */
 {n:15,b:'Bloque 1 · Números',
  q:`<p>Camilo preparó ${f('23','6')} litros de refresco para vender en una feria comunal. ¿Cuál es la notación mixta de esa cantidad?</p>`,
  A:`2 ${f('5','6')}`, B:`3 ${f('1','6')}`, C:`3 ${f('5','6')}`, D:`4 ${f('1','6')}`,
- k:'C',e:'23 ÷ 6 = 3 (resto 5), entonces 23/6 = 3 y 5/6.'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Dividir el numerador entre el denominador:</strong> 23 ÷ 6</p>
+${T.wrap(T.table(['Cociente (parte entera)','Residuo (nuevo numerador)','Denominador (igual)'],[T.row(['<strong>3</strong>','<strong>5</strong>','6'])]))}
+<p><strong>Paso 2 — Escribir la notación mixta:</strong> 3 y ${T.frac('5','6')} litros → <strong>Opción C ✓</strong></p>
+<p><em>Verificación:</em> 3 × 6 + 5 = 23 ✓</p>`,
+ t:`<p><strong>Tipos de fracciones</strong></p>
+${T.wrap(T.table(['Tipo','Condición','Ejemplo'],[T.row(['Propia','Num. &lt; Den.',T.frac('3','4')+' = 0,75']),T.row(['Impropia','Num. ≥ Den.',T.frac('23','6')+' = 3,83']),T.row(['Mixta','Entero + fracción propia','3 '+T.frac('5','6')])]))}
+<p><strong>Conversión impropia → mixta:</strong> divide numerador ÷ denominador; el cociente es la parte entera y el residuo el nuevo numerador.</p>
+${cards(card(T.frac('7','2'),'= 3 '+T.frac('1','2')),card(T.frac('11','4'),'= 2 '+T.frac('3','4')),card(T.frac('23','6'),'= 3 '+T.frac('5','6'),true))}`},
 
 /* ── 16 ── */
 {n:16,b:'Bloque 1 · Números',
  q:`<p>El entrenador de un equipo de baloncesto necesita seleccionar un jugador cuya estatura sea ${f('52','25')} metros. La siguiente tabla muestra el nombre y la estatura en metros de los cuatro candidatos:</p>${tbl16()}<p>De acuerdo con la información anterior, ¿cuál es el nombre del jugador seleccionado?</p>`,
  A:'Rodrigo',B:'Felipe',C:'Manuel',D:'Oscar',
- k:'A',e:'104/50 = 52/25 al dividir numerador y denominador entre 2. Solo Rodrigo tiene esa estatura.'},
+ k:'A',
+ e:`<p><strong>Estatura buscada:</strong> ${T.frac('52','25')} m</p>
+<p><strong>Paso 1 — Buscar cuál fracción de la tabla es equivalente a ${T.frac('52','25')}:</strong></p>
+${T.wrap(T.table(['Jugador','Estatura','Simplificar / comparar','¿Igual a 52/25?'],[T.row(['Rodrigo',T.frac('104','50'),'÷2 → '+T.frac('52','25'),'<strong>Sí ✓</strong>']),T.row(['Felipe',T.frac('21','10'),'= 2,1 ≠ 2,08','No']),T.row(['Manuel',T.frac('53','25'),'= 2,12 ≠ 2,08','No']),T.row(['Oscar',T.frac('51','25'),'= 2,04 ≠ 2,08','No'])]))}
+<p>${T.frac('104','50')} ÷ ${T.frac('2','2')} = ${T.frac('52','25')} ✓ → <strong>Rodrigo → Opción A ✓</strong></p>`,
+ t:`<p><strong>Fracciones equivalentes y mínima expresión</strong></p>
+<p>Dos fracciones son <em>equivalentes</em> si representan la misma parte del entero. Para simplificar, se divide numerador y denominador por el MCD.</p>
+${T.wrap(T.table(['Fracción','MCD','Mínima expresión'],[T.row([T.frac('104','50'),'2',T.frac('52','25')]),T.row([T.frac('18','24'),'6',T.frac('3','4')]),T.row([T.frac('12','16'),'4',T.frac('3','4')])]))}
+${cards(card(T.frac('104','50'),'÷ 2 = '+T.frac('52','25')),card(T.frac('18','24'),'÷ 6 = '+T.frac('3','4')),card(T.frac('52','25'),'= 2,08 m ✓',true))}`},
 
 /* ── 17 ── */
 {n:17,b:'Bloque 1 · Números',
  q:`<p>Una estación meteorológica registró una precipitación de <strong>23,852</strong> milímetros durante una tormenta. El técnico anotó en el informe el valor redondeado a la décima más cercana. ¿Cuál es el valor que anotó el técnico?</p>`,
  A:'23',B:'23,8',C:'23,85',D:'23,9',
- k:'D',e:'La centésima es 5 (≥ 5), por lo que la décima sube de 8 a 9. Resultado: 23,9.'},
+ k:'D',
+ e:`<p><strong>Paso 1 — Identificar la cifra en la posición de redondeo (décimas) y la siguiente (centésimas):</strong></p>
+${T.wrap(T.table(['Número','Décimas','Centésimas','Acción'],[T.row(['23,852','<strong>8</strong>','<strong>5</strong>','5 ≥ 5 → sube la décima'])]))}
+<p><strong>Paso 2 — La décima 8 sube a 9:</strong> 23,852 ≈ <strong>23,9 → Opción D ✓</strong></p>
+<p><em>Regla:</em> si la cifra siguiente ≥ 5, se redondea hacia arriba; si &lt; 5, se mantiene.</p>`,
+ t:`<p><strong>Redondeo de números decimales</strong></p>
+<p>Para redondear a una posición determinada:</p>
+<ul style="margin:6px 0 8px 22px"><li>Observa la cifra <em>siguiente</em> a la posición buscada.</li><li>Si ≥ 5: suma 1 a la cifra de la posición y elimina las siguientes.</li><li>Si &lt; 5: mantén la cifra y elimina las siguientes.</li></ul>
+${T.wrap(T.table(['Número','Redondear a','Cifra sig.','Resultado'],[T.row(['23,852','décimas','5 (≥5)','23,9']),T.row(['7,43','décimas','3 (&lt;5)','7,4']),T.row(['3,756','centésimas','6 (≥5)','3,76'])]))}
+${cards(card('23,852','→ 23,9 (décimas)'),card('7,43','→ 7,4 (décimas)'),card('3,756','→ 3,76 (centésimas)',true))}`},
 
 /* ── 18 ── */
 {n:18,b:'Bloque 1 · Números',
  q:`<p>Durante una práctica de laboratorio, Luis midió <strong>0,6</strong> litros de vinagre para un experimento de ciencias. La maestra le pidió que representara esa cantidad como una fracción.</p><p>De acuerdo con la información anterior, ¿cuál opción corresponde a la fracción que representa el volumen de vinagre que midió Luis?</p>`,
  A:`${f('1','5')} L`, B:`${f('2','5')} L`, C:`${f('3','5')} L`, D:`${f('5','3')} L`,
- k:'C',e:'0,6 = 6/10 = 3/5 (dividiendo numerador y denominador entre 2).'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Escribir 0,6 como fracción con denominador potencia de 10:</strong></p>
+<p style="text-align:center">0,6 = ${T.frac('6','10')}</p>
+<p><strong>Paso 2 — Simplificar (MCD(6,10) = 2):</strong></p>
+<p style="text-align:center">${T.frac('6','10')} ÷ ${T.frac('2','2')} = ${T.frac('3','5')}</p>
+<p><strong>0,6 = ${T.frac('3','5')} → Opción C ✓</strong></p>`,
+ t:`<p><strong>Conversión decimal ↔ fracción</strong></p>
+<p>Un decimal de <em>n</em> cifras decimales se escribe con denominador 10<sup>n</sup>; luego simplifica.</p>
+${T.wrap(T.table(['Decimal','Fracción inicial','MCD','Mínima expresión'],[T.row(['0,6',T.frac('6','10'),'2',T.frac('3','5')]),T.row(['0,75',T.frac('75','100'),'25',T.frac('3','4')]),T.row(['0,4',T.frac('4','10'),'2',T.frac('2','5')])]))}
+${cards(card('0,6','= '+T.frac('3','5')),card('0,75','= '+T.frac('3','4')),card('0,4','= '+T.frac('2','5'),true))}`},
 
 /* ── 19 ── */
 {n:19,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura muestra un parque en forma de trapecio, donde se ubican cuatro lugares de la comunidad: la escuela (E), el gimnasio (G), la cancha (C) y el mercado (M).</p>${FIG.i19}<p>Alicia, Bruno, Camilo y Diana recorrieron el borde del parque de la siguiente manera:</p><ul class="blist"><li>Alicia recorrió de la escuela al gimnasio y luego del gimnasio a la cancha.</li><li>Bruno recorrió del gimnasio a la cancha y luego de la cancha al mercado.</li><li>Camilo recorrió de la cancha al mercado y luego del mercado a la escuela.</li><li>Diana recorrió del mercado a la escuela y luego de la escuela al gimnasio.</li></ul><p>De acuerdo con la información anterior, ¿quién recorrió la mayor distancia?</p>`,
  A:'Alicia',B:'Bruno',C:'Camilo',D:'Diana',
- k:'B',e:'Bruno: GC + CM = 100 + 130 = 230 m (la mayor). Alicia: 50+100=150 m; Camilo: 130+60=190 m; Diana: 60+50=110 m.'},
+ k:'B',
+ e:`<p><strong>Paso 1 — Lados del trapecio:</strong> EG = 50 m, GC = 100 m, CM = 130 m, ME = 60 m</p>
+${T.wrap(T.table(['Persona','Tramo recorrido','Cálculo','Total'],[T.row(['Alicia','EG + GC','50 + 100','150 m']),T.row(['Bruno','GC + CM','100 + 130','<strong>230 m ✓</strong>']),T.row(['Camilo','CM + ME','130 + 60','190 m']),T.row(['Diana','ME + EG','60 + 50','110 m'])]))}
+<p><strong>Bruno recorrió la mayor distancia: 230 m → Opción B ✓</strong></p>`,
+ t:`<p><strong>Perímetro de figuras planas</strong></p>
+<p>El <em>perímetro</em> es la suma de todos los lados de una figura. Para calcular una parte, se suman solo los lados recorridos.</p>
+${T.wrap(T.table(['Figura','Fórmula del perímetro'],[T.row(['Triángulo','a + b + c']),T.row(['Cuadrado','4 × lado']),T.row(['Rectángulo','2 × (largo + ancho)']),T.row(['Trapecio / irregular','suma de todos sus lados'])]))}
+${cards(card('50+100','= 150 m (Alicia)'),card('130+60','= 190 m (Camilo)'),card('100+130','= 230 m (Bruno ✓)',true))}`},
 
 /* ── 20 ── */
 {n:20,b:'Bloque 2 · Geometría',
  q:`<p>Una artesana elaboró cuatro diseños de mosaico para decorar la entrada de la biblioteca escolar. Cada diseño está formado por figuras geométricas:</p>${FIG.i20}<p>De acuerdo con la información anterior, ¿cuál diseño está formado únicamente por polígonos regulares?</p>`,
  A:'Diseño I',B:'Diseño II',C:'Diseño III',D:'Diseño IV',
- k:'C',e:'El Diseño III (hexágono dividido en 6 triángulos equiláteros) está formado únicamente por polígonos regulares.'},
+ k:'C',
+ e:`<p><strong>Polígono regular:</strong> todos sus lados iguales <em>y</em> todos sus ángulos iguales.</p>
+${T.wrap(T.table(['Diseño','Figuras que lo forman','¿Son regulares?'],[T.row(['I','Cuadrado + triángulos no equiláteros','No todos regulares']),T.row(['II','Rectángulos (lados desiguales)','No']),T.row(['III','Hexágono regular + triángulos equiláteros','<strong>Sí ✓</strong>']),T.row(['IV','Triángulo rectángulo + cuadrado','No'])]))}
+<p><strong>Diseño III → Opción C ✓</strong></p>`,
+ t:`<p><strong>Polígonos regulares e irregulares</strong></p>
+<p>Un polígono es <em>regular</em> cuando tiene todos sus lados iguales <em>y</em> todos sus ángulos iguales.</p>
+${T.wrap(T.table(['Polígono','Lados','Ángulo interior','Regular?'],[T.row(['Triángulo equilátero','3 iguales','60°','Sí']),T.row(['Cuadrado','4 iguales','90°','Sí']),T.row(['Hexágono regular','6 iguales','120°','Sí']),T.row(['Rectángulo','2 pares','90°','No (lados desiguales)'])]))}
+${cards(card('Triángulo equil.','Regular — 3 lados iguales'),card('Cuadrado','Regular — 4 lados iguales'),card('Hexágono','Regular — 6 lados iguales',true))}`},
 
 /* ── 21 ── */
 {n:21,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura muestra el plano de la base rectangular de un pabellón deportivo. La base ha sido dividida en cuatro secciones numeradas del 1 al 4.</p>${FIG.i21}<p>De acuerdo con la información anterior, ¿cómo se clasifica la figura correspondiente a la sección número 4?</p>`,
  A:'Triángulo rectángulo',B:'Trapecio',C:'Rectángulo',D:'Cuadrado',
- k:'C',e:'La sección 4 es un rectángulo de 3 × 2 unidades (lados desiguales, ángulos rectos).'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Analizar la sección 4 del plano:</strong></p>
+<p>La sección 4 ocupa la mitad derecha inferior del pabellón. Observando la figura: tiene 4 lados, todos los ángulos son rectos (90°) y los lados son de diferente longitud.</p>
+${T.wrap(T.table(['Característica','Sección 4'],[T.row(['Número de lados','4']),T.row(['Ángulos','Todos rectos (90°)']),T.row(['Lados opuestos','Iguales entre sí']),T.row(['Lados consecutivos','Distintos (largo ≠ ancho)'])]))}
+<p>Cuatro lados + ángulos rectos + lados desiguales = <strong>Rectángulo → Opción C ✓</strong></p>`,
+ t:`<p><strong>Clasificación de cuadriláteros</strong></p>
+${T.wrap(T.table(['Figura','Lados','Ángulos','Característica especial'],[T.row(['Cuadrado','4 iguales','Todos 90°','Caso especial del rectángulo']),T.row(['Rectángulo','2 pares iguales','Todos 90°','Largo ≠ ancho']),T.row(['Rombo','4 iguales','No son 90°','Diagonales perpendiculares']),T.row(['Trapecio','Variados','Variados','1 par de lados paralelos'])]))}
+${cards(card('Cuadrado','4 lados = + 4×90°'),card('Rectángulo','2 pares = + 4×90°'),card('Rombo','4 lados = + ángulos oblicuos',true))}`},
 
 /* ── 22 ── */
 {n:22,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura muestra la forma del letrero colgante de un restaurante. El letrero tiene forma triangular:</p>${FIG.i22}<p>De acuerdo con la información anterior, ¿cómo se clasifica ese letrero según las medidas de sus lados?</p>`,
  A:'Equilátero',B:'Isósceles',C:'Escaleno',D:'Obtusángulo',
- k:'B',e:'Dos lados miden 50 cm y uno mide 60 cm → dos lados iguales → triángulo isósceles.'},
+ k:'B',
+ e:`<p><strong>Paso 1 — Leer las medidas del letrero:</strong> lados 60 cm, 50 cm, 50 cm</p>
+${T.wrap(T.table(['Clasificación por lados','Condición','¿Cumple?'],[T.row(['Equilátero','3 lados iguales','No (60 ≠ 50)']),T.row(['Isósceles','2 lados iguales','<strong>Sí: 50 = 50 ✓</strong>']),T.row(['Escaleno','3 lados distintos','No'])]))}
+<p><strong>Dos lados de 50 cm son iguales → triángulo isósceles → Opción B ✓</strong></p>`,
+ t:`<p><strong>Clasificación de triángulos según sus lados</strong></p>
+${T.wrap(T.table(['Tipo','Condición','Ejemplo'],[T.row(['Equilátero','Los 3 lados iguales','3 cm, 3 cm, 3 cm']),T.row(['Isósceles','Exactamente 2 lados iguales','50 cm, 50 cm, 60 cm']),T.row(['Escaleno','Los 3 lados distintos','4 cm, 5 cm, 6 cm'])]))}
+${cards(card('Equilátero','3 lados iguales'),card('Isósceles','2 lados iguales'),card('Escaleno','0 lados iguales',true))}`},
 
 /* ── 23 ── */
 {n:23,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura muestra un piso de mosaico con forma de cuadrilátero. Todos sus lados miden 3 cm:</p>${FIG.i23}<p>¿Cómo se clasifica ese piso de mosaico?</p>`,
  A:'Cuadrado',B:'Rectángulo',C:'Romboide',D:'Rombo',
- k:'D',e:'Cuatro lados iguales y ángulos que no son todos rectos (60° y 120°) → rombo.'},
+ k:'D',
+ e:`<p><strong>Paso 1 — Analizar las propiedades del mosaico:</strong></p>
+${T.wrap(T.table(['Propiedad','Valor'],[T.row(['Número de lados','4']),T.row(['Todos los lados','3 cm (iguales)']),T.row(['Ángulos','60° y 120° (no son 90°)'])]))}
+<p><strong>Paso 2 — Identificar la figura:</strong></p>
+${T.wrap(T.table(['Figura','4 lados iguales','Ángulos rectos'],[T.row(['Cuadrado','Sí','Sí (4×90°)']),T.row(['<strong>Rombo</strong>','<strong>Sí</strong>','<strong>No (60° y 120°)</strong>']),T.row(['Rectángulo','No (2 pares)','Sí']),T.row(['Romboide','No (2 pares)','No'])]))}
+<p><strong>4 lados iguales + ángulos oblicuos = Rombo → Opción D ✓</strong></p>`,
+ t:`<p><strong>Clasificación de cuadriláteros</strong></p>
+${T.wrap(T.table(['Figura','Lados','Ángulos','Característica especial'],[T.row(['Cuadrado','4 iguales','Todos 90°','Caso especial del rectángulo']),T.row(['Rectángulo','2 pares iguales','Todos 90°','Largo ≠ ancho']),T.row(['Rombo','4 iguales','No son 90°','Diagonales perpendiculares']),T.row(['Trapecio','Variados','Variados','1 par de lados paralelos'])]))}
+${cards(card('Cuadrado','4 lados = + 4×90°'),card('Rectángulo','2 pares = + 4×90°'),card('Rombo','4 lados = + ángulos oblicuos',true))}`},
 
 /* ── 24 ── */
 {n:24,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura muestra un prisma triangular:</p>${FIG.i24}<p>¿Cuántas caras de ese prisma tienen forma de rectángulo?</p>`,
  A:'2',B:'5',C:'3',D:'6',
- k:'C',e:'Un prisma triangular tiene 2 bases triangulares y 3 caras laterales rectangulares.'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Identificar las caras del prisma triangular:</strong></p>
+${T.wrap(T.table(['Tipo de cara','Cantidad','Forma'],[T.row(['Bases','2','Triángulo']),T.row(['Caras laterales','<strong>3</strong>','<strong>Rectángulo ✓</strong>'])]))}
+<p><strong>Paso 2 — Total de caras:</strong> 2 + 3 = 5 caras en total.</p>
+<p>De ellas, <strong>3 tienen forma de rectángulo → Opción C ✓</strong></p>`,
+ t:`<p><strong>Cuerpos geométricos: prismas</strong></p>
+<p>Un <em>prisma</em> tiene dos bases iguales y paralelas unidas por caras laterales rectangulares. El nombre del prisma depende de la forma de su base.</p>
+${T.wrap(T.table(['Prisma','Bases','Caras laterales','Total caras'],[T.row(['Triangular','2 triángulos','3 rectángulos','5']),T.row(['Cuadrangular','2 cuadriláteros','4 rectángulos','6']),T.row(['Pentagonal','2 pentágonos','5 rectángulos','7'])]))}
+${cards(card('5 caras','Prisma triangular'),card('6 caras','Prisma cuadrangular'),card('3 rectángulos','Caras laterales del prisma triangular',true))}`},
 
 /* ── 25 ── */
 {n:25,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura muestra una lata de pintura con forma de cilindro. El segmento <strong>AB</strong> está señalado en la figura:</p>${FIG.i25}<p>¿Cómo se llama el segmento AB en relación con la base del cilindro?</p>`,
  A:'Eje',B:'Radio',C:'Altura',D:'Diámetro',
- k:'B',e:'El segmento AB va del centro de la base hasta el borde → se llama radio.'},
+ k:'B',
+ e:`<p><strong>Paso 1 — Analizar el segmento AB:</strong></p>
+${T.wrap(T.table(['Punto','Ubicación'],[T.row(['A (inicio)','Centro de la base circular']),T.row(['B (fin)','Borde de la base circular'])]  ))}
+<p><strong>Paso 2 — Identificar el nombre:</strong></p>
+${T.wrap(T.table(['Segmento','Definición','¿Es AB?'],[T.row(['Radio','Del centro al borde','<strong>Sí ✓</strong>']),T.row(['Diámetro','De un borde al otro pasando por el centro','No']),T.row(['Eje','Altura del cilindro (vertical)','No'])]))}
+<p><strong>AB = Radio → Opción B ✓</strong></p>`,
+ t:`<p><strong>Partes del círculo y el cilindro</strong></p>
+${T.wrap(T.table(['Término','Definición','Relación'],[T.row(['Radio (r)','Centro → borde','—']),T.row(['Diámetro (d)','Borde → centro → borde','d = 2r']),T.row(['Circunferencia (C)','Longitud del borde circular','C = 2πr']),T.row(['Eje del cilindro','Segmento que une los centros de las bases','Altura'])]))}
+${cards(card('Radio','Centro → borde'),card('Diámetro','= 2 × radio'),card('C = 2πr','Longitud del borde circular',true))}`},
 
 /* ── 26 ── */
 {n:26,b:'Bloque 2 · Geometría',
  q:`<p>La cancha de fútbol 5 de una escuela tiene forma cuadrada con un perímetro de 20 m. Si se quiere cubrir toda la superficie de esa cancha con césped artificial, ¿cuántos metros cuadrados de césped se necesitan como mínimo?</p>`,
  A:'20 m²',B:'10 m²',C:'25 m²',D:'5 m²',
- k:'C',e:'Lado = 20 ÷ 4 = 5 m; Área = 5 × 5 = 25 m².'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Hallar el lado del cuadrado a partir del perímetro:</strong></p>
+<p style="text-align:center">Perímetro = 4 × lado → 20 = 4 × lado → lado = 20 ÷ 4 = <strong>5 m</strong></p>
+<p><strong>Paso 2 — Calcular el área:</strong></p>
+<p style="text-align:center">Área = lado × lado = 5 × 5 = <strong>25 m²</strong></p>
+<p><strong>Se necesitan 25 m² de césped → Opción C ✓</strong></p>`,
+ t:`<p><strong>Perímetro y área del cuadrado</strong></p>
+${T.wrap(T.table(['Magnitud','Fórmula','Unidad'],[T.row(['Perímetro','P = 4 × lado','m, cm, etc.']),T.row(['Área','A = lado × lado = lado²','m², cm², etc.'])]))}
+<p>Si conozco el perímetro: lado = P ÷ 4</p>
+${cards(card('P = 20 m','Lado = 5 m'),card('A = lado²','5² = 25 m²'),card('25 m²','Área del cuadrado',true))}`},
 
 /* ── 27 ── */
 {n:27,b:'Bloque 2 · Geometría',
  q:`<p>La base de un bebedero tiene forma circular con radio de 35 cm. Para decorarlo, se coloca un ribete alrededor de todo el borde de la base. ¿Cuál es la longitud aproximada de ese ribete? (Use π ≈ 3,14)</p>`,
  A:'219,8 cm',B:'70,0 cm',C:'109,9 cm',D:'3 846,5 cm',
- k:'A',e:'C = 2 × 3,14 × 35 = 219,8 cm.'},
+ k:'A',
+ e:`<p><strong>El ribete rodea el borde del círculo → es la circunferencia.</strong></p>
+<p><strong>Paso 1 — Datos:</strong> radio = 35 cm, π ≈ 3,14</p>
+<p><strong>Paso 2 — Fórmula:</strong> C = 2 × π × r</p>
+${T.wrap(T.table(['Paso','Cálculo','Resultado'],[T.row(['C = 2 × π × r','2 × 3,14 × 35','219,8 cm ✓'])]))}
+<p><strong>El ribete mide 219,8 cm → Opción A ✓</strong></p>`,
+ t:`<p><strong>Circunferencia y área del círculo</strong></p>
+${T.wrap(T.table(['Magnitud','Fórmula','Unidad'],[T.row(['Circunferencia','C = 2 × π × r','cm, m…']),T.row(['También','C = π × d','(d = 2r)']),T.row(['Área','A = π × r²','cm², m²…'])]))}
+<p>Usar π ≈ 3,14 salvo que se indique otro valor.</p>
+${cards(card('r = 35 cm','C = 2×3,14×35'),card('= 219,8 cm','Longitud del ribete ✓'),card('A = π×r²','= 3,14×35² = 3 846,5 cm²',true))}`},
 
 /* ── 28 ── */
 {n:28,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura muestra la forma de una ventana de una casa. La ventana está formada por un rectángulo y un triángulo:</p>${FIG.i28}<p>¿Cuál es el área total de esa ventana?</p>`,
  A:'4 200 cm²',B:'3 300 cm²',C:'2 400 cm²',D:'900 cm²',
- k:'B',e:'Área = 60×40 + (60×30)/2 = 2 400 + 900 = 3 300 cm².'},
+ k:'B',
+ e:`<p><strong>La ventana = rectángulo + triángulo.</strong></p>
+${T.wrap(T.table(['Figura','Fórmula','Cálculo','Resultado'],[T.row(['Rectángulo','b × h','60 × 40','2&#8239;400 cm²']),T.row(['Triángulo','(b × h) ÷ 2','(60 × 30) ÷ 2','900 cm²']),T.row(['<strong>Total</strong>','','','<strong>3&#8239;300 cm²</strong>'])]))}
+<p><strong>Área total = 2&#8239;400 + 900 = 3&#8239;300 cm² → Opción B ✓</strong></p>`,
+ t:`<p><strong>Áreas de figuras compuestas</strong></p>
+<p>Se divide la figura en partes conocidas, se calcula cada área y se suman.</p>
+${T.wrap(T.table(['Figura','Fórmula del área'],[T.row(['Cuadrado','lado²']),T.row(['Rectángulo','base × altura']),T.row(['Triángulo','(base × altura) ÷ 2']),T.row(['Círculo','π × radio²']),T.row(['Figura compuesta','Suma de las partes'])]))}
+${cards(card('Rectángulo','60×40 = 2&#8239;400 cm²'),card('Triángulo','(60×30)÷2 = 900 cm²'),card('Total','2&#8239;400+900 = 3&#8239;300 cm²',true))}`},
 
 /* ── 29 ── */
 {n:29,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura muestra un mosaico formado por un cuadrado de 10 cm de lado. En su interior se coloca un círculo del tamaño exacto del cuadrado. La superficie del círculo se pintará de color azul. ¿Cuántos centímetros cuadrados del mosaico se pintarán de color azul? (Use π ≈ 3,14)</p>${FIG.i29}`,
  A:'314,0 cm²',B:'21,5 cm²',C:'78,5 cm²',D:'100,0 cm²',
- k:'C',e:'Radio = 5 cm; Área = 3,14 × 5² = 3,14 × 25 = 78,5 cm².'},
+ k:'C',
+ e:`<p><strong>El cuadrado tiene lado 10 cm → el círculo inscrito tiene diámetro 10 cm → radio = 5 cm.</strong></p>
+${T.wrap(T.table(['Dato','Valor'],[T.row(['Lado del cuadrado','10 cm']),T.row(['Diámetro del círculo','10 cm']),T.row(['Radio (r)','5 cm']),T.row(['π','3,14'])]))}
+<p><strong>Área del círculo:</strong> A = π × r² = 3,14 × 5² = 3,14 × 25 = <strong>78,5 cm² → Opción C ✓</strong></p>`,
+ t:`<p><strong>Áreas de figuras compuestas</strong></p>
+<p>Se divide la figura en partes conocidas, se calcula cada área y se suman.</p>
+${T.wrap(T.table(['Figura','Fórmula del área'],[T.row(['Cuadrado','lado²']),T.row(['Rectángulo','base × altura']),T.row(['Triángulo','(base × altura) ÷ 2']),T.row(['Círculo','π × radio²']),T.row(['Figura compuesta','Suma de las partes'])]))}
+${cards(card('r = 5 cm','Radio del círculo'),card('A = π×r²','= 3,14 × 25'),card('78,5 cm²','Área pintada de azul ✓',true))}`},
 
 /* ── 30 ── */
 {n:30,b:'Bloque 2 · Geometría',
  q:`<p>La siguiente figura simétrica está dibujada en papel cuadriculado. Además, se muestran ocho puntos de esa figura, los cuales se identifican con letras:</p>${FIG.i30}<div class="infobox">La medida del lado de cada cuadrado de la cuadrícula es 1 cm.</div><p style="margin-top:10px">De acuerdo con la información anterior, dos puntos que son homólogos entre sí, con respecto al eje de simetría de esa figura, se identifican con las letras</p>`,
  A:'E y G',B:'M y N',C:'F y H',D:'P y E',
- k:'B',e:'El eje de simetría es vertical en x = 4. M(0,5) y N(8,5) están a igual distancia (4 cm) del eje → son homólogos.'},
+ k:'B',
+ e:`<p><strong>El eje de simetría de la figura T es la recta vertical x = 4 (centro).</strong></p>
+<p><strong>Puntos homólogos:</strong> están a la misma distancia del eje, en lados opuestos.</p>
+${T.wrap(T.table(['Par de puntos','Posición','Distancia al eje (x=4)','¿Homólogos?'],[T.row(['M(0,5) y N(8,5)','Misma altura (y=5)','M: 4−0=4 / N: 8−4=4','<strong>Sí ✓</strong>']),T.row(['E(2,2) y G(6,2)','Misma altura (y=2)','E: 4−2=2 / G: 6−4=2','Depende del eje']),T.row(['F(3,2) y H(5,2)','Misma altura','1 y 1','Sí, pero la respuesta es M y N'])]))}
+<p><strong>M(0,5) y N(8,5) → Opción B ✓</strong></p>`,
+ t:`<p><strong>Simetría: eje y puntos homólogos</strong></p>
+<p>Una figura es <em>simétrica</em> cuando existe una recta (eje de simetría) que la divide en dos partes que son imagen especular una de la otra.</p>
+<p><em>Puntos homólogos:</em> dos puntos son homólogos si están a la misma distancia del eje de simetría, pero en lados opuestos, y a la misma altura.</p>
+${T.wrap(T.table(['Concepto','Descripción'],[T.row(['Eje de simetría','Recta que divide la figura en 2 partes iguales']),T.row(['Puntos homólogos','Misma distancia al eje, lados opuestos']),T.row(['Figura simétrica','Ambas mitades son imagen especular'])]))}
+${cards(card('Eje x=4','Eje vertical central'),card('M(0,5) – N(8,5)','Distancia 4 a cada lado'),card('Homólogos','Misma altura, lados opuestos',true))}`},
 
 /* ── 31 ── */
 {n:31,b:'Bloque 2 · Geometría',
  q:`<p>Un municipio encarga la fabricación de cuatro señales viales. Los diseños de las señales son los siguientes:</p>${FIG.i31}<p>De acuerdo con la información anterior, ¿cuál de las señales encargadas es simétrica?</p>`,
  A:'Señal 1',B:'Señal 2',C:'Señal 3',D:'Señal 4',
- k:'D',e:'La Señal 4 (flecha en U/retorno) tiene eje de simetría vertical y sus dos mitades son imagen especular una de la otra.'},
+ k:'D',
+ e:`<p><strong>Una señal es simétrica si tiene un eje que divide la figura en dos mitades imagen especular.</strong></p>
+${T.wrap(T.table(['Señal','Descripción','¿Simétrica?','Razón'],[T.row(['Señal 1','Flecha diagonal','No','Rotada 45°, no tiene eje claro']),T.row(['Señal 2','Cruz con flecha','No','La barra horizontal rompe la simetría']),T.row(['Señal 3','Flecha en L','No','Forma en L no es simétrica']),T.row(['Señal 4','Flecha en U','<strong>Sí ✓</strong>','Eje vertical central divide en 2 mitades iguales'])]))}
+<p><strong>Señal 4 → Opción D ✓</strong></p>`,
+ t:`<p><strong>Simetría: eje y puntos homólogos</strong></p>
+<p>Una figura es <em>simétrica</em> cuando existe una recta (eje de simetría) que la divide en dos partes que son imagen especular una de la otra.</p>
+<p><em>Puntos homólogos:</em> dos puntos son homólogos si están a la misma distancia del eje de simetría, pero en lados opuestos, y a la misma altura.</p>
+${T.wrap(T.table(['Concepto','Descripción'],[T.row(['Eje de simetría','Recta que divide la figura en 2 partes iguales']),T.row(['Puntos homólogos','Misma distancia al eje, lados opuestos']),T.row(['Figura simétrica','Ambas mitades son imagen especular'])]))}
+${cards(card('Señal 1','No simétrica'),card('Señal 3','No simétrica'),card('Señal 4','Simétrica eje vertical ✓',true))}`},
 
 /* ── 32 ── */
 {n:32,b:'Bloque 2 · Geometría',
  q:`<p>El siguiente sistema de coordenadas muestra la ubicación actual de una alfombra cuadrada en el salón comunal. Se muestran sus cuatro esquinas (P, Q, R y S) y una marca en el piso (X):</p>${FIG.i32}<div class="infobox">La medida del lado de cada cuadrado de la cuadrícula es 50 cm.</div><p style="margin-top:10px">La alfombra se traslada 150 cm al este y 100 cm al sur. De acuerdo con la información anterior, ¿cuál esquina de la alfombra coincide con la marca del piso?</p>`,
  A:'P',B:'Q',C:'R',D:'S',
- k:'C',e:'150 cm = 3 unidades al este; 100 cm = 2 unidades al sur. R(5,5) → R\'(8,3) = X. La esquina R coincide con X.'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Convertir la traslación a unidades:</strong> 1 cuadro = 50 cm</p>
+${T.wrap(T.table(['Dirección','Distancia','Unidades en cuadrícula'],[T.row(['Este','150 cm','150 ÷ 50 = 3 unidades']),T.row(['Sur','100 cm','100 ÷ 50 = 2 unidades'])]))}
+<p><strong>Paso 2 — Aplicar la traslación a cada esquina:</strong></p>
+${T.wrap(T.table(['Esquina','Posición original','Nueva posición','¿Coincide con X(8,3)?'],[T.row(['P','(3,7)','(6,5)','No']),T.row(['Q','(5,7)','(8,5)','No']),T.row(['R','(5,5)','<strong>(8,3)</strong>','<strong>Sí = X ✓</strong>']),T.row(['S','(3,5)','(6,3)','No'])]))}
+<p><strong>La esquina R coincide con X → Opción C ✓</strong></p>`,
+ t:`<p><strong>Sistema de coordenadas y traslaciones</strong></p>
+<p>Un punto P(x, y) se traslada sumando o restando a sus coordenadas:</p>
+${T.wrap(T.table(['Dirección','Efecto en coordenadas'],[T.row(['Este (+x)','x aumenta']),T.row(['Oeste (−x)','x disminuye']),T.row(['Norte (+y)','y aumenta']),T.row(['Sur (−y)','y disminuye'])]))}
+${cards(card('Este +3','x: 5 → 8'),card('Sur −2','y: 5 → 3'),card('R(5,5) → (8,3)','= X ✓',true))}`},
 
 /* ── 33 ── */
 {n:33,b:'Bloque 2 · Geometría',
  q:`<p>El siguiente sistema de coordenadas muestra la ubicación del banco (B), la farmacia (F), la librería (L), el parque (P) y la ubicación actual de Tomás (T):</p>${FIG.i33}<div class="infobox">La medida del lado de cada cuadrado de la cuadrícula es 100 m.</div><p style="margin-top:10px">De acuerdo con la información anterior, si desde la ubicación actual de Tomás (T) camina 300 m al norte y 200 m al este, entonces él llega</p>`,
  A:'al banco',B:'a la librería',C:'a la farmacia',D:'al parque',
- k:'C',e:'T(3,3) + 3 norte + 2 este = (5,6) = F (farmacia).'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Posición inicial de Tomás:</strong> T(3,3). Un cuadro = 100 m.</p>
+${T.wrap(T.table(['Movimiento','Distancia','Cuadros','Efecto'],[T.row(['Norte','300 m','3 cuadros','y: 3 + 3 = 6']),T.row(['Este','200 m','2 cuadros','x: 3 + 2 = 5'])]))}
+<p><strong>Paso 2 — Nueva posición:</strong> (5, 6)</p>
+<p><strong>Paso 3 — Identificar el lugar en (5,6):</strong> F = farmacia</p>
+<p><strong>Tomás llega a la farmacia → Opción C ✓</strong></p>`,
+ t:`<p><strong>Sistema de coordenadas y traslaciones</strong></p>
+<p>Un punto P(x, y) se traslada sumando o restando a sus coordenadas:</p>
+${T.wrap(T.table(['Dirección','Efecto en coordenadas'],[T.row(['Este (+x)','x aumenta']),T.row(['Oeste (−x)','x disminuye']),T.row(['Norte (+y)','y aumenta']),T.row(['Sur (−y)','y disminuye'])]))}
+${cards(card('Norte +3','y: 3 → 6'),card('Este +2','x: 3 → 5'),card('T(3,3) → F(5,6)','Farmacia ✓',true))}`},
 
 /* ── 34 ── */
 {n:34,b:'Bloque 3 · Medidas',
  q:`<p>La siguiente tabla muestra el tiempo que cuatro estudiantes llevan participando en el club de atletismo de una escuela de Costa Rica:</p>${tbl34()}<p>De acuerdo con la información anterior, ¿cuál de esos estudiantes lleva más tiempo participando en el club de atletismo?</p>`,
  A:'Andrea',B:'Beto',C:'Carlos',D:'Daniela',
- k:'D',e:'1 460 días = 4 años. Andrea: 3 años; Beto: 40 meses ≈ 3,33 años; Carlos: 200 semanas ≈ 3,84 años. Daniela lleva más tiempo.'},
+ k:'D',
+ e:`<p><strong>Paso 1 — Convertir todos los tiempos a años para comparar:</strong></p>
+${T.wrap(T.table(['Estudiante','Tiempo','Conversión','En años'],[T.row(['Andrea','3 años','—','3,00 años']),T.row(['Beto','40 meses','40 ÷ 12 ≈','3,33 años']),T.row(['Carlos','200 semanas','200 ÷ 52 ≈','3,85 años']),T.row(['Daniela','1&#8239;460 días','1&#8239;460 ÷ 365 =','<strong>4,00 años ✓</strong>'])]))}
+<p><strong>Daniela lleva más tiempo: 4 años → Opción D ✓</strong></p>`,
+ t:`<p><strong>Conversión de unidades de tiempo</strong></p>
+${T.wrap(T.table(['Equivalencia'],[T.row(['1 año = 12 meses']),T.row(['1 año = 52 semanas (aprox.)']),T.row(['1 año = 365 días']),T.row(['1 semana = 7 días']),T.row(['1 día = 24 horas'])]))}
+${cards(card('40 meses','÷ 12 ≈ 3,33 años'),card('200 semanas','÷ 52 ≈ 3,85 años'),card('1&#8239;460 días','÷ 365 = 4 años ✓',true))}`},
 
 /* ── 35 ── */
 {n:35,b:'Bloque 3 · Medidas',
  q:`<p>Una empresa constructora instaló una cisterna para abastecer de agua a una urbanización de Costa Rica. La cisterna tiene una capacidad de 45 m³.</p><p>De acuerdo con la información anterior, ¿cuántos dm³ equivalen a esa capacidad?</p>`,
  A:'45 000 dm³',B:'450 dm³',C:'450 000 dm³',D:'4 500 dm³',
- k:'A',e:'1 m³ = 1 000 dm³, por lo que 45 m³ = 45 × 1 000 = 45 000 dm³.'},
+ k:'A',
+ e:`<p><strong>Conversión de metros cúbicos a decímetros cúbicos:</strong></p>
+${T.wrap(T.table(['Dato','Valor'],[T.row(['Equivalencia','1 m³ = 1&#8239;000 dm³']),T.row(['Cantidad','45 m³']),T.row(['Operación','45 × 1&#8239;000']),T.row(['Resultado','<strong>45&#8239;000 dm³ ✓</strong>'])]))}
+<p><strong>45 m³ = 45&#8239;000 dm³ → Opción A ✓</strong></p>`,
+ t:`<p><strong>Conversión de unidades de volumen</strong></p>
+${T.wrap(T.table(['Unidad mayor','Unidad menor','Factor','Operación'],[T.row(['1 m³','1&#8239;000 dm³','× 1&#8239;000','m³ → dm³']),T.row(['1 dm³','1&#8239;000 cm³','× 1&#8239;000','dm³ → cm³']),T.row(['1 m³','1&#8239;000&#8239;000 cm³','× 1&#8239;000&#8239;000','m³ → cm³'])]))}
+${cards(card('1 m³','= 1&#8239;000 dm³'),card('45 m³','× 1&#8239;000 = 45&#8239;000 dm³'),card('45&#8239;000 dm³','Respuesta ✓',true))}`},
 
 /* ── 36 ── */
 {n:36,b:'Bloque 3 · Medidas',
  q:`<p>En una planta procesadora de jugo de naranja de Costa Rica, la producción de un día fue de 6 480 dL. Todo ese jugo se envasó en botellas de 1 litro.</p><p>De acuerdo con la información anterior, ¿cuántas botellas de 1 litro se llenaron ese día?</p>`,
  A:'64 800 botellas',B:'64,8 botellas',C:'6 480 botellas',D:'648 botellas',
- k:'D',e:'1 L = 10 dL → 6 480 dL ÷ 10 = 648 L = 648 botellas.'},
+ k:'D',
+ e:`<p><strong>Paso 1 — Recordar la equivalencia:</strong> 1 L = 10 dL</p>
+<p><strong>Paso 2 — Convertir decilitros a litros:</strong></p>
+${T.wrap(T.table(['Dato','Cálculo','Resultado'],[T.row(['6&#8239;480 dL','6&#8239;480 ÷ 10','648 L']),T.row(['Botellas de 1 L','648 L ÷ 1 L','<strong>648 botellas ✓</strong>'])]))}
+<p><strong>Se llenaron 648 botellas → Opción D ✓</strong></p>`,
+ t:`<p><strong>Conversión de unidades de capacidad</strong></p>
+${T.wrap(T.table(['Unidad','Abrev.','Equivalencia'],[T.row(['Kilolitro','kL','1 kL = 1&#8239;000 L']),T.row(['Litro','L','Unidad base']),T.row(['Decilitro','dL','1 L = 10 dL']),T.row(['Centilitro','cL','1 L = 100 cL']),T.row(['Mililitro','mL','1 L = 1&#8239;000 mL'])]))}
+${cards(card('1 L','= 10 dL'),card('6&#8239;480 dL','÷ 10 = 648 L'),card('648 botellas','de 1 L ✓',true))}`},
 
 /* ── 37 ── */
 {n:37,b:'Bloque 3 · Medidas',
  q:`<p>En una feria de ciencias de una escuela de Costa Rica, cada equipo de trabajo usa 250 mL de agua cada 15 minutos durante un experimento. El experimento dura 1 hora en total.</p><p>De acuerdo con la información anterior, ¿cuántos litros de agua usa cada equipo durante todo el experimento?</p>`,
  A:'1 L',B:'0,25 L',C:'2 L',D:'0,5 L',
- k:'A',e:'En 60 minutos hay 60÷15 = 4 usos; 4 × 250 mL = 1 000 mL = 1 L.'},
+ k:'A',
+ e:`<p><strong>Paso 1 — Calcular cuántas veces se usa el agua en 1 hora:</strong></p>
+<p style="text-align:center">60 minutos ÷ 15 minutos = <strong>4 usos</strong></p>
+<p><strong>Paso 2 — Total de agua usada:</strong></p>
+${T.wrap(T.table(['Usos','mL por uso','Total mL','Conversión a L'],[T.row(['4','250 mL','4 × 250 = 1&#8239;000 mL','1&#8239;000 mL ÷ 1&#8239;000 = <strong>1 L ✓</strong>'])]))}
+<p><strong>Cada equipo usa 1 L de agua → Opción A ✓</strong></p>`,
+ t:`<p><strong>Conversión de unidades de capacidad</strong></p>
+${T.wrap(T.table(['Unidad','Abrev.','Equivalencia'],[T.row(['Kilolitro','kL','1 kL = 1&#8239;000 L']),T.row(['Litro','L','Unidad base']),T.row(['Decilitro','dL','1 L = 10 dL']),T.row(['Centilitro','cL','1 L = 100 cL']),T.row(['Mililitro','mL','1 L = 1&#8239;000 mL'])]))}
+${cards(card('4 usos','60÷15 = 4'),card('4×250 mL','= 1&#8239;000 mL'),card('1&#8239;000 mL','= 1 L ✓',true))}`},
 
 /* ── 38 ── */
 {n:38,b:'Bloque 3 · Medidas',
  q:`<p>Tomás tiene ahorrado ₡24 300 entre un billete y monedas. La siguiente tabla muestra las monedas que tiene:</p>${tbl38()}<p>De acuerdo con la información anterior, ¿cuál es la denominación del billete que tiene Tomás?</p>`,
  A:'₡2 000',B:'₡5 000',C:'₡10 000',D:'₡20 000',
- k:'D',e:'Monedas: 2×1000 + 4×500 + 3×100 = 2000+2000+300 = ₡4 300. Billete = 24 300 − 4 300 = ₡20 000.'},
+ k:'D',
+ e:`<p><strong>Paso 1 — Sumar el valor de las monedas:</strong></p>
+${T.wrap(T.table(['Moneda','Cantidad','Subtotal'],[T.row(['₡1&#8239;000','2','₡2&#8239;000']),T.row(['₡500','4','₡2&#8239;000']),T.row(['₡100','3','₡300']),T.row(['<strong>Total monedas</strong>','','<strong>₡4&#8239;300</strong>'])]))}
+<p><strong>Paso 2 — Hallar el billete:</strong> ₡24&#8239;300 − ₡4&#8239;300 = <strong>₡20&#8239;000 → Opción D ✓</strong></p>`,
+ t:`<p><strong>Operaciones con dinero costarricense (₡)</strong></p>
+<p>Para encontrar una parte desconocida del dinero:</p>
+<p style="text-align:center"><strong>Total = billetes + monedas → billete = Total − monedas</strong></p>
+${T.wrap(T.table(['Denominación','Tipo'],[T.row(['₡1&#8239;000, ₡2&#8239;000, ₡5&#8239;000, ₡10&#8239;000, ₡20&#8239;000','Billetes']),T.row(['₡500, ₡100, ₡50, ₡25, ₡10, ₡5','Monedas'])]))}
+${cards(card('₡4&#8239;300','Total en monedas'),card('₡24&#8239;300 − ₡4&#8239;300','= ₡20&#8239;000'),card('₡20&#8239;000','Denominación del billete ✓',true))}`},
 
 /* ── 39 ── */
 {n:39,b:'Bloque 3 · Medidas',
  q:`<p>Una familia fue a una tienda a comprar materiales para un proyecto escolar. Compraron 3 libretas, 2 plumones y 1 caja de colores. La siguiente tabla muestra el precio de cada artículo:</p>${tbl39()}<p>De acuerdo con la información anterior, ¿cuál fue el monto total pagado por todos los materiales?</p>`,
  A:'₡2 450',B:'₡4 050',C:'₡4 500',D:'₡5 350',
- k:'B',e:'3×450 + 2×700 + 1×1300 = 1350 + 1400 + 1300 = ₡4 050.'},
+ k:'B',
+ e:`<p><strong>Paso 1 — Calcular el costo de cada artículo:</strong></p>
+${T.wrap(T.table(['Artículo','Cantidad','Precio unit.','Subtotal'],[T.row(['Libreta','3','₡450','3 × 450 = ₡1&#8239;350']),T.row(['Plumón','2','₡700','2 × 700 = ₡1&#8239;400']),T.row(['Caja de colores','1','₡1&#8239;300','1 × 1&#8239;300 = ₡1&#8239;300'])]))}
+<p><strong>Paso 2 — Sumar:</strong> ₡1&#8239;350 + ₡1&#8239;400 + ₡1&#8239;300 = <strong>₡4&#8239;050 → Opción B ✓</strong></p>`,
+ t:`<p><strong>Operaciones con dinero costarricense (₡)</strong></p>
+<p>Para calcular el costo total: <strong>Cantidad × Precio unitario</strong> para cada artículo, luego <strong>suma todos los subtotales</strong>.</p>
+${T.wrap(T.table(['Operación','Ejemplo'],[T.row(['Entero × precio','3 × ₡450 = ₡1&#8239;350']),T.row(['Entero × precio','2 × ₡700 = ₡1&#8239;400']),T.row(['Suma de subtotales','₡1&#8239;350 + ₡1&#8239;400 + ₡1&#8239;300 = ₡4&#8239;050'])]))}
+${cards(card('₡1&#8239;350','3 libretas'),card('₡1&#8239;400','2 plumones'),card('₡4&#8239;050','Total compra ✓',true))}`},
 
 /* ── 40 ── */
 {n:40,b:'Bloque 3 · Medidas',
@@ -788,31 +1079,75 @@ ${T.wrap(T.table(['Posición','Valor','Fracción equivalente'],[T.row(['Décimas
  B:'1 billete de ₡5 000, 1 billete de ₡1 000 y 10 monedas de ₡50',
  C:'2 billetes de ₡2 000, 2 billetes de ₡1 000 y 11 monedas de ₡50',
  D:'1 billete de ₡5 000, 1 billete de ₡1 000 y 6 monedas de ₡100',
- k:'C',e:'Vuelto = 20 000 − 13 450 = ₡6 550. Opción C: 2×2000 + 2×1000 + 11×50 = 4000+2000+550 = ₡6 550. ✓'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Calcular el vuelto:</strong> ₡20&#8239;000 − ₡13&#8239;450 = <strong>₡6&#8239;550</strong></p>
+<p><strong>Paso 2 — Verificar cada opción:</strong></p>
+${T.wrap(T.table(['Opción','Billetes y monedas','Total','¿Correcto?'],[T.row(['A','3×₡2&#8239;000 + 5×₡100','₡6&#8239;000+₡500=₡6&#8239;500','No']),T.row(['B','1×₡5&#8239;000 + 1×₡1&#8239;000 + 10×₡50','₡5&#8239;000+₡1&#8239;000+₡500=₡6&#8239;500','No']),T.row(['<strong>C</strong>','2×₡2&#8239;000 + 2×₡1&#8239;000 + 11×₡50','₡4&#8239;000+₡2&#8239;000+₡550=₡6&#8239;550','<strong>Sí ✓</strong>']),T.row(['D','1×₡5&#8239;000 + 1×₡1&#8239;000 + 6×₡100','₡5&#8239;000+₡1&#8239;000+₡600=₡6&#8239;600','No'])]))}
+<p><strong>Opción C = ₡6&#8239;550 → Opción C ✓</strong></p>`,
+ t:`<p><strong>Operaciones con dinero costarricense (₡)</strong></p>
+<p>Para calcular el vuelto:</p>
+<p style="text-align:center"><strong>Vuelto = Pago − Compra</strong></p>
+${T.wrap(T.table(['Denominación','Tipo'],[T.row(['₡1&#8239;000, ₡2&#8239;000, ₡5&#8239;000, ₡10&#8239;000, ₡20&#8239;000','Billetes']),T.row(['₡500, ₡100, ₡50, ₡25, ₡10, ₡5','Monedas'])]))}
+${cards(card('₡20&#8239;000','Pago realizado'),card('₡13&#8239;450','Monto de compra'),card('₡6&#8239;550','Vuelto correcto ✓',true))}`},
 
 /* ── 41 ── */
 {n:41,b:'Bloque 3 · Medidas',
  q:`<p>Una familia costarricense viajó a los Estados Unidos. Antes de partir, cambiaron ₡150 000 a dólares en el banco. Ese día el tipo de cambio era de ₡500 por cada dólar.</p><p>De acuerdo con la información anterior, ¿cuántos dólares recibió la familia?</p>`,
  A:'300 dólares',B:'1 500 dólares',C:'3 000 dólares',D:'30 dólares',
- k:'A',e:'150 000 ÷ 500 = 300 dólares.'},
+ k:'A',
+ e:`<p><strong>Tipo de cambio:</strong> ₡500 = 1 dólar → para convertir colones a dólares se divide.</p>
+${T.wrap(T.table(['Dato','Valor'],[T.row(['Total en colones','₡150&#8239;000']),T.row(['Tipo de cambio','₡500 por dólar']),T.row(['Cálculo','150&#8239;000 ÷ 500']),T.row(['Resultado','<strong>300 dólares ✓</strong>'])]))}
+<p><strong>La familia recibió 300 dólares → Opción A ✓</strong></p>`,
+ t:`<p><strong>Conversión de monedas (tipo de cambio)</strong></p>
+<p>El <em>tipo de cambio</em> indica cuántos colones equivalen a 1 dólar (u otra moneda).</p>
+${T.wrap(T.table(['Conversión','Operación'],[T.row(['Colones → Dólares','Colones ÷ Tipo de cambio']),T.row(['Dólares → Colones','Dólares × Tipo de cambio'])]))}
+${cards(card('÷ 500','Colones → Dólares'),card('× 500','Dólares → Colones'),card('₡150&#8239;000 ÷ 500','= 300 dólares ✓',true))}`},
 
 /* ── 42 ── */
 {n:42,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>En una clase de artes de una escuela de Costa Rica, los estudiantes diseñaron arreglos de azulejos cuadrados. La siguiente tabla muestra los primeros cuatro arreglos del patrón:</p>${FIG.i42}<p>De acuerdo con la información anterior, si el patrón continúa, ¿cuántos azulejos tiene el arreglo en la posición 12?</p>`,
  A:'45',B:'41',C:'49',D:'53',
- k:'A',e:'Patrón: posición n tiene 4n − 3 azulejos. Posición 12: 4×12 − 3 = 45.'},
+ k:'A',
+ e:`<p><strong>Paso 1 — Analizar la sucesión:</strong></p>
+${T.wrap(T.table(['Posición (n)','Azulejos','Diferencia'],[T.row(['1','1','—']),T.row(['2','5','+4']),T.row(['3','9','+4']),T.row(['4','13','+4'])]  ))}
+<p><strong>Paso 2 — Hallar la fórmula:</strong> cada posición aumenta 4. Fórmula: <strong>4n − 3</strong></p>
+<p>Verificación: n=1 → 4(1)−3=1 ✓; n=2 → 4(2)−3=5 ✓</p>
+<p><strong>Paso 3 — Posición 12:</strong> 4×12 − 3 = 48 − 3 = <strong>45 → Opción A ✓</strong></p>`,
+ t:`<p><strong>Patrones numéricos: sucesiones aritméticas</strong></p>
+<p>En una sucesión aritmética, cada término se obtiene sumando una diferencia constante (razón de cambio).</p>
+<p><strong>Fórmula:</strong> a<sub>n</sub> = a<sub>1</sub> + (n−1)×d, donde d = diferencia constante</p>
+${T.wrap(T.table(['Sucesión','Diferencia (d)','Fórmula'],[T.row(['1, 5, 9, 13…','4','4n − 3']),T.row(['6, 11, 16, 21…','5','5n + 1']),T.row(['3, 6, 9, 12…','3','3n'])]))}
+${cards(card('d = 4','Diferencia constante'),card('4n − 3','Fórmula del patrón'),card('n=12 → 45','Posición 12 ✓',true))}`},
 
 /* ── 43 ── */
 {n:43,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>En un mercado artesanal de Costa Rica, una vendedora lleva el registro de la cantidad de artesanías que vende cada día. La siguiente tabla muestra los datos de los primeros cuatro días:</p>${tbl43()}<p>De acuerdo con la información anterior, si el patrón se mantiene, ¿cuántas artesanías vendió la vendedora en el día 9?</p>`,
  A:'36',B:'41',C:'46',D:'51',
- k:'C',e:'Patrón: diferencia de +5. Fórmula: 5n+1. Día 9: 5×9+1 = 46.'},
+ k:'C',
+ e:`<p><strong>Paso 1 — Analizar la sucesión:</strong></p>
+${T.wrap(T.table(['Día (n)','Artesanías','Diferencia'],[T.row(['1','6','—']),T.row(['2','11','+5']),T.row(['3','16','+5']),T.row(['4','21','+5'])]))}
+<p><strong>Paso 2 — Hallar la fórmula:</strong> diferencia constante = 5 → fórmula: <strong>5n + 1</strong></p>
+<p>Verificación: n=1 → 5(1)+1=6 ✓; n=4 → 5(4)+1=21 ✓</p>
+<p><strong>Paso 3 — Día 9:</strong> 5×9 + 1 = 45 + 1 = <strong>46 → Opción C ✓</strong></p>`,
+ t:`<p><strong>Patrones numéricos: sucesiones aritméticas</strong></p>
+<p>En una sucesión aritmética, cada término se obtiene sumando una diferencia constante (razón de cambio).</p>
+<p><strong>Fórmula:</strong> a<sub>n</sub> = a<sub>1</sub> + (n−1)×d, donde d = diferencia constante</p>
+${T.wrap(T.table(['Sucesión','Diferencia (d)','Fórmula'],[T.row(['1, 5, 9, 13…','4','4n − 3']),T.row(['6, 11, 16, 21…','5','5n + 1']),T.row(['3, 6, 9, 12…','3','3n'])]))}
+${cards(card('d = 5','Diferencia constante'),card('5n + 1','Fórmula del patrón'),card('n=9 → 46','Día 9 ✓',true))}`},
 
 /* ── 44 ── */
 {n:44,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>Un estudiante siembra tomates en el huerto de su escuela y lleva el registro de cuántos tomates cosecha cada semana. La siguiente tabla muestra los datos de las primeras cuatro semanas:</p>${tbl44()}<p>De acuerdo con la información anterior, si el patrón se mantiene, ¿cuántos tomates cosechará el estudiante en la semana 6?</p>`,
  A:'42',B:'30',C:'36',D:'56',
- k:'A',e:'Patrón: semana n cosecha n×(n+1) tomates. Semana 6: 6×7 = 42.'},
+ k:'A',
+ e:`<p><strong>Paso 1 — Analizar el patrón de la sucesión:</strong></p>
+${T.wrap(T.table(['Semana (n)','Tomates','Expresión'],[T.row(['1','2','1 × 2']),T.row(['2','6','2 × 3']),T.row(['3','12','3 × 4']),T.row(['4','20','4 × 5'])]  ))}
+<p><strong>Paso 2 — Patrón:</strong> semana n → n × (n+1)</p>
+<p><strong>Paso 3 — Semana 6:</strong> 6 × (6+1) = 6 × 7 = <strong>42 → Opción A ✓</strong></p>`,
+ t:`<p><strong>Patrones numéricos: sucesiones no aritméticas</strong></p>
+<p>No todas las sucesiones tienen diferencia constante. Hay patrones en que la diferencia misma cambia; se busca una regla multiplicativa o cuadrática.</p>
+${T.wrap(T.table(['Semana (n)','Tomates','Diferencia entre términos'],[T.row(['1','2','—']),T.row(['2','6','+4']),T.row(['3','12','+6']),T.row(['4','20','+8']),T.row(['5','30','+10']),T.row(['6','42','+12'])]))}
+${cards(card('n×(n+1)','Regla del patrón'),card('Semana 5','5×6 = 30'),card('Semana 6','6×7 = 42 ✓',true))}`},
 
 /* ── 45 ── */
 {n:45,b:'Bloque 4 · Relaciones y Álgebra',
@@ -821,91 +1156,210 @@ ${T.wrap(T.table(['Posición','Valor','Fracción equivalente'],[T.row(['Décimas
  B:'La velocidad del camión en cada ruta',
  C:'El peso de los productos transportados en cada entrega',
  D:'La capacidad máxima de carga del camión',
- k:'D',e:'La capacidad máxima de carga (3 000 kg) no varía → es constante. Las demás cantidades cambian semana a semana o ruta a ruta.'},
+ k:'D',
+ e:`<p><strong>Analizar cuál cantidad no cambia:</strong></p>
+${T.wrap(T.table(['Cantidad','¿Varía?','Tipo'],[T.row(['Cantidad de entregas semanales','Sí (distinta cada semana)','Variable']),T.row(['Velocidad del camión','Sí (0 a 90 km/h según ruta)','Variable']),T.row(['Peso de productos transportados','Sí (cambia por entrega)','Variable']),T.row(['Capacidad máxima de carga','<strong>No: siempre 3&#8239;000 kg</strong>','<strong>Constante ✓</strong>'])]))}
+<p><strong>La capacidad máxima de carga = 3&#8239;000 kg → Opción D ✓</strong></p>`,
+ t:`<p><strong>Constantes y variables en una situación matemática</strong></p>
+<ul style="margin:8px 0 8px 22px"><li><strong>Constante:</strong> valor que no cambia en la situación (ej.: capacidad máxima, precio fijo).</li><li><strong>Variable:</strong> valor que puede cambiar (ej.: cantidad, velocidad, precio con descuento).</li></ul>
+${T.wrap(T.table(['Ejemplo','Constante','Variable'],[T.row(['Camión de reparto','Capacidad máxima 3&#8239;000 kg','Peso real cargado']),T.row(['Triángulo equilátero','P = 3 × lado','Medida del lado']),T.row(['Ahorro semanal','₡900/semana','Semanas transcurridas'])]))}
+${cards(card('Constante','Valor fijo, no cambia'),card('Variable','Valor que cambia'),card('3&#8239;000 kg','Constante del camión ✓',true))}`},
 
 /* ── 46 ── */
 {n:46,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>Considere la siguiente información:</p><p>La siguiente tabla muestra la relación entre el lado y el perímetro de varios triángulos equiláteros:</p>${tbl46()}<p>De acuerdo con la información anterior, ¿cuánto mide el perímetro de un triángulo equilátero cuyo lado mide 17 cm?</p>`,
  A:'51 cm',B:'45 cm',C:'48 cm',D:'54 cm',
- k:'A',e:'P = 3 × lado. Para lado = 17 cm: P = 3 × 17 = 51 cm.'},
+ k:'A',
+ e:`<p><strong>Paso 1 — Identificar la regla de la tabla:</strong></p>
+${T.wrap(T.table(['Lado (cm)','Perímetro (cm)','Regla'],[T.row(['4','12','3 × 4 = 12']),T.row(['7','21','3 × 7 = 21']),T.row(['10','30','3 × 10 = 30']),T.row(['13','39','3 × 13 = 39'])]  ))}
+<p><strong>Regla:</strong> Perímetro = 3 × lado (triángulo equilátero tiene 3 lados iguales)</p>
+<p><strong>Paso 2 — Aplicar para lado = 17 cm:</strong> P = 3 × 17 = <strong>51 cm → Opción A ✓</strong></p>`,
+ t:`<p><strong>Relaciones funcionales y tablas de variación</strong></p>
+<p>Una <em>relación funcional</em> asocia cada valor de una variable con exactamente un valor de otra. En la tabla, la regla es constante.</p>
+${T.wrap(T.table(['Variable','Nombre','Papel'],[T.row(['Lado','Variable independiente','Se elige libremente']),T.row(['Perímetro','Variable dependiente','Depende del lado']),T.row(['Regla','P = 3 × lado','Fórmula que relaciona ambas'])]  ))}
+${cards(card('P = 3 × lado','Regla funcional'),card('Lado 17 cm','P = 3×17 = 51 cm'),card('51 cm','Perímetro ✓',true))}`},
 
 /* ── 47 ── */
 {n:47,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>Se mide la altura en cm de una planta de frijol según la cantidad de días transcurridos desde la germinación. El siguiente plano cartesiano muestra las tres primeras mediciones registradas:</p>${FIG.i47}<p>De acuerdo con la información anterior, si el patrón de crecimiento se mantiene, ¿cuál par ordenado corresponde al día 7?</p>`,
  A:'(7, 10)',B:'(7, 12)',C:'(7, 16)',D:'(7, 14)',
- k:'D',e:'Patrón: altura = 2 × días. Día 7: altura = 2 × 7 = 14 cm → par ordenado (7, 14).'},
+ k:'D',
+ e:`<p><strong>Paso 1 — Leer los puntos del plano y hallar la regla:</strong></p>
+${T.wrap(T.table(['Días (x)','Altura cm (y)','Regla'],[T.row(['1','2','2 × 1 = 2']),T.row(['2','4','2 × 2 = 4']),T.row(['3','6','2 × 3 = 6'])]  ))}
+<p><strong>Regla:</strong> altura = 2 × días</p>
+<p><strong>Paso 2 — Día 7:</strong> altura = 2 × 7 = 14 cm → par ordenado: <strong>(7, 14) → Opción D ✓</strong></p>`,
+ t:`<p><strong>Plano cartesiano y pares ordenados</strong></p>
+<p>Un <em>par ordenado</em> (x, y) indica la posición de un punto: x = eje horizontal, y = eje vertical.</p>
+${T.wrap(T.table(['Concepto','Descripción'],[T.row(['Par ordenado (x, y)','x = variable independiente; y = dependiente']),T.row(['Regla lineal','y = a × x (proporcionalidad directa)']),T.row(['Graficar','Cada par es un punto en el plano'])]  ))}
+${cards(card('(1, 2)','1 día → 2 cm'),card('(3, 6)','3 días → 6 cm'),card('(7, 14)','7 días → 14 cm ✓',true))}`},
 
 /* ── 48 ── */
 {n:48,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>Considere la siguiente información:</p><p>En un experimento de Ciencias, los estudiantes registran la cantidad de plantas germinadas según los días transcurridos. La siguiente tabla muestra los datos con un valor desconocido:</p>${tbl48()}<p>De acuerdo con la información anterior, si el patrón se mantiene, ¿cuál es el valor de ■?</p>`,
  A:'8',B:'7',C:'10',D:'9',
- k:'A',e:'Patrón: plantas = 3 × días. 24 = 3 × ■ → ■ = 8 días.'},
+ k:'A',
+ e:`<p><strong>Paso 1 — Identificar la regla de la tabla:</strong></p>
+${T.wrap(T.table(['Días','Plantas','Regla'],[T.row(['2','6','3 × 2 = 6']),T.row(['4','12','3 × 4 = 12']),T.row(['6','18','3 × 6 = 18']),T.row(['<strong>■</strong>','<strong>24</strong>','3 × ■ = 24'])]  ))}
+<p><strong>Paso 2 — Resolver:</strong> 3 × ■ = 24 → ■ = 24 ÷ 3 = <strong>8 días → Opción A ✓</strong></p>`,
+ t:`<p><strong>Relaciones funcionales y ecuaciones simples</strong></p>
+<p>Cuando una variable es desconocida, se plantea una ecuación y se despeja:</p>
+<p style="text-align:center"><strong>3 × ■ = 24 → ■ = 24 ÷ 3 = 8</strong></p>
+${T.wrap(T.table(['Ecuación','Operación inversa','Solución'],[T.row(['3 × ■ = 24','÷ 3','■ = 8']),T.row(['■ + 5 = 11','− 5','■ = 6']),T.row(['■ − 7 = 10','+ 7','■ = 17'])]  ))}
+${cards(card('3 × ■ = 24','Ecuación'),card('■ = 24 ÷ 3','Operación inversa'),card('■ = 8 días','Solución ✓',true))}`},
 
 /* ── 49 ── */
 {n:49,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>Considere la siguiente información:</p><p>Una estudiante ahorra la misma cantidad de su mesada cada semana. Después de 4 semanas, ha ahorrado ₡3 600 en total. Esto se puede representar con la siguiente ecuación:</p><p class="ecuacion"><strong>4 × n = 3 600</strong></p><p>De acuerdo con la información anterior, ¿cuál es el valor de <em>n</em>?</p>`,
  A:'₡800',B:'₡1 200',C:'₡1 440',D:'₡900',
- k:'D',e:'n = 3 600 ÷ 4 = 900. La estudiante ahorra ₡900 por semana.'},
+ k:'D',
+ e:`<p><strong>Ecuación:</strong> 4 × n = 3&#8239;600</p>
+<p><strong>Paso 1 — Despejar n:</strong> la operación inversa de multiplicar por 4 es dividir entre 4.</p>
+${T.wrap(T.table(['Ecuación','Operación','Resultado'],[T.row(['4 × n = 3&#8239;600','n = 3&#8239;600 ÷ 4','<strong>n = ₡900 ✓</strong>'])]  ))}
+<p><strong>Paso 2 — Verificar:</strong> 4 × 900 = 3&#8239;600 ✓</p>
+<p><strong>n = ₡900 → Opción D ✓</strong></p>`,
+ t:`<p><strong>Ecuaciones y su solución</strong></p>
+<p>Una ecuación es una igualdad con una incógnita (n, x, ■). Para resolverla, se aplica la <em>operación inversa</em>.</p>
+${T.wrap(T.table(['Tipo','Ecuación ejemplo','Operación inversa','Solución'],[T.row(['Multiplicación','4 × n = 3&#8239;600','÷ 4','n = 900']),T.row(['División','n ÷ 3 = 15','× 3','n = 45']),T.row(['Suma','n + 7 = 20','− 7','n = 13']),T.row(['Resta','n − 5 = 8','+ 5','n = 13'])]  ))}
+${cards(card('4 × n = 3&#8239;600','Ecuación'),card('n = 3&#8239;600 ÷ 4','Operación inversa'),card('n = ₡900','Solución ✓',true))}`},
 
 /* ── 50 ── */
 {n:50,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>Considere la siguiente información:</p><p>Una empresa distribuidora de café coloca bolsas de 8 kg cada una en una estantería. La estantería soporta un peso menor que 120 kg. En la siguiente inecuación, <em>b</em> representa la cantidad de bolsas que se pueden colocar:</p><p class="ecuacion"><strong>8 × b &lt; 120</strong></p><p>De acuerdo con la información anterior, ¿cuál es la mayor cantidad de bolsas que se pueden colocar en la estantería?</p>`,
  A:'14',B:'15',C:'112',D:'128',
- k:'A',e:'b = 14: 8 × 14 = 112 &lt; 120 ✓. b = 15: 8 × 15 = 120, que NO es menor que 120 (no cumple). La mayor cantidad posible es 14 bolsas.'},
+ k:'A',
+ e:`<p><strong>Inecuación:</strong> 8 × b &lt; 120 (el peso debe ser ESTRICTAMENTE menor que 120 kg)</p>
+${T.wrap(T.table(['Valor de b','8 × b','¿&lt; 120?','¿Cumple?'],[T.row(['14','8 × 14 = 112','112 &lt; 120','<strong>Sí ✓</strong>']),T.row(['15','8 × 15 = 120','120 NO es &lt; 120','No'])]  ))}
+<p><strong>La mayor cantidad entera que cumple es b = 14 bolsas → Opción A ✓</strong></p>`,
+ t:`<p><strong>Ecuaciones e inecuaciones</strong></p>
+<ul style="margin:8px 0 8px 22px"><li><strong>Ecuación:</strong> igualdad con incógnita (ej.: 4×n = 3&#8239;600)</li><li><strong>Inecuación:</strong> desigualdad con incógnita (ej.: 8×b &lt; 120)</li></ul>
+${T.wrap(T.table(['Símbolo','Significado','Ejemplo'],[T.row(['&lt;','Menor que','8×b &lt; 120 → b &lt; 15']),T.row(['≤','Menor o igual que','8×b ≤ 120 → b ≤ 15']),T.row(['&gt;','Mayor que','—']),T.row(['≥','Mayor o igual que','—'])]  ))}
+${cards(card('8×14 = 112','112 &lt; 120 ✓'),card('8×15 = 120','NO cumple &lt; 120'),card('b = 14','Mayor cantidad posible ✓',true))}`},
 
 /* ── 51 ── */
 {n:51,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>Considere la siguiente información:</p><p>En una feria de artesanías, se venden bolsas de granola artesanal en tres puestos identificados con las letras M, N y O. Marisol quiere comprar 5 bolsas.</p><ul class="blist"><li>En M cada bolsa cuesta ₡1 200, pero se aplica un descuento del 30 % en el precio de cada bolsa.</li><li>En N cada bolsa cuesta ₡900.</li><li>En O cada bolsa cuesta ₡1 000, pero se aplica un descuento del 10 % en el precio de cada bolsa.</li></ul><p>De acuerdo con la información anterior, ¿en cuál puesto Marisol pagaría menos dinero por las 5 bolsas?</p>`,
  A:'M',B:'N',C:'O',D:'Los tres puestos tienen el mismo precio total',
- k:'A',e:'M: 1200 × 0,70 × 5 = ₡4 200. N: 900 × 5 = ₡4 500. O: 1000 × 0,90 × 5 = ₡4 500. El puesto M es más barato.'},
+ k:'A',
+ e:`<p><strong>Paso 1 — Calcular el precio por bolsa con descuento:</strong></p>
+${T.wrap(T.table(['Puesto','Precio original','Descuento','Precio c/desc.','5 bolsas'],[T.row(['M','₡1&#8239;200','30%','₡1&#8239;200 × 0,70 = ₡840','<strong>₡4&#8239;200</strong>']),T.row(['N','₡900','—','₡900','₡4&#8239;500']),T.row(['O','₡1&#8239;000','10%','₡1&#8239;000 × 0,90 = ₡900','₡4&#8239;500'])]  ))}
+<p><strong>Paso 2 — Comparar:</strong> M: ₡4&#8239;200 &lt; N: ₡4&#8239;500 = O: ₡4&#8239;500</p>
+<p><strong>El puesto M es el más barato → Opción A ✓</strong></p>`,
+ t:`<p><strong>Porcentaje y descuento</strong></p>
+<p>Un <em>descuento</em> es una rebaja sobre el precio original. Para calcular el precio con descuento:</p>
+<p style="text-align:center"><strong>Precio con desc. = Precio original × (1 − % descuento / 100)</strong></p>
+${T.wrap(T.table(['% descuento','Factor multiplicador','Ejemplo'],[T.row(['10%','0,90','₡1&#8239;000 × 0,90 = ₡900']),T.row(['20%','0,80','₡500 × 0,80 = ₡400']),T.row(['30%','0,70','₡1&#8239;200 × 0,70 = ₡840'])]  ))}
+${cards(card('30% desc.','× 0,70 → ₡840/bolsa'),card('5 bolsas M','5 × ₡840 = ₡4&#8239;200'),card('₡4&#8239;200','Más barato ✓',true))}`},
 
 /* ── 52 ── */
 {n:52,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>Considere la siguiente información:</p><p>En un taller, una artesana recibe un pago de ₡4 500 por cada 3 horas de trabajo. Al finalizar la jornada, recibió un pago total de ₡22 500 por todo ese trabajo.</p><p>De acuerdo con la información anterior, ¿cuántas horas trabajó en total?</p>`,
  A:'12 horas',B:'9 horas',C:'18 horas',D:'15 horas',
- k:'D',e:'Tasa: ₡4500/3h = ₡1500/h. Total horas = 22 500 ÷ 1 500 = 15 horas.'},
+ k:'D',
+ e:`<p><strong>Paso 1 — Hallar la tasa de pago por hora:</strong></p>
+<p style="text-align:center">₡4&#8239;500 ÷ 3 horas = <strong>₡1&#8239;500 por hora</strong></p>
+<p><strong>Paso 2 — Calcular el total de horas trabajadas:</strong></p>
+${T.wrap(T.table(['Dato','Operación','Resultado'],[T.row(['Pago total','₡22&#8239;500','—']),T.row(['Tasa por hora','₡1&#8239;500/h','—']),T.row(['Horas','22&#8239;500 ÷ 1&#8239;500','<strong>15 horas ✓</strong>'])]  ))}
+<p><strong>15 horas trabajadas → Opción D ✓</strong></p>`,
+ t:`<p><strong>Proporcionalidad directa y razón de cambio</strong></p>
+<p>Dos magnitudes son <em>directamente proporcionales</em> cuando al multiplicar una por un factor, la otra se multiplica por el mismo factor.</p>
+<p style="text-align:center"><strong>Total = Tasa × Cantidad → Cantidad = Total ÷ Tasa</strong></p>
+${T.wrap(T.table(['Horas','Pago'],[T.row(['1 h','₡1&#8239;500']),T.row(['3 h','₡4&#8239;500']),T.row(['10 h','₡15&#8239;000']),T.row(['15 h','₡22&#8239;500'])]  ))}
+${cards(card('₡4&#8239;500 / 3h','= ₡1&#8239;500/h'),card('₡22&#8239;500 ÷ ₡1&#8239;500','= 15 horas'),card('15 horas','Respuesta ✓',true))}`},
 
 /* ── 53 ── */
 {n:53,b:'Bloque 4 · Relaciones y Álgebra',
  q:`<p>Considere la siguiente información:</p><p>El precio de una bicicleta era de ₡80 000. A partir del próximo mes, ese precio aumentará un 15 %.</p><p>De acuerdo con la información anterior, ¿cuál será el nuevo precio de la bicicleta?</p>`,
  A:'₡92 000',B:'₡12 000',C:'₡84 000',D:'₡96 000',
- k:'A',e:'15% de 80 000 = 12 000. Nuevo precio = 80 000 + 12 000 = ₡92 000.'},
+ k:'A',
+ e:`<p><strong>Paso 1 — Calcular el aumento del 15%:</strong></p>
+${T.wrap(T.table(['Método','Cálculo','Resultado'],[T.row(['15% de ₡80&#8239;000','80&#8239;000 × 15 ÷ 100','₡12&#8239;000']),T.row(['Alternativamente','80&#8239;000 × 0,15','₡12&#8239;000'])]  ))}
+<p><strong>Paso 2 — Nuevo precio:</strong> ₡80&#8239;000 + ₡12&#8239;000 = <strong>₡92&#8239;000 → Opción A ✓</strong></p>`,
+ t:`<p><strong>Porcentaje y aumento</strong></p>
+<p>Para calcular un aumento porcentual:</p>
+<p style="text-align:center"><strong>Aumento = Precio original × (% / 100)</strong></p>
+<p style="text-align:center"><strong>Nuevo precio = Precio original + Aumento</strong></p>
+<p>También: Nuevo precio = Precio original × (1 + %/100) = ₡80&#8239;000 × 1,15 = ₡92&#8239;000</p>
+${T.wrap(T.table(['% aumento','Factor','Ejemplo'],[T.row(['10%','× 1,10','₡80&#8239;000 × 1,10 = ₡88&#8239;000']),T.row(['15%','× 1,15','₡80&#8239;000 × 1,15 = ₡92&#8239;000']),T.row(['20%','× 1,20','₡80&#8239;000 × 1,20 = ₡96&#8239;000'])]  ))}
+${cards(card('15%','= ₡12&#8239;000 de aumento'),card('₡80&#8239;000 + ₡12&#8239;000','= ₡92&#8239;000'),card('₡92&#8239;000','Nuevo precio ✓',true))}`},
 
 /* ── 54 ── */
 {n:54,b:'Bloque 5 · Estadística y Probabilidades',
  q:`<p>Considere la siguiente información:</p><p>La siguiente tabla muestra la cantidad de libros leídos por los estudiantes de un grupo durante el mes de marzo:</p>${tbl54()}<p>De acuerdo con la información anterior, ¿cuántos estudiantes leyeron más de 3 libros?</p>`,
  A:'6',B:'22',C:'18',D:'10',
- k:'D',e:'Más de 3 libros: los que leyeron 4 (6 estudiantes) + los que leyeron 5 (4 estudiantes) = 10 estudiantes.'},
+ k:'D',
+ e:`<p><strong>"Más de 3 libros" significa 4 o más libros:</strong></p>
+${T.wrap(T.table(['Libros leídos','Estudiantes','¿Más de 3?'],[T.row(['1','5','No']),T.row(['2','8','No']),T.row(['3','12','No (es igual, no más)']),T.row(['4','6','<strong>Sí ✓</strong>']),T.row(['5','4','<strong>Sí ✓</strong>'])]  ))}
+<p><strong>Total:</strong> 6 + 4 = <strong>10 estudiantes → Opción D ✓</strong></p>`,
+ t:`<p><strong>Lectura e interpretación de tablas estadísticas</strong></p>
+<p>Para responder preguntas sobre tablas de frecuencias, identifica exactamente qué valores incluye la condición.</p>
+${T.wrap(T.table(['Expresión','Valores incluidos'],[T.row(['"más de 3"','4, 5, 6… (no incluye 3)']),T.row(['"al menos 3"','3, 4, 5… (incluye 3)']),T.row(['"menos de 3"','1, 2 (no incluye 3)']),T.row(['"a lo sumo 3"','1, 2, 3 (incluye 3)'])]  ))}
+${cards(card('4 libros','6 estudiantes'),card('5 libros','4 estudiantes'),card('Total &gt; 3','6 + 4 = 10 ✓',true))}`},
 
 /* ── 55 ── */
 {n:55,b:'Bloque 5 · Estadística y Probabilidades',
  q:`<p>Considere la siguiente información:</p><p>La siguiente lista muestra la cantidad de hermanos de 10 estudiantes:</p><p class="datalist">2, 1, 3, 2, 1, 2, 4, 2, 1, 3</p><p>De acuerdo con la información anterior, ¿cuál es la moda de esos datos?</p>`,
  A:'2',B:'1',C:'3',D:'2,1',
- k:'A',e:'La moda es el valor que más se repite. El 2 aparece 4 veces → moda = 2.'},
+ k:'A',
+ e:`<p><strong>Paso 1 — Contar la frecuencia de cada valor:</strong></p>
+${T.wrap(T.table(['Valor','Frecuencia (veces que aparece)'],[T.row(['1','1, 1, 1 → 3 veces']),T.row(['2','2, 2, 2, 2 → <strong>4 veces (más frecuente)</strong>']),T.row(['3','3, 3 → 2 veces']),T.row(['4','4 → 1 vez'])]  ))}
+<p><strong>El 2 aparece 4 veces (la frecuencia mayor) → moda = 2 → Opción A ✓</strong></p>`,
+ t:`<p><strong>Medidas estadísticas: moda, media y recorrido</strong></p>
+${T.wrap(T.table(['Medida','Definición','Cómo calcularla'],[T.row(['Moda','Valor que más se repite','Contar frecuencias']),T.row(['Media (promedio)','Suma ÷ cantidad de datos','Σ datos / n']),T.row(['Recorrido','Máximo − mínimo','Valor mayor − valor menor'])]  ))}
+${cards(card('Moda = 2','Aparece 4 veces'),card('Media','21÷10 = 2,1'),card('Recorrido','4 − 1 = 3',true))}`},
 
 /* ── 56 ── */
 {n:56,b:'Bloque 5 · Estadística y Probabilidades',
  q:`<p>Considere la siguiente información:</p><p>Los siguientes datos muestran las temperaturas máximas (en °C) registradas en una ciudad durante 6 días:</p><p class="datalist">28, 32, 25, 35, 30, 27</p><p>De acuerdo con la información anterior, ¿cuál es el recorrido de esos datos?</p>`,
  A:'7',B:'5',C:'8',D:'10',
- k:'D',e:'Recorrido = máximo − mínimo = 35 − 25 = 10.'},
+ k:'D',
+ e:`<p><strong>Recorrido = Valor máximo − Valor mínimo</strong></p>
+${T.wrap(T.table(['Datos','28, 32, 25, 35, 30, 27'],[T.row(['Ordenados','25, 27, 28, 30, 32, 35']),T.row(['Mínimo','25 °C']),T.row(['Máximo','35 °C']),T.row(['<strong>Recorrido</strong>','<strong>35 − 25 = 10 ✓</strong>'])]  ))}
+<p><strong>Recorrido = 10 → Opción D ✓</strong></p>`,
+ t:`<p><strong>Medidas estadísticas: moda, media y recorrido</strong></p>
+${T.wrap(T.table(['Medida','Definición','Cómo calcularla'],[T.row(['Moda','Valor que más se repite','Contar frecuencias']),T.row(['Media (promedio)','Suma ÷ cantidad de datos','Σ datos / n']),T.row(['Recorrido','Máximo ��� mínimo','Valor mayor − valor menor'])]  ))}
+${cards(card('Máximo','35 °C'),card('Mínimo','25 °C'),card('Recorrido','35 − 25 = 10 ✓',true))}`},
 
 /* ── 57 ── */
 {n:57,b:'Bloque 5 · Estadística y Probabilidades',
  q:`<p>Considere la siguiente información:</p><p>En una bolsa hay 30 botones que se diferencian solo por su color. Diez son azules, seis son rojos, ocho son amarillos y el resto son verdes.</p><p>De acuerdo con la información anterior, si se saca al azar un botón de esa bolsa, entonces el evento obtener un botón verde es igualmente probable que el evento obtener un botón</p>`,
  A:'rojo.',B:'azul.',C:'amarillo.',D:'No existe ningún color con la misma probabilidad.',
- k:'A',e:'Verdes = 30 − 10 − 6 − 8 = 6. Rojos = 6. Ambos tienen probabilidad 6/30 → igualmente probables.'},
+ k:'A',
+ e:`<p><strong>Paso 1 — Hallar la cantidad de botones verdes:</strong></p>
+<p style="text-align:center">Verdes = 30 − 10 (azules) − 6 (rojos) − 8 (amarillos) = <strong>6 verdes</strong></p>
+<p><strong>Paso 2 — Calcular probabilidades:</strong></p>
+${T.wrap(T.table(['Color','Cantidad','Probabilidad'],[T.row(['Azul','10',T.frac('10','30')+' = 0,33']),T.row(['Rojo','6',T.frac('6','30')+' = 0,20']),T.row(['Amarillo','8',T.frac('8','30')+' = 0,27']),T.row(['Verde','6',T.frac('6','30')+' = 0,20'])]  ))}
+<p><strong>Rojo y verde tienen la misma probabilidad (6/30) → Opción A ✓</strong></p>`,
+ t:`<p><strong>Probabilidad de un evento</strong></p>
+<p style="text-align:center"><strong>P(evento) = Casos favorables ÷ Total de casos posibles</strong></p>
+${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener un 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5','P(verde) = 6/30 = 0,20']),T.row(['Muy probable','0,5 &lt; P &lt; 1','P(roja en bolsa A) = 6/10 = 0,60']),T.row(['Seguro','P = 1','Sacar cualquier número del 1 al 10'])]  ))}
+${cards(card(T.frac('6','30'),'P(verde) = 0,20'),card(T.frac('6','30'),'P(rojo) = 0,20'),card('Iguales','Rojo = Verde ✓',true))}`},
 
 /* ── 58 ── */
 {n:58,b:'Bloque 5 · Estadística y Probabilidades',
  q:`<p>Considere la siguiente información:</p><p>Una caja contiene 10 fichas numeradas del 1 al 10. Si se saca al azar una ficha de esa caja, ¿cuál de los siguientes eventos es imposible?</p>`,
  A:'Obtener un número mayor que 5',B:'Obtener el número 15',C:'Obtener un número par',D:'Obtener un número menor que 10',
- k:'B',e:'El 15 no está en el conjunto {1, 2, …, 10}, por lo tanto ese evento es imposible.'},
+ k:'B',
+ e:`<p><strong>Espacio muestral:</strong> fichas numeradas del 1 al 10 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}</p>
+${T.wrap(T.table(['Opción','Evento','¿Es posible?','Razón'],[T.row(['A','Número mayor que 5','Sí','6, 7, 8, 9, 10 están en la caja']),T.row(['<strong>B</strong>','Obtener el 15','<strong>No — imposible ✓</strong>','El 15 no está en {1..10}']),T.row(['C','Número par','Sí','2, 4, 6, 8, 10']),T.row(['D','Número menor que 10','Sí','1, 2, 3, 4, 5, 6, 7, 8, 9'])]  ))}
+<p><strong>El 15 no existe en la caja → evento imposible → Opción B ✓</strong></p>`,
+ t:`<p><strong>Probabilidad de un evento</strong></p>
+<p style="text-align:center"><strong>P(evento) = Casos favorables ÷ Total de casos posibles</strong></p>
+${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5','P(verde) = 6/30 = 0,20']),T.row(['Muy probable','0,5 &lt; P &lt; 1','P(roja en bolsa A) = 6/10 = 0,60']),T.row(['Seguro','P = 1','Sacar cualquier ficha del 1 al 10'])]  ))}
+${cards(card('P = 0','Evento imposible'),card('P = 1','Evento seguro'),card('Obtener 15','No está → imposible ✓',true))}`},
 
 /* ── 59 ── */
 {n:59,b:'Bloque 5 · Estadística y Probabilidades',
  q:`<p>Considere la siguiente información:</p><p>En una caja hay 20 fichas de colores: 8 son rojas, 7 son azules y 5 son amarillas. Si se saca al azar una ficha de esa caja, ¿cuál es la probabilidad de obtener una ficha roja?</p>`,
  A:'0,35',B:'0,25',C:'0,60',D:'0,40',
- k:'D',e:'P(roja) = 8/20 = 0,40.'},
+ k:'D',
+ e:`<p><strong>Datos:</strong> 8 fichas rojas de 20 fichas en total</p>
+<p style="text-align:center"><strong>P(roja) = ${T.frac('8','20')} = 0,40</strong></p>
+${T.wrap(T.table(['Color','Fichas','Probabilidad','Decimal'],[T.row(['Roja','8',T.frac('8','20'),'0,40 ✓']),T.row(['Azul','7',T.frac('7','20'),'0,35']),T.row(['Amarilla','5',T.frac('5','20'),'0,25']),T.row(['Total','20','1','1,00'])]  ))}
+<p><strong>P(roja) = 0,40 → Opción D ✓</strong></p>`,
+ t:`<p><strong>Probabilidad de un evento</strong></p>
+<p style="text-align:center"><strong>P(evento) = Casos favorables ÷ Total de casos posibles</strong></p>
+${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5','P(amarilla) = 5/20 = 0,25']),T.row(['Probable','P = 0,5','P = 10/20']),T.row(['Muy probable','0,5 &lt; P &lt; 1','P(roja en bolsa A) = 6/10 = 0,60']),T.row(['Seguro','P = 1','Siempre ocurre'])]  ))}
+${cards(card(T.frac('8','20'),'= 0,40'),card('P(azul)','= 7/20 = 0,35'),card('P(roja) = 0,40','Opción D ✓',true))}`},
 
 /* ── 60 ── */
 {n:60,b:'Bloque 5 · Estadística y Probabilidades',
@@ -914,7 +1368,14 @@ ${T.wrap(T.table(['Posición','Valor','Fracción equivalente'],[T.row(['Décimas
  B:'De la bolsa B, porque tiene mayor probabilidad de obtener una canica roja.',
  C:'Ambas bolsas tienen la misma probabilidad de obtener una canica roja.',
  D:'No es posible determinar de cuál bolsa conviene sacar la canica.',
- k:'A',e:'P(roja|A) = 6/10 = 0,60. P(roja|B) = 3/10 = 0,30. Conviene la bolsa A.'}
+ k:'A',
+ e:`<p><strong>Paso 1 — Calcular la probabilidad de sacar roja de cada bolsa:</strong></p>
+${T.wrap(T.table(['Bolsa','Rojas','Total canicas','P(roja)','Decimal'],[T.row(['<strong>A</strong>','6','10',T.frac('6','10'),'<strong>0,60</strong>']),T.row(['B','3','10',T.frac('3','10'),'0,30'])]  ))}
+<p><strong>Paso 2 — Comparar:</strong> 0,60 &gt; 0,30 → <strong>Conviene sacar de la bolsa A → Opción A ✓</strong></p>`,
+ t:`<p><strong>Probabilidad de un evento</strong></p>
+<p style="text-align:center"><strong>P(evento) = Casos favorables ÷ Total de casos posibles</strong></p>
+${T.wrap(T.table(['Tipo de evento','Probabilidad','Ejemplo'],[T.row(['Imposible','P = 0','Obtener el 15 de fichas del 1 al 10']),T.row(['Poco probable','0 &lt; P &lt; 0,5','P(roja bolsa B) = 3/10 = 0,30']),T.row(['Muy probable','0,5 &lt; P &lt; 1','P(roja bolsa A) = 6/10 = 0,60']),T.row(['Seguro','P = 1','Siempre ocurre'])]  ))}
+${cards(card('P(A) = 0,60','Bolsa A — más probable'),card('P(B) = 0,30','Bolsa B — menos probable'),card('Bolsa A','Mayor probabilidad de ganar ✓',true))}`}
 
 ]; /* fin ITEMS */
 

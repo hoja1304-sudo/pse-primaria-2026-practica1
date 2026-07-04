@@ -68,6 +68,17 @@ table.res{border-collapse:collapse;width:100%;font-size:.88rem}
 table.res th{background:#e8ecff;color:#1f2b61}
 table.res th,table.res td{border:1px solid #d9dee8;padding:6px 8px;text-align:center}
 .correct{color:#176b36;font-weight:800}.wrong{color:#b42318;font-weight:800}.omitted{color:#8a6100;font-weight:800}
+.detalle{display:none;padding:26px}
+.detalle-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #d9dee8}
+.detalle-num{font-size:.88rem;color:#596579;font-weight:600}
+.ans-box{border-radius:6px;padding:12px 16px;margin:6px 0;font-size:.97rem;line-height:1.5}
+.ans-correct{background:#e7f6ec;border-left:4px solid #176b36;color:#176b36}
+.ans-wrong{background:#feeceb;border-left:4px solid #b42318;color:#b42318}
+.ans-omit{background:#fff6dc;border-left:4px solid #e0a800;color:#8a6100}
+.sol-box{background:#f0f4ff;border-left:4px solid #1565c0;border-radius:0 8px 8px 0;padding:16px 18px;margin-top:18px}
+.sol-title{font-weight:800;color:#1565c0;margin-bottom:8px;font-size:.95rem;letter-spacing:.01em}
+.ver-btn{border:0;border-radius:5px;padding:4px 10px;background:#e8ecf3;color:#253044;cursor:pointer;font-size:.82rem;font-weight:600;white-space:nowrap}
+.ver-btn:hover{background:#c8d4e8}
 @media(max-width:720px){
   .wrap{padding:10px}.inicio,.item,.results{padding:14px 12px}
   .bar{align-items:flex-start;flex-direction:column;gap:6px}
@@ -102,6 +113,7 @@ table.res th,table.res td{border:1px solid #d9dee8;padding:6px 8px;text-align:ce
 <div id="progressText" class="progress-text">0 de 60 respondidos</div>
 <main id="area"></main>
 <section id="results" class="card results"></section>
+<section id="detalle" class="card detalle"></section>
 
 </div>
 <script>
@@ -933,7 +945,7 @@ function finish(){
   const rows=ITEMS.map((it,i)=>{
     const r=res[i]||'—',state=r==='—'?'Omitido':(r===it.k?'Correcto':'Incorrecto');
     const cls=r==='—'?'omitted':(r===it.k?'correct':'wrong');
-    return `<tr><td>${i+1}</td><td>${r}</td><td>${it.k}</td><td class="${cls}">${state}</td><td style="text-align:left;font-size:.85rem">${it.e}</td></tr>`;
+    return `<tr><td>${i+1}</td><td>${r}</td><td>${it.k}</td><td class="${cls}">${state}</td><td><button class="ver-btn" onclick="verRespuesta(${i})">Ver respuesta</button></td></tr>`;
   }).join('');
   document.getElementById('results').style.display='block';
   document.getElementById('results').innerHTML=
@@ -945,10 +957,48 @@ function finish(){
        <div class="stat skip"><strong>${skip}</strong><br>Omitidas</div>
      </div>
      <div class="table-wrap"><table class="res">
-       <thead><tr><th>Ítem</th><th>Respuesta</th><th>Clave</th><th>Resultado</th><th>Retroalimentación</th></tr></thead>
+       <thead><tr><th>Ítem</th><th>Respuesta</th><th>Clave</th><th>Resultado</th><th>Detalle</th></tr></thead>
        <tbody>${rows}</tbody>
      </table></div>
      <button class="btn primary" style="display:block;margin:18px auto 0" onclick="location.reload()">Reiniciar</button>`;
+}
+
+function verRespuesta(i){
+  const it=ITEMS[i];
+  const r=res[i]||'—';
+  const corrLabel=`${it.k}) ${it[it.k]}`;
+  let ansHtml=`<div class="ans-box ans-correct">✓ <strong>Respuesta correcta:</strong> ${corrLabel}</div>`;
+  if(r==='—'){
+    ansHtml+=`<div class="ans-box ans-omit">— Ítem omitido (sin respuesta)</div>`;
+  } else if(r!==it.k){
+    ansHtml+=`<div class="ans-box ans-wrong">✗ <strong>Tu respuesta:</strong> ${r}) ${it[r]}</div>`;
+  }
+  document.getElementById('results').style.display='none';
+  const det=document.getElementById('detalle');
+  det.style.display='block';
+  det.innerHTML=
+    `<div class="detalle-header">
+       <button class="btn muted" onclick="backToResults()">← Regresar a Resultados</button>
+       <span class="detalle-num">Ítem ${i+1} · ${it.b}</span>
+     </div>
+     <div class="stem">${it.q}</div>
+     ${ansHtml}
+     <div class="sol-box">
+       <div class="sol-title">💡 Solución paso a paso</div>
+       <div>${it.e}</div>
+     </div>
+     <div style="margin-top:20px;text-align:center">
+       <button class="btn muted" onclick="backToResults()">← Regresar a Resultados</button>
+     </div>`;
+  det.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function backToResults(){
+  document.getElementById('detalle').style.display='none';
+  document.getElementById('detalle').innerHTML='';
+  const r=document.getElementById('results');
+  r.style.display='block';
+  r.scrollIntoView({behavior:'smooth',block:'start'});
 }
 </script>
 </body>

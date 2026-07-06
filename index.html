@@ -500,35 +500,39 @@ const ITEMS = [
 
 /* ── 1 ── */
 {n:1,b:'Bloque 1 · Números',
- q:`<p>Considere la siguiente información:</p><p>La cantidad de asientos del estadio de fútbol de una ciudad de Costa Rica es de <strong>352&#8239;046</strong>.</p><p>De acuerdo con la información anterior, ¿cuál es la representación literal del número que corresponde a la cantidad de asientos del estadio?</p>`,
- A:'Trescientos cincuenta y dos cuarenta y seis',
- B:'Trescientos cincuenta y dos mil cuarenta y seis',
- C:'Trescientos veinticinco mil cuarenta y seis',
- D:'Trescientos cincuenta y dos mil cuatrocientos seis',
- k:'B',e:`<p><strong>Posiciones de las cifras (de derecha a izquierda):</strong></p>
-${T.wrap(T.table(['Posición','Abrev.','Valor'],[['Unidades','U','1'],['Decenas','D','10'],['Centenas','C','100'],['Unidades de millar','UM','1&#8239;000'],['Decenas de millar','DM','10&#8239;000'],['Centenas de millar','CM','100&#8239;000'],['Unidades de millón','U.Mill.','1&#8239;000&#8239;000'],['Decenas de millón','D.Mill.','10&#8239;000&#8239;000'],['Centenas de millón','C.Mill.','100&#8239;000&#8239;000']].map(r=>T.row(r)).join('')))}
-<p><strong>Ejemplos:</strong></p>
-<div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:10px 0 16px">
-  <div style="border:2px solid #c8d0dc;border-radius:8px;padding:14px 20px;text-align:center;flex:1;min-width:140px;background:#f9fbff">
-    <div style="font-size:1.7rem;font-weight:800;color:#15246b;letter-spacing:.03em">45&#8239;000</div>
-    <hr style="border:none;border-top:1px solid #d0d8e8;margin:8px 0">
-    <div style="font-size:.87rem;color:#374151;font-style:italic;line-height:1.4">Cuarenta y cinco mil</div>
-  </div>
-  <div style="border:2px solid #c8d0dc;border-radius:8px;padding:14px 20px;text-align:center;flex:1;min-width:140px;background:#f9fbff">
-    <div style="font-size:1.7rem;font-weight:800;color:#15246b;letter-spacing:.03em">208&#8239;500</div>
-    <hr style="border:none;border-top:1px solid #d0d8e8;margin:8px 0">
-    <div style="font-size:.87rem;color:#374151;font-style:italic;line-height:1.4">Doscientos ocho mil quinientos</div>
-  </div>
-  <div style="border:2px solid #1565c0;border-radius:8px;padding:14px 20px;text-align:center;flex:1;min-width:140px;background:#e8f1ff">
-    <div style="font-size:1.7rem;font-weight:800;color:#15246b;letter-spacing:.03em">352&#8239;046</div>
-    <hr style="border:none;border-top:1px solid #b0c4e8;margin:8px 0">
-    <div style="font-size:.87rem;color:#374151;font-style:italic;line-height:1.4">Trescientos cincuenta y dos mil cuarenta y seis</div>
-  </div>
-</div>
-<p><strong>Aplicado al número 352&#8239;046 (desglose por posición):</strong></p>
-${T.wrap(T.table(['Cifra','Posición','Valor'],T.row(['<strong>3</strong>','Centenas de millar','300&#8239;000'])+T.row(['<strong>5</strong>','Decenas de millar','50&#8239;000'])+T.row(['<strong>2</strong>','Unidades de millar','2&#8239;000'])+T.row(['<strong>0</strong>','Centenas','0'])+T.row(['<strong>4</strong>','Decenas','40'])+T.row(['<strong>6</strong>','Unidades','6'])))}
-<p>300&#8239;000 + 50&#8239;000 + 2&#8239;000 + 40 + 6 = <strong>352&#8239;046</strong><br>
-Representación literal: <strong>«Trescientos cincuenta y dos mil cuarenta y seis»</strong> → opción B ✓</p>`},
+ q:`<p>De acuerdo con las proyecciones del INEC, en 2026 Costa Rica tiene <strong>5&#8239;217&#8239;213</strong> habitantes: <strong>2&#8239;613&#8239;455 mujeres</strong> (50,1%) y 2&#8239;603&#8239;758 hombres (49,9%).</p><p>De acuerdo con la información anterior, ¿cuál es la representación literal del número que corresponde a la cantidad de mujeres?</p>`,
+ A:'Dos millones seiscientos tres mil setecientos cincuenta y ocho.',
+ B:'Cinco millones doscientos diecisiete mil doscientos trece.',
+ C:'Dos millones seiscientos trece cuatrocientos cincuenta y cinco mil.',
+ D:'Dos millones seiscientos trece mil cuatrocientos cincuenta y cinco.',
+ k:'D',
+ e:`<p><strong>Paso 1 — Identificar el número de mujeres:</strong></p>
+<p style="text-align:center;font-size:1.6rem;font-weight:800;color:#15246b;letter-spacing:.05em">2&#8239;613&#8239;455</p>
+<p><strong>Paso 2 — Separar en períodos de tres cifras (de derecha a izquierda):</strong></p>
+${T.wrap(T.table(['Período','Cifras','Se lee'],
+  [T.row(['Millones','2','dos millones']),
+   T.row(['Miles','613','seiscientos trece mil']),
+   T.row(['Unidades','455','cuatrocientos cincuenta y cinco'])]))}
+<p><strong>Paso 3 — Unir los tres períodos:</strong></p>
+<p style="text-align:center;padding:10px 14px;background:#e8f1ff;border-radius:6px;font-style:italic;color:#15246b">«Dos millones seiscientos trece mil cuatrocientos cincuenta y cinco»</p>
+<p><strong>Paso 4 — Verificar cada opción:</strong></p>
+${T.wrap(T.table(['Opción','Corresponde a','¿Correcta?'],
+  [T.row(['A','2&#8239;603&#8239;758 = cantidad de hombres','✗']),
+   T.row(['B','5&#8239;217&#8239;213 = total de habitantes','✗']),
+   T.row(['C','Orden incorrecto: «…trece cuatrocientos cincuenta y cinco <em>mil</em>» ← «mil» fuera de lugar','✗']),
+   T.row(['D','2&#8239;613&#8239;455 = cantidad de mujeres','<strong>✓</strong>'])]))}
+<p><strong>Respuesta correcta: Opción D ✓</strong></p>`,
+ t:`<p><strong>Representación literal de números grandes</strong></p>
+<p>Los números se agrupan en <strong>períodos</strong> de tres cifras (de derecha a izquierda). Cada período tiene su nombre:</p>
+${T.wrap(T.table(['Posición','Abrev.','Valor'],
+  [['Unidades','U','1'],['Decenas','D','10'],['Centenas','C','100'],
+   ['Unidades de millar','UM','1&#8239;000'],['Decenas de millar','DM','10&#8239;000'],['Centenas de millar','CM','100&#8239;000'],
+   ['Unidades de millón','U.Mill.','1&#8239;000&#8239;000']].map(r=>T.row(r)).join('')))}
+${cards(
+  card('2&#8239;000&#8239;000','Dos millones'),
+  card('613&#8239;000','Seiscientos trece mil'),
+  card('2&#8239;613&#8239;455','Dos millones seiscientos trece mil cuatrocientos cincuenta y cinco',true)
+)}`},
 
 /* ── 2 ── */
 {n:2,b:'Bloque 1 · Números',

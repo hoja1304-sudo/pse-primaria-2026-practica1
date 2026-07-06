@@ -266,6 +266,21 @@ FIG.i25 = `<svg class="fig" viewBox="0 0 310 250" width="310" height="250" style
   <text x="233" y="52" font-size="15" font-weight="bold" text-anchor="start">B</text>
 </svg>`;
 
+/* Ítem 26 — Cancha rectangular 100 m × 64 m */
+FIG.i26 = `<svg class="fig" viewBox="-55 -15 345 215" width="345" height="215" style="max-width:100%">
+  <rect x="0" y="0" width="250" height="160" fill="none" stroke="#111" stroke-width="2"/>
+  <path d="M 0,18 L 18,18 L 18,0" fill="none" stroke="#111" stroke-width="1.5"/>
+  <path d="M 250,18 L 232,18 L 232,0" fill="none" stroke="#111" stroke-width="1.5"/>
+  <path d="M 0,142 L 18,142 L 18,160" fill="none" stroke="#111" stroke-width="1.5"/>
+  <path d="M 250,142 L 232,142 L 232,160" fill="none" stroke="#111" stroke-width="1.5"/>
+  <circle cx="0" cy="0" r="3.5" fill="#111"/>
+  <circle cx="250" cy="0" r="3.5" fill="#111"/>
+  <circle cx="0" cy="160" r="3.5" fill="#111"/>
+  <circle cx="250" cy="160" r="3.5" fill="#111"/>
+  <text x="-12" y="80" font-size="14" text-anchor="end" dominant-baseline="middle">64 m</text>
+  <text x="125" y="188" font-size="14" text-anchor="middle">100 m</text>
+</svg>`;
+
 /* Ítem 28 — Ventana (rectángulo + triángulo, 60×40 + h=30) */
 FIG.i28 = `<svg class="fig" viewBox="-25 -12 185 195" width="265" height="280" style="max-width:100%">
   <rect x="0" y="68" width="135" height="90" fill="none" stroke="#111" stroke-width="1.8"/>
@@ -894,18 +909,24 @@ ${cards(card('Radio','Centro → borde'),card('Diámetro','= 2 × radio'),card('
 
 /* ── 26 ── */
 {n:26,b:'Bloque 2 · Geometría',
- q:`<p>La cancha de fútbol 5 de una escuela tiene forma cuadrada con un perímetro de 20 m. Si se quiere cubrir toda la superficie de esa cancha con césped artificial, ¿cuántos metros cuadrados de césped se necesitan como mínimo?</p>`,
- A:'20 m²',B:'10 m²',C:'25 m²',D:'5 m²',
- k:'C',
- e:`<p><strong>Paso 1 — Hallar el lado del cuadrado a partir del perímetro:</strong></p>
-<p style="text-align:center">Perímetro = 4 × lado → 20 = 4 × lado → lado = 20 ÷ 4 = <strong>5 m</strong></p>
-<p><strong>Paso 2 — Calcular el área:</strong></p>
-<p style="text-align:center">Área = lado × lado = 5 × 5 = <strong>25 m²</strong></p>
-<p><strong>Se necesitan 25 m² de césped → Opción C ✓</strong></p>`,
- t:`<p><strong>Perímetro y área del cuadrado</strong></p>
-${T.wrap(T.table(['Magnitud','Fórmula','Unidad'],[T.row(['Perímetro','P = 4 × lado','m, cm, etc.']),T.row(['Área','A = lado × lado = lado²','m², cm², etc.'])]))}
-<p>Si conozco el perímetro: lado = P ÷ 4</p>
-${cards(card('P = 20 m','Lado = 5 m'),card('A = lado²','5² = 25 m²'),card('25 m²','Área del cuadrado',true))}`},
+ q:`<p>Considere la siguiente figura que representa una cancha de fútbol:</p>${FIG.i26}<p>De acuerdo con la información anterior, si se quiere cubrir toda la superficie de esa cancha con césped artificial, ¿cuántos metros cuadrados de césped se necesitan como mínimo?</p>`,
+ A:'164 m²',B:'328 m²',C:'3 200 m²',D:'6 400 m²',
+ k:'D',
+ e:`<p><strong>Paso 1 — Identificar los datos de la figura:</strong></p>
+${T.wrap(T.table(['Dato','Valor'],[T.row(['Base (largo)','100 m']),T.row(['Altura (ancho)','64 m']),T.row(['Figura','Rectángulo'])]))}
+<p><strong>Paso 2 — Aplicar la fórmula del área del rectángulo:</strong></p>
+<p style="text-align:center">Área = base × altura = 100 × 64 = <strong>6 400 m²</strong></p>
+<p><strong>Paso 3 — Analizar los distractores:</strong></p>
+${T.wrap(T.table(['Opción','Cálculo','Error'],
+  [T.row(['A) 164 m²','100 + 64 = 164','Sumó base y altura (semiperímetro)']),
+   T.row(['B) 328 m²','2 × (100 + 64) = 328','Calculó el perímetro, no el área']),
+   T.row(['C) 3 200 m²','6 400 ÷ 2 = 3 200','Dividió el área entre 2']),
+   T.row(['D) 6 400 m²','100 × 64 = 6 400','<strong>Área correcta ✓</strong>'])]))}
+<p><strong>Se necesitan 6 400 m² de césped → Opción D ✓</strong></p>`,
+ t:`<p><strong>Área y perímetro del rectángulo</strong></p>
+${T.wrap(T.table(['Magnitud','Fórmula','Ejemplo (100 m × 64 m)'],[T.row(['Área','A = base × altura','100 × 64 = 6 400 m²']),T.row(['Perímetro','P = 2 × (base + altura)','2 × (100 + 64) = 328 m'])]))}
+<p>El <strong>área</strong> mide la <em>superficie interior</em> (se mide en m², cm²…). El <strong>perímetro</strong> mide el <em>contorno</em> (se mide en m, cm…).</p>
+${cards(card('Base × Altura','Fórmula del área'),card('100 × 64','= 6 400 m²'),card('6 400 m²','Área de la cancha ✓',true))}`},
 
 /* ── 27 ── */
 {n:27,b:'Bloque 2 · Geometría',
